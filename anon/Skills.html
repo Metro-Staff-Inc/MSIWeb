@@ -1,0 +1,318 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    
+<script type="text/javascript" src = "https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+<script type="text/javascript">
+var ClientBaseURL = "http://localhost:52293/RestServiceWWW/Client/"; //
+var RosterBaseURL = "http://localhost:52293/RestServiceWWW/Roster/"; //
+ClientBaseURL = "../Client/";
+RosterBaseURL = "../Roster/";
+</script>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+    <title>Employee Skill Collection</title>
+    <style type="text/css">
+    body
+    {
+        background-color:#EEF;
+    }
+    
+    #mainDiv
+    {
+        height:400px;
+        width:440px;
+        background-color:#FFD;
+        padding-top:80px;
+        padding-left:160px;
+        padding-right:160px;
+        margin-left:240px;
+        margin-top:40px;
+        border:4px Double Blue;
+        -moz-border-radius: 15px;
+        border-radius: 15px;
+    }
+    
+    #loginDiv, #setupDiv
+    {
+        display:none;
+        height:auto;
+        width:440px;
+        background-color:#FFD;
+        padding-top:10px;
+        padding-left:40px;
+        margin-left:240px;
+        margin-top:40px;
+        border:4px Double Blue;
+        -moz-border-radius: 15px;
+        border-radius: 15px;
+    }
+    #loginDiv table, #setupDiv table
+    {
+        padding:24px 24px;
+    }
+    .title
+    {
+        font-weight:bold;
+        font-family:Verdana;
+        font-size:220%;
+    }
+    input
+    {
+        margin-left:8px;
+    }
+    select
+    {
+        margin-left:28px;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="mainDiv">
+        <p class='title'>Metro Staff, Inc.</p>
+        <h1>creative werks line experience</h1>
+        <h2 id="skillDisplay">NO SKILL SELECTED</h2><h2 style='visibility:hidden' id="skillId">0</h2>
+        <span>Enter ID:</span><input type="text" id="inpID" /><input id="setSkillList" type="button" value="GO!" />
+        <h2 id="punchResult"></h2>
+    </div>
+    <div id="loginDiv">
+        <table>
+            <tr><td>Administrator ID:</td><td><input type="text" id="adminID" /></td></tr>
+            <tr><td>Password:</td><td><input type="password" id="adminPwd" /></td><td></td>
+                <td><input id="btnAdminLogin" type="button" value="GO!" /></td></tr>
+            <tr><td><span id="badPwd"></span></td></tr>
+        </table>
+    </div>
+    <div id="setupDiv">
+        <table>
+            <tr><td colspan="3"><h2 style="padding-left:40px">Set Skill Parameter</h2></td></tr>
+            <tr><td colspan="3"><select id="ddlAdmin">
+                    </select></td></tr>
+            <tr><td rowspan="2"><input id="btnUpdateSkill" type="button" value="GO!" /></td>
+                <td><input id="remem" type="radio" value="remem" name="remember" /></td>
+                <td><span>Remember this selection on this computer</span></td>
+            </tr>
+            <tr>
+                <td><input id="noRemem" type="radio" value="noRemem" checked="checked" name="remember"  /></td>
+                <td><span>Do not remember this selection on this computer</span></td>            
+            </tr>
+        </table>
+    </div>
+    <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+
+    <script type="text/javascript">
+
+        //"file:///C:/your/path/to/file.txt"
+        function readTextFile(file) {
+            file = "file:///C:/Users/Jonathan Murfey/Documents/NEIU/Fall 2016/CS200/" + file;
+            var rawFile = new XMLHttpRequest();
+            rawFile.open("GET", file, false);
+            rawFile.onreadystatechange = function () {
+                if (rawFile.readyState === 4) {
+                    if (rawFile.status === 200 || rawFile.status == 0) {
+                        var allText = rawFile.responseText;
+                        alert(allText);
+                    }
+                }
+            }
+            rawFile.send(null);
+        }
+
+        $(document).ready(function () {
+            alert("Here we go!");
+
+            var obj = {};
+            obj.lastName = "Murfey";
+            obj.firstName = "Jonathan";
+            var data = JSON.stringify(obj);
+
+            alert(data);
+
+            $.ajax("http://www.msiwebtrax.com/Open/Test4",
+                {
+                    "contentType": "application/json; charset=utf-8",
+                    "dataType": "json",
+                    "method": "POST",
+                    "data": data,
+                    "complete": function (d) {
+                        alert(d.status);
+                    }
+                })
+            /*
+            var userRoles = [];
+            userRoles[0] = "Administrator";
+            userRoles[1] = "AdministratorTab";
+            userRoles[2] = "TimeClock";
+            userRoles[3] = "PayRates";
+            var userInfo = {};
+            userInfo.Roles = userRoles;
+            userInfo.UserName = "itdept";
+            var userInfoWrap = {};
+            userInfoWrap.userInfo = userInfo;
+            $.ajax("../Open/UpdateUser", {
+                "contentType": "application/json; charset=utf-8", "dataType": "json", "method": "POST", "type": "POST", "data": JSON.stringify(userInfoWrap),
+                "complete": function (d) {
+                    alert(d.status);
+                }
+            }); */
+
+            //readTextFile("Final.java");
+            var fileDat = {};
+            var className = "Final4"
+            fileDat.FileName = className + ".java";
+            var data = 'public class ' + className + '\n{\n\tHELLO HOW ARE YOU????(String[] args)\n\t{\n\n\t\tSystem.out.println( \"Hello World!\");\n\n\n\t}\n}';
+            fileDat.Data = data;//new Array(data.length);
+            //for( i=0; i<data.length; i++ ) {
+            //    fileData.Data[i] = data.charCodeAt(i);
+            //}
+            fileDat.Directory = "JMURFEY";
+            var fileDataWrap = {};
+            fileDataWrap.fileData = fileDat;
+            /*$.ajax("../Open/Upload", {
+                "contentType": "application/json; charset=utf-8", "dataType": "json", "method": "POST", "type": "POST", "data": JSON.stringify(fileDataWrap),
+                "complete": function (d) {
+                    alert(d.status);
+                }
+            });
+            */
+            $(".title").click(function () {
+                $("#loginDiv").slideToggle("slow");
+                $("#setupDiv").css("display", "none");
+                $("#adminID").val("");
+                $("#adminPwd").val("");
+                $("badPwd").val("");
+                setTimeout(function () {
+                    $("#loginDiv").css("display", "none");
+                }, 60 * 1000);
+            });
+            $("#btnAdminLogin").click(function () {
+                if ($("#adminID").val() != "itdept" || $("#adminPwd").val() != "chico76") {
+                    $("#badPwd").text("User Id / Password Invalid");
+                    return;
+                }
+                $("#loginDiv").slideUp("slow", function () {
+                    $("#setupDiv").slideToggle("slow");
+                });
+            });
+            $("#btnUpdateSkill").click(function () {
+                $("#skillDisplay").html($("#ddlAdmin").find("option:selected").text());
+                $("#skillId").html($("#ddlAdmin").find("option:selected").val());
+                setTimeout(function () {
+                    $("#setupDiv").slideUp("slow");
+                    if ($("#remem").attr("checked") == "checked")
+                        setCookie("skill", $("#ddlAdmin").find("option:selected").text(), 365);
+                    else
+                        setCookie("skill", "", 365);
+                }, 1500);
+            });
+            $("#setSkillList").click(function () {
+                setSkillList();
+            });
+            $("#adminID").val("");
+            $("#adminPwd").val("");
+            $("badPwd").val("");
+            //getSkills();
+            //setStartSkill();
+        });
+
+        function setStartSkill() {
+            var skill = getCookie("skill");
+            var skillId = getCookie("skillId");
+            if (skill != null && skill != "" && skillId != null && skillId != "") {
+                $("#skillDisplay").html(skill);
+                $("#skillDisplay").html(skillId);
+            }
+        };
+
+        function getSkills() {
+            Url = RosterBaseURL + "SkillDescriptions/temp";
+            $.ajax({
+                cache: false,
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                async: false,
+                dataType: "json",
+                url: Url,
+                success: function (jsonData) {
+                    var options = "";
+                    for (var i = 0; i < jsonData.length; i++) {
+                        options += "<option value='" + jsonData[i].Id + "'>" + jsonData[i].Description + "</option>";
+                    }
+                    $("#ddlAdmin").append(options);
+                },
+                error: function (xhr) {
+                    alert("ERROR!!!" + xhr.responseText);
+                }
+            });
+        }
+
+        function setSkillList() {
+            var id = $("#inpID").val();
+            var skillId = $("#skillId").text();
+            if (skillId == 0) {
+                alert("No Skill Has Been Set!");
+                return;
+            }
+            Url = RosterBaseURL + "SetSkillList/" + id + "?skillDescriptionId=" + skillId;
+            $.ajax({
+                cache: false,
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                async: false,
+                dataType: "json",
+                url: Url,
+                success: function (jsonData) {
+                    $("#punchResult").html("Skill Set Updated - " + (new Date().getMonth() + 1) + "/" + new Date().getDate() + "/" + new Date().getFullYear());
+                    setTimeout(function () { $("#punchResult").html(""); }, 3000);
+                },
+                error: function (xhr) {
+                    alert("ERROR!!!" + xhr.responseText);
+                }
+            });
+        }
+
+
+        /* cookie stuff */
+        function setCookie(c_name, value, exdays) {
+            var exdate = new Date();
+            exdate.setDate(exdate.getDate() + exdays);
+            var c_value = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toUTCString());
+            document.cookie = c_name + "=" + c_value;
+        }
+
+        function getCookie(c_name) {
+            var c_value = document.cookie;
+            var c_start = c_value.indexOf(" " + c_name + "=");
+            if (c_start == -1) {
+                c_start = c_value.indexOf(c_name + "=");
+            }
+            if (c_start == -1) {
+                c_value = null;
+            }
+            else {
+                c_start = c_value.indexOf("=", c_start) + 1;
+                var c_end = c_value.indexOf(";", c_start);
+                if (c_end == -1) {
+                    c_end = c_value.length;
+                }
+                c_value = unescape(c_value.substring(c_start, c_end));
+            }
+            return c_value;
+        }
+
+        function checkCookie() {
+            var username = getCookie("username");
+            if (username != null && username != "") {
+                alert("Welcome again " + username);
+            }
+            else {
+                username = prompt("Please enter your name:", "");
+                if (username != null && username != "") {
+                    setCookie("username", username, 365);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

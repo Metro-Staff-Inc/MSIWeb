@@ -1,0 +1,191 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+//using iTextSharp.text;
+//using iTextSharp.text.pdf;
+using System.Text.RegularExpressions;
+using System.Data.Common;
+
+public partial class PrintRoster : System.Web.UI.Page, IHttpHandler
+{
+    String client = "Personalization Mall";
+    String[] headings = new String[] { "Employee Name", "Badge Num", "Department", "Time", "Effective Dates" };
+
+    // configurable tabular data font
+    //private Font reportFont;
+    // iText PDF document object
+    //private Document doc;
+    // iText table object; filled by database query 
+    //private PdfPTable pdfTable;
+    // iText cell in PdfPTable
+    //private PdfPCell dataCell;
+
+    // ----------------------------------------
+
+    public override void ProcessRequest(HttpContext context)
+    {
+        HttpRequest hc = context.Request;
+        writePdf();
+    }
+    // ----------------------------------------
+    public bool IsReusable { get { return false; } }
+
+    public void onOpenDocument()
+    {
+
+    }
+
+    private PdfPTable _init_pdfptable()
+    {
+        pdfTable = new PdfPTable(5);
+        PdfPCell hc;
+        // the report's column headings  
+        //reportFont.SetStyle(12);
+        hc = new PdfPCell(new Paragraph());
+        hc.Colspan = 5;
+        hc.Rowspan = 1;
+        pdfTable.AddCell(hc);
+        hc.Colspan = 1;
+        for (int i = 0; i < 1; i++)
+        {
+            foreach (string s in headings)
+            {
+                hc = new PdfPCell(new Paragraph(s, reportFont));
+                // header row background color
+                hc.GrayFill = 0.7F;
+                pdfTable.AddCell(hc);
+            }
+        }
+        pdfTable.HeaderRows = 2;
+        pdfTable.FooterRows = 0;
+        pdfTable.WidthPercentage = 100;
+        return pdfTable;
+    }
+
+
+    private void doSQL(int rows)
+    {
+        int rowCount = 0;
+        while (rowCount < rows)
+        {
+            for (int i = 0; i < 5; ++i)
+            {
+                dataCell = new PdfPCell(
+                    new Paragraph("Column " + (i + 1) + ", Row " + (rowCount + 1), reportFont)
+                );
+                if (rowCount % 2 == 0)
+                    dataCell.BackgroundColor = new BaseColor(1.0f, 1.0f, 1.0f);
+                else
+                    dataCell.BackgroundColor = new BaseColor(1.0f, 1.0f, 0.9f);
+                pdfTable.AddCell(dataCell);
+            }
+            rowCount++;
+        }
+    }
+
+    private void writePdf()
+    {
+        HttpResponse rs = HttpContext.Current.Response;
+        rs.ContentType = "application/pdf";
+        doc = new Document();
+        try
+        {
+            PdfWriter writer = PdfWriter.GetInstance(doc, rs.OutputStream);
+            // set landscape **BEFORE** Open(), or first page will 
+            // have portrait orientation
+            //if (_rf.landscape) doc.SetPageSize(new Rectangle(792, 612));
+
+
+            MyPageEventHandler e = new MyPageEventHandler()
+            {
+
+            };
+            // and add it to the PdfWriter
+            writer.PageEvent = e;
+
+            doc.Open();
+            Paragraph h1 = new Paragraph(client);
+            h1.SpacingAfter = 8;
+            doc.Add(h1);
+            reportFont = new Font(Font.FontFamily.HELVETICA, 8);
+
+            pdfTable = _init_pdfptable();
+            doSQL(23);
+            doc.Add(pdfTable);
+            pdfTable = _init_pdfptable();
+            doSQL(13);
+            doc.Add(pdfTable);
+            pdfTable = _init_pdfptable();
+            doSQL(33);
+            doc.Add(pdfTable);
+        }
+        catch { throw ex; }
+        finally { if (doc != null && doc.IsOpen()) doc.Close(); }
+    }
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (this.IsPostBack)
+        {
+        }
+    }
+
+    private class MyPageEventHandler : PdfPageEventHelper
+    {
+        /*
+         * We use a __single__ Image instance that's assigned __once__;
+         * the image bytes added **ONCE** to the PDF file. If you create 
+         * separate Image instances in OnEndPage()/OnEndPage(), for example,
+         * you'll end up with a much bigger file size.
+         */
+        /*
+        public iTextSharp.text.Image ImageHeader { get; set; }
+
+        public override void OnEndPage(PdfWriter writer, Document document)
+        {
+            // cell height 
+            float cellHeight = document.TopMargin;
+            // PDF document size      
+            Rectangle page = document.PageSize;
+
+            // create two column table
+            PdfPTable head = new PdfPTable(2);
+            head.TotalWidth = page.Width;
+
+            // add image; PdfPCell() overload sizes image to fit cell
+            ImageHeader = iTextSharp.text.Image.GetInstance("http://msiwebtrax.com/images/msilogo.png");
+            ImageHeader.BackgroundColor = new BaseColor(0.5f, 0.5f, 1.0f);
+            PdfPCell c = new PdfPCell();//PdfPCell(ImageHeader, true);
+            c.HorizontalAlignment = Element.ALIGN_RIGHT;
+            c.FixedHeight = cellHeight;
+            c.Border = PdfPCell.NO_BORDER;
+            head.AddCell(c);
+
+            // add the header text
+            c = new PdfPCell(new Phrase(
+              DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss") + " GMT",
+              new Font(Font.FontFamily.COURIER, 8)
+            ));
+            c.Border = PdfPCell.NO_BORDER;
+            c.VerticalAlignment = Element.ALIGN_BOTTOM;
+            c.FixedHeight = cellHeight;
+            head.AddCell(c);
+
+            // since the table header is implemented using a PdfPTable, we call
+            // WriteSelectedRows(), which requires absolute positions!
+            head.WriteSelectedRows(
+              0, -1,  // first/last row; -1 flags all write all rows
+              0,      // left offset
+                // ** bottom** yPos of the table
+              page.Height - cellHeight + head.TotalHeight,
+              writer.DirectContent
+            );
+        }
+         */
+    }
+}
+

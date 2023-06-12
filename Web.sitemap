@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap>
+  <siteMapNode url="~/" title="Main"  description="Main">
+    <siteMapNode url="~/auth/MainMenu.aspx" title="Main"  description="Go to the Main Menu" >
+      <siteMapNode url="~/auth/AccountManagement.aspx" title="Account Management" description="Exit Webtrax"/>
+      <siteMapNode url="~/auth/Logoff.aspx" title="Log Off" description="Exit Webtrax"/>
+    </siteMapNode>
+    <siteMapNode url="~/auth/CheckIn.aspx" title="Check In/Out"  description="Manually punch employees in and out." />
+    <siteMapNode title="Reports"  description="Generate employee and time reports.">
+      <siteMapNode url="~/auth/HoursReport.aspx" title="Weekly Hours Report" description="Generate a weekly time report."/>
+      <!--<siteMapNode url="~/auth/HoursReportFlat.aspx" title="Weekly Hours Report Flat" description="Generate a weekly time report - data is continuous."/>-->
+      <siteMapNode url="~/auth/WeeklyReport.aspx" title="Weekly Hours Report 2" description="Generate a weekly time report."/>
+      <siteMapNode url="~/auth/ETicket.aspx" title="ETicket Report" description="Manually track employee hours."/>
+      <siteMapNode url="~/auth/GroupHoursReport.aspx" title="Group Hours Report" description="Generate a weekly time report for a group of companies."/>
+      <siteMapNode url="~/auth/HeadCountReport.aspx" title="Head Count"  description="Generate a count of employees on the premises." />
+      <!--<siteMapNode url="~/auth/HeadCountFullRoster.aspx" title="Head Count Full Roster"  description="Generate a list of employees scheduled to word and their status." />-->
+      <siteMapNode url="~/auth/HeadCount.aspx" title="Daily Head Count"  description="Generate a count of employees currently on the premises." />
+      <siteMapNode url="~/auth/DaysWorkedReport.aspx" title="Days Worked" description="Display number of days employees have worked."/>
+      <siteMapNode url="~/auth/PunchReports.aspx" title="Punch Report" description="Display ID's of manual punches."/>
+      <siteMapNode url="~/auth/DailyPunchesReport.aspx" title="Daily Punches Report" description="Display Punches for a given date."/>
+      <siteMapNode url="~/auth/PunchPhotos.aspx" title="Punch Photos" description="Display all punch in photos for an employee."/>
+    </siteMapNode>
+    <siteMapNode url="~/auth/InvoiceSummary.aspx" title="Invoice Processing"  description="Create an invoice." />
+    <siteMapNode url="~/auth/TicketSummary.aspx" title="Ticket Tracker" description="List employees by shift and department."/>
+    <siteMapNode url="~/auth/EmployeeHistory.aspx" title="Employee History" description="Display employee work history." />
+    <siteMapNode title="Administrative" description="Set client preferences. Add Employees">
+      <siteMapNode url="~/auth/Administrative.aspx" title="Set client preferences"/>
+      <siteMapNode url="~/auth/MapEmployeeID.aspx" title="Map Suncast ID"/>
+      <siteMapNode url="~/auth/Departments.aspx" title="Department Info"/>
+      <siteMapNode url="~/auth/DispatchData.aspx" title="Dispatch Data"/>
+      <siteMapNode url="~/auth/ClientRoster.aspx" title="Client Rosters"/>
+      <siteMapNode url="~/auth/EmployeeDNR.aspx" title="Employee DNR"/>
+      <siteMapNode url="~/auth/EmployeeViewDNR.aspx" title="View Employee DNR"/>
+      <siteMapNode url="~/auth/UserRoles.aspx" title="Set User Roles"/>
+      <siteMapNode url="~/auth/Transportation.aspx" title="Transportation Report" description="Generate a list of employees using MSI buses."/>
+      <siteMapNode url="~/auth/Test.aspx" title="Ajax Test Page"/>
+  	  <siteMapNode url="~/auth/ClientInfo.aspx" title="Create/Modify Clients"/>
+  	  <siteMapNode url="~/auth/Supervisors.aspx" title="Supervisor/Dept"/>
+      <siteMapNode url="~/auth/DepartmentMapping.aspx" title="tempworks Mapping"/>
+  	  <siteMapNode url="~/auth/RecruitingPool.aspx" title="Phone Blast"/>
+      <siteMapNode url="~/auth/TestPage.aspx" title="Bootstrap"/>
+      <siteMapNode url="~/auth/PayRateMaintenance.aspx" title="Maintain Pay Rates" description="Use Hours Report if possible."/>
+	</siteMapNode>
+  </siteMapNode>
+</siteMap>
+
+<!--
+<siteMap>
+  <siteMapNode title="Home" description="Home" url="~/default.aspx">
+    <siteMapNode title="Products" description="Our products"
+      url="~/Products.aspx">
+      <siteMapNode title="Hardware" description="Hardware choices"
+        url="~/Hardware.aspx" />
+      <siteMapNode title="Software" description="Software choices"
+        url="~/Software.aspx" />
+    </siteMapNode>
+    <siteMapNode title="Services" description="Services we offer"
+        url="~/Services.aspx">
+      <siteMapNode title="Training" description="Training classes"
+        url="~/Training.aspx" />
+      <siteMapNode title="Consulting" description="Consulting services"
+        url="~/Consulting.aspx" />
+      <siteMapNode title="Support" description="Supports plans"
+        url="~/Support.aspx" />
+    </siteMapNode>
+  </siteMapNode>
+</siteMap>
+-->

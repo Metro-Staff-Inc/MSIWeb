@@ -1,0 +1,146 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Security.Principal;
+using MSI.Web.MSINet.BusinessEntities;
+using System.Data.Common;
+using Microsoft.Practices.EnterpriseLibrary.Data;
+using System.Data;
+
+
+namespace MSI.Web.MSINet.DataAccess
+{
+    /// <summary>
+    /// Summary description for HoursApproval
+    /// </summary>
+    public class HoursReport2DB
+    {
+        public HoursReport2DB()
+        {
+            //
+            // TODO: Add constructor logic here
+            //
+        }
+        public List<ShiftData> ReadPunchExceptions(IDataReader dr)
+        {
+            List<ShiftData> retInfo = new List<ShiftData>();
+            ShiftData sd = new ShiftData();
+            sd.Desc = "Punch Exceptions";
+            sd.Employees = new List<EmployeeData>();
+
+            EmployeeData ed = null;
+            PunchData pd = null;
+            Boolean finishedRead = false;
+
+            while (!finishedRead)
+            {
+                // read data and set variables
+                finishedRead = !(dr.Read());
+                if (!finishedRead)
+                {
+                    string badgeNum = dr.GetString(dr.GetOrdinal("badge_number"));
+                    if (badgeNum == null || badgeNum.Length == 0)
+                        continue;   // ignore punch data that doesn't belong to anyone 
+                    if( ed == null || !badgeNum.Equals(ed.Badge) )
+                    {
+                        if( ed != null )
+                        {
+                            sd.Employees.Add(ed);
+                        }
+                        ed = new EmployeeData();
+                        ed.Badge = badgeNum;
+                        ed.Name = dr.GetString(dr.GetOrdinal("last_name")) + ", " + dr.GetString(dr.GetOrdinal("first_name"));
+                        ed.Punches = new List<PunchData>();
+                    }
+                    pd = new PunchData();
+                    pd.PunchDate = dr.GetDateTime(dr.GetOrdinal("punch_dt"));
+                    pd.RoundedPunchDate = dr.GetDateTime(dr.GetOrdinal("rounded_punch_dt"));
+                    //pd.Bio = dr.GetInt32(dr.GetOrdinal("biometric_result"));
+                    pd.Manual = dr.GetBoolean(dr.GetOrdinal("manual_override_flag"));
+                    pd.Exception = dr.GetInt32(dr.GetOrdinal("punch_exception_id"));
+                    ed.Punches.Add(pd);
+                }
+            }
+            retInfo.Add(sd);
+            return retInfo;
+        }
+        
+        public List<ShiftData> ReadPunches(IDataReader dr)
+        {
+            List<ShiftData> retInfo = new List<ShiftData>();
+
+            ShiftData sd = new ShiftData();
+            EmployeeData ed = null;
+            PunchData pd = null;
+            ShiftType shift = new ShiftType();
+            int shiftID = 0;
+            string employeeName = "";
+            string employeeID = "";
+            string startTime, endTime, breakTime;
+            Boolean finishedRead = false;
+
+            while (!finishedRead)
+            {
+                /* read data and set variables */
+                finishedRead = !(dr.Read());
+                if (!finishedRead)
+                {
+                    shiftID = dr.GetInt32(dr.GetOrdinal("shift_id"));
+
+                    /* process data */
+                    if (sd.ID == 0 || sd.ID != shiftID)
+                    {
+                        if (sd.ID == 0)
+                            sd.ID = shiftID;
+                        else
+                        {
+                            sd.Employees.Add(ed);
+                            retInfo.Add(sd);
+                            sd = new ShiftData();
+                            sd.ID = shiftID;
+                        }
+                        /* for each new ShiftData, get shift info */
+                        shift.ShiftTypeId = dr.GetInt32(dr.GetOrdinal("shift_type"));
+                        sd.Desc = dr.GetString(dr.GetOrdinal("punch_department_name")) + " " + shift;
+                        /* for each new ShiftData, create a new EmployeeData list */
+                        sd.Employees = new List<EmployeeData>();
+                        ed = new EmployeeData();
+                        ed.Punches = new List<PunchData>();
+                        ed.Hours = new List<decimal>();
+                    }
+                    employeeID = dr.GetString(dr.GetOrdinal("temp_number"));
+                    pd = new PunchData();
+                    pd.PunchDate = dr.GetDateTime(dr.GetOrdinal("punch_dt"));
+                    pd.RoundedPunchDate = dr.GetDateTime(dr.GetOrdinal("rounded_punch_dt"));
+                    startTime = dr.GetString(dr.GetOrdinal("shift_start_time"));
+                    endTime = dr.GetString(dr.GetOrdinal("shift_end_time"));
+                    breakTime = dr.GetString(dr.GetOrdinal("shift_end_time"));
+
+                    //pd.Biometric = dr.GetInt32(dr.GetOrdinal("biometric"));
+                    //pd.Manual = dr.GetBoolean(dr.GetOrdinal("manual
+                    if (ed.Badge == null || !ed.Badge.Equals(employeeID))
+                    {
+                        employeeName = (dr.GetString(dr.GetOrdinal("last_name")) + ", " + dr.GetString(dr.GetOrdinal("first_name"))).ToUpper();
+                        if (ed.Badge != null)
+                        {
+                            sd.Employees.Add(ed);
+                            ed = new EmployeeData();
+                            ed.Punches = new List<PunchData>();
+                        }
+                        ed.Badge = employeeID;
+                        ed.Name = employeeName;
+                    }
+                    ed.Punches.Add(pd);
+                }
+                else /* add last record to list */
+                {
+                    sd.Employees.Add(ed);
+                    retInfo.Add(sd);
+                }
+            }
+            return retInfo;
+        }
+
+    }
+}

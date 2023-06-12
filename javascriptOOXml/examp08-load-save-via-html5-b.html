@@ -1,0 +1,412 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Load, Modify, and Save using HTML5 (alternate UI)</title>
+    <style type="text/css">
+        #fileInput {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        <div>
+            <input id="fileInput" type="file" onchange="processFiles(this.files)" />
+        </div>
+        <div style="margin-top: 1em; margin-bottom: 1em;">
+            <input id="btnOpen" type="button" onclick="openDocument()" value="Open" style="height: 30px; width: 100px; background-color: rgb(212,208,200); border: thin solid black;" />
+        </div>
+        <div style="margin-top: 1em; margin-bottom: 1em;">
+            <input id="btnModify" type="button" onclick="modifyDocument()" value="Modify" style="height: 30px; width: 100px; background-color: rgb(212,208,200); border: thin solid black;" />
+        </div>
+        <div style="margin-top: 1em; margin-bottom: 1em;">
+            <input id="btnSave" type="button" onclick="saveDocument()" value="Save" style="height: 30px; width: 100px; background-color: rgb(212,208,200); border: thin solid black;"  />
+        </div>
+        <p>If you are targeting down-level browsers that do not support HTML5, see <b>examp01-load-save-via-flash.html</b>.</p>
+        <table id='myTable'>
+            <thead>
+                <tr>
+                    <th colspan='4'>Top Row of Header</th>
+                </tr>
+                <tr>
+                    <th>Second</th>
+                    <th>Row</th>
+                    <th>of</th>
+                    <th>Header</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1.1</td>
+                    <td>1.2</td>
+                    <td>1.3</td>
+                    <td>1.4</td>
+                </tr>
+                <tr>
+                    <td>2.1</td>
+                    <td>2.2</td>
+                    <td>2.3</td>
+                    <td>2.4</td>
+                </tr>
+                <tr>
+                    <td>3.1</td>
+                    <td>3.2</td>
+                    <td>3.3</td>
+                    <td>3.4</td>
+                </tr>
+                <tr>
+                    <td>4.1</td>
+                    <td>4.2</td>
+                    <td>4.3</td>
+                    <td>4.4</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>10.4</td>
+                    <td>10.8</td>
+                    <td>10.12</td>
+                    <td>10.16</td>
+                </tr>
+                <tr>
+                    <td colspan='4'>Bottom Row of Footer</td>
+                </tr>
+            </tfoot>
+        </table>
+    </form>
+    <pre>
+<script type="text/javascript" src="../javascriptOOXml/linq.js"></script>
+<script type="text/javascript" src="../javascriptOOXml/ltxml.js"></script>
+<script type="text/javascript" src="../javascriptOOXml/ltxml-extensions.js"></script>
+<script type="text/javascript" src="../javascriptOOXml/jszip.js"></script>
+<script type="text/javascript" src="../javascriptOOXml/jszip-load.js"></script>
+<script type="text/javascript" src="../javascriptOOXml/jszip-inflate.js"></script>
+<script type="text/javascript" src="../javascriptOOXml/jszip-deflate.js"></script>
+<script type="text/javascript" src="../javascriptOOXml/FileSaver.js"></script>
+<script type="text/javascript" src="../javascriptOOXml/openxml.js"></script>
+
+<script src="TemplateDocumentB64.js" type="text/javascript"></script>
+<script type="text/javascript" src = "https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+<script type="text/javascript">
+    /***************************************************************************
+    
+    Copyright (c) Microsoft Corporation 2013.
+    
+    This code is licensed using the Microsoft Public License (Ms-PL).  You can find the text of the license here:
+    
+    http://www.microsoft.com/resources/sharedsource/licensingbasics/publiclicense.mspx
+    
+    Published at http://OpenXmlDeveloper.org
+    Resource Center and Documentation: http://openxmldeveloper.org/wiki/w/wiki/open-xml-sdk-for-javascript.aspx
+    
+    Developer: Eric White
+    Blog: http://www.ericwhite.com
+    Twitter: @EricWhiteDev
+	Email: eric@ericwhite.com
+    
+    ***************************************************************************/
+
+    var openDocument = null;
+    var processFiles = null;
+    var modifyDocument = null;
+    var saveDocument = null;
+
+    var HeaderStyle = 6;
+    var RowStyle = 1;
+    var RowStyleOdd = 3;
+    var FooterStyle = 5;
+
+    (function (root) {  // root = global
+        "use strict";
+
+        var XAttribute = Ltxml.XAttribute;
+        var XCData = Ltxml.XCData;
+        var XComment = Ltxml.XComment;
+        var XContainer = Ltxml.XContainer;
+        var XDeclaration = Ltxml.XDeclaration;
+        var XDocument = Ltxml.XDocument;
+        var XElement = Ltxml.XElement;
+        var XName = Ltxml.XName;
+        var XNamespace = Ltxml.XNamespace;
+        var XNode = Ltxml.XNode;
+        var XObject = Ltxml.XObject;
+        var XProcessingInstruction = Ltxml.XProcessingInstruction;
+        var XText = Ltxml.XText;
+        var XEntity = Ltxml.XEntity;
+        var cast = Ltxml.cast;
+        var castInt = Ltxml.castInt;
+
+        var W = openXml.W;
+        var NN = openXml.NoNamespace;
+        var wNs = openXml.wNs;
+
+        var S = openXml.S;
+        var sNs = openXml.sNs;
+
+        var R = openXml.R;
+
+        root.processFiles = function (files) {
+            var file = files[0];
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                // when this event is invoked, the document has been loaded
+                openedFileName = file.name;
+                openedFileData = e.target.result;
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        var openedFileName = null;
+        var openedFileData = null;
+
+        root.modifyDocument = function () {
+            //if (openedFileName === null || openedFileData === null) {
+            //    alert("You must open a file first.");
+            //}
+            //else {
+                /******************************************************************************/
+                // open the document
+                openXml.util.bucketTimer.init();
+                openXml.util.bucketTimer.bucket("OpenAndSave");
+
+                //var doc = new openXml.OpenXmlPackage(openedFileData);
+                var doc = new openXml.OpenXmlPackage(excelTemplate);
+                var workbook = doc.workbookPart();
+                var workbookXDoc = workbook.getXDocument();
+                var sheets = workbookXDoc.root.element(S.sheets);
+                var sheet = null;
+                var relId = null;
+                var sheetName = "MySheet";
+                for (var i = 0; i < sheets.nodesArray.length; i++) {
+                    sheet = sheets.nodesArray[i];
+                    if (sheet.nodeType != 'Element')
+                        continue;
+                    if (sheet.attribute('name').value == sheetName) {
+                        relId = sheet.attribute(R.id).value;
+                        break;
+                    }
+                }
+
+                if (relId == null)
+                    alert(sheetName + " not found!");
+                else {
+                    var worksheet = workbook.getPartById(relId);
+                    var worksheetXDoc = worksheet.getXDocument();
+                    var dimensions = worksheetXDoc.root.element(S.dimension);
+                    var coords = dimensions.attribute('ref').value;
+                    var sheetData = worksheetXDoc.root.element(S.sheetData);
+                    sheetData.removeAll();
+
+                    /* lets add some data */
+                    tableToExcel('myTable', sheetData);
+                    for (var c = 1; c <= 12; c++)
+                    {
+                        setCell(10,c,sheetData, 0, null, 'Heading ' + c, 6, 1, 1);
+                    }
+                    
+                    /* set a value */
+                    for (var r = 11; r < 30; r++) {
+                        for (var c = 1; c <= 12; c++) {
+                            var style = 1;
+                            if( r % 2 == 0 )
+                                style = 3;
+                            setCell(r, c, sheetData, (r + 1) * (c + 1), null, null, style,1, 1);
+                        }
+                    }
+                    for (var c = 1; c <= 12; c++) {
+                        setCell(30, c, sheetData, 0, 'SUM(' + getRef(c, 1) + ':' + getRef(c,29) + ')', null, 5, 1, 1);
+                    }
+
+                    var data = "";
+                    var rows = sheetData.nodesArray;
+                    for (var i = 0; i < rows.length; i++) {
+                        var row = rows[i];
+                        if (row.nodeType != 'Element')
+                            continue;
+                        data += "\nRow " + row.attribute("r").value + ": ";
+                        var cells = row.nodesArray;
+                        for (var j = 0; j < cells.length; j++) {
+                            var cell = cells[j];
+                            if (cell.nodeType != 'Element')
+                                continue;
+                            else {
+                                var elems = cell.nodesArray;
+                                for (var k = 0; k < elems.length; k++) {
+                                    var elem = elems[k];
+                                    if (elem.nodeType != 'Element')
+                                        continue;
+                                    else if (elem.name == S.v) {
+                                        data += elem.value + "  ";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                //}
+                // serialize it to a blob
+                openedFileData = doc.saveToBlob();
+                //openedFileData = doc.saveToFlatOpc();
+
+                openXml.util.bucketTimer.bucket("Done");
+                var s = openXml.util.bucketTimer["OpenAndSave"];
+                alert("Document modified.  Elapsed time: " + (s.time / 1000).toString() + " seconds");
+                saveAs(openedFileData, 'excelTest.xlsx');
+                /******************************************************************************/
+            }
+        }
+
+        function tableToExcel( tblId, sheetData )
+        {
+            tblId = '#' + tblId;
+            var eRow = 1;
+            var eCol = 1;
+            var tblHeadRows = $(tblId).find('thead tr');
+            for( var r=0; r<tblHeadRows.length; r++ )
+            {
+                //alert( $(tblHeadRows[r]).find('th').length);
+                var rowData = $(tblHeadRows[r]).find('th');
+                eCol = 1;
+                for( var c=0; c<$(rowData).length; c++ )
+                {
+                    var val = $(rowData[c]).text();
+                    var colSpan = $(rowData[c]).attr('colspan');
+                    if( isNaN(colSpan) )
+                        colSpan = 1;
+                    alert(colSpan);
+                    //alert( val);
+                    setCell(eRow, eCol, sheetData, 0, null, val, HeaderStyle, 1, colSpan);
+                    eCol += colSpan;
+                }
+                eRow++;
+            }
+            /* now the body */
+            var tblBodyRows = $(tblId).find('tbody tr');
+            for( var r=0; r<tblBodyRows.length; r++ )
+            {
+                var rowData = $(tblBodyRows[r]).find('td');
+                eCol = 1;
+                for( var c=0; c<$(rowData).length; c++ )
+                {
+                    var val = $(rowData[c]).text();
+                    var colSpan = $(rowData[c]).attr('colspan');
+                    if( isNaN(colSpan) )
+                        colSpan = 1;
+                    var style = RowStyle;
+                    if( r%2 == 0 )
+                        style = RowStyleOdd;
+                    setCell(eRow, eCol, sheetData, val, null, null, style, 1, colSpan);
+                    eCol += colSpan;
+                }
+                eRow++;
+            }
+            /* footer */
+            var tblFooterRows = $(tblId).find('tfoot tr');
+            for( var r=0; r<tblFooterRows.length; r++ )
+            {
+                var rowData = $(tblFooterRows[r]).find('td');
+                eCol=1;
+                for( var c=0; c<$(rowData).length; c++ )
+                {
+                    var val = $(rowData[c]).text();
+                    var colSpan = $(rowData[c]).attr('colspan');
+                    if( isNaN(colSpan) )
+                        colSpan = 1;
+                    if( isNaN(val) )
+                        setCell(eRow, eCol, sheetData, 0, null, val, FooterStyle, 1, colSpan);
+                    else
+                        setCell(eRow, eCol, sheetData, val, null, null, FooterStyle, 1, colSpan);
+                    eCol += colSpan;
+                }
+                eRow++;
+            }
+        }
+
+        function displayNode(node) {
+            if (node.nodeType == 'Text') {
+                alert(node.nodeType + ". Value = " + node.value);
+            }
+            else if (node.nodeType == 'Element') {
+                var info = node.nodeType + ': ' + node.name;
+                if (node.attributesArray.length > 0)
+                    info += '\nAttributes: ' + node.attributesArray.length + '\n';
+                for (var i = 0; i < node.attributesArray.length; i++) {
+                    info += node.attributesArray[i].name + ': ' + node.attributesArray[i].value + '\n';
+                }
+                alert(info);
+            }
+        }
+
+        var alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+        function getRef(c, r) {
+            var ref = '';
+            c--;
+            while (c > 25) {
+                ref = alpha[c % 26] + ref;
+                c = (c / 26) | 0;
+                c--;
+            }
+            ref = alpha[c] + ref + r;
+            return ref;
+        }
+
+
+        function setCell(r, c, sheetData, val, formula, text, style, rowCount, cellCount) {
+
+            for (var cIdx = 0; cIdx < cellCount; cIdx++) {
+                /* CREATE CELL */
+                var cell = new XElement(S.c);
+                if (cIdx > 0) {
+                    val = cIdx;
+                }
+                else if (formula != null && c == 0) {
+                    var f = new XElement(S.f);
+                    f.value = formula;
+                    cell.add(f);
+                }
+                else if (text != null) {
+                    cell.add(new XAttribute('t', 'inlineStr'));
+                    var is = new XElement(S._is);
+                    var t = new XElement(S.t);
+                    t.value = text;
+                    is.add(t);
+                    cell.add(is);
+                }
+                else {
+                    var value = new XElement(S.v);
+                    value.value = "" + val;
+                    cell.add(value);
+                }
+
+                var attribute = new XAttribute('r', getRef(c+cIdx, r));
+                cell.add(attribute);
+                if (style != null)
+                    cell.add(new XAttribute('s', style));
+
+                var row = new XElement(S.row, cell);
+                attribute = new XAttribute('r', r);
+                row.add(attribute);
+                sheetData.add(row);
+            }
+        }
+
+        root.openDocument = function () {
+                alert("open document!");
+                var fileInput = document.getElementById('fileInput');
+                fileInput.click();
+        }
+
+        root.saveDocument = function () {
+                if (openedFileName === null || openedFileData === null) {
+                    alert("You must open a document first.");
+                }
+                else {
+                    saveAs(openedFileData, openedFileName);
+                }
+        }
+    } (this));
+
+</script>
+</pre>
+</body>
+</html>

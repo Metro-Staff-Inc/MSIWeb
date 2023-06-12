@@ -1,0 +1,469 @@
+﻿html, body, p, table, td, form, img, h1, h2, h3, h4, h5, h6, input { font-size: 1em; }
+
+body 
+{
+ margin-left:0px;
+ margin-top:0px;
+ margin-right:0px;
+ font-size: 80%;
+}
+.MastHead
+{
+	height:123px;
+	width:1000px;
+	background-color:#003776;
+	position:relative;
+	left:0px;
+	top:0px;
+	z-index:1;
+}
+.MastHead_Logo
+{
+	height:109px;
+	width:112px;
+	background-color:#003776;
+	position:absolute;
+	left:25px;
+	top:5px;
+	z-index:2;
+}
+.MastHead_Heading
+{
+	height:50px;
+	width:451px;
+	background-color:#003776;
+	position:absolute;
+	left:330px;
+	top:20px;
+	z-index:3;
+}
+.MastHead_Nav
+{
+	height:20px;
+	width:620px;
+	background-color:#003776;
+	position:absolute;
+	left:268px;
+	top:97px;
+	z-index:4;
+}
+.MastHead_BlackBorder
+{
+	position:relative;
+	top:0;
+	left:0;
+	width:1000px;
+	height:1px;
+	text-align:left;
+	background-color:#000000;
+	z-index:1;
+}
+.MastHead_GrayBorder
+{
+	position:relative;
+	top:1;
+	left:0;
+	width:1000px;
+	height:1px;
+	text-align:left;
+	background-color:#C9CACC;
+	z-index:1;
+}
+.HomePageHandshakeChess
+{
+	left:0px;
+	top:0px;
+	width:400px;
+	position:relative;
+	z-index:1;
+	float:left;
+}
+.HomePageWelcome
+{
+	left:402px;
+	top:0px;
+	position:static;
+	z-index:1;
+}
+.HomePageBody
+{
+	width:1000px;
+}
+ul.nav,
+.nav ul{
+/*Remove all spacings from the list items*/
+	margin: 0;
+	padding: 0;
+	cursor: default;
+	list-style-type: none;
+	display: inline;
+}
+
+ul.nav{
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+}
+ul.nav li{
+	display: table-cell;
+	position: relative;
+	padding: 2px 6px;
+}
+.MSINetSubHeading
+{
+	font-family: Verdana,Arial;
+	font-size: 120%;
+	font-weight:bold;
+	color: #003776;
+	padding:10px 10px 10px 10px;
+}
+
+.MSINetSectionHeading
+{
+	font-family: Verdana,Arial;
+	font-size: 100%;
+	font-weight:bold;
+	color: #003776;
+	padding:5px 5px 5px 5px;
+}
+
+.MSINetInputLabelText
+{
+	font-family: Verdana,Arial;
+	font-weight: normal;
+	font-size: 90%;
+	color:Black;
+	text-align:left;
+}
+.MSINetInputText
+{
+	font-family: Verdana,Arial;
+	font-weight: normal;
+	font-size: 90%;
+	color:Black;
+	text-align:right;
+}
+.MSINetBodyText
+{
+	font-family: Verdana,Arial;
+	font-weight: normal;
+	font-size: 90%;
+	color:Black;
+}
+.MainMenuLinkText
+{
+	font-family: Verdana,Arial;
+	font-weight: normal;
+	font-size: 95%;
+	color:#0033CC;
+	text-decoration:underline;
+}
+.MSINetBodyText_Right
+{
+	font-family: Verdana,Arial;
+	font-weight: normal;
+	font-size: 90%;
+	color:Black;
+	text-align:right;
+}
+.MSINetValidationText
+{
+	font-family: Verdana,Arial;
+	font-weight: normal;
+	font-size: 90%;
+	color:Red;
+}
+
+.MSINetCheckInConfirmationText
+{
+	font-family:Verdana,Arial;
+	font-weight: bold;
+	font-size: 100%;
+	color:Blue;
+}
+.MSINetMastHeadLogoff
+{
+	font-family: Verdana,Arial;
+	font-weight: normal;
+	font-size: 80%;
+	color:#003776;
+}
+
+.MSINetMenu
+{
+	background-image : url(../images/mainmenu_background.gif);
+	height : 24px;	
+	width : 990px;	
+	border-bottom-color:#003776;
+	border-bottom-width:1pt;
+	border-bottom-style:solid;
+	text-align:center;
+}
+
+.MainMenuUnselected
+{
+	font-family:Verdana,Arial;
+	text-align:left;
+	font-size:85%;
+	font-weight:bold;
+	color:#003776;
+	height : 24px;
+	text-align:center;
+	width:159px;
+	padding:1px 1px 1px 1px;
+}
+.MainMenuSelected
+{
+	font-family:Verdana,Arial;
+	font-size:85%;
+	font-weight:bold;
+	color:#003776;
+	height: 24px;
+	text-align:center;
+	width:159px;
+	padding:2px 2px 2px 2px;
+	border: inset 1px #003776;
+}
+.CheckInOutUnselected
+{
+	font-family:Verdana,Arial;
+	font-size:85%;
+	font-weight:bold;
+	color:#003776;
+	height : 24px;
+	text-align:center;
+	width:169px;
+	padding:2px 2px 2px 2px;
+}
+.CheckInOutSelected
+{
+	font-family:Verdana,Arial;
+	font-size:85%;
+	font-weight:bold;
+	color:#003776;
+	height: 24px;
+	text-align:center;
+	width:169px;
+	padding:2px 2px 2px 2px;
+	border: inset 1px #003776
+}
+.TicketTrackingUnselected
+{
+	font-family:Verdana,Arial;
+	font-size:85%;
+	font-weight:bold;
+	color:#003776;
+	height : 24px;
+	text-align:center;
+	width:169px;
+	padding:2px 2px 2px 2px;
+}
+.TicketTrackingSelected
+{
+	font-family:Verdana,Arial;
+	font-size:85%;
+	font-weight:bold;
+	color:#003776;
+	height: 24px;
+	text-align:center;
+	width:169px;
+	padding:2px 2px 2px 2px;
+	border: inset 1px #003776
+}
+.HoursReportUnselected
+{
+	font-family:Verdana,Arial;
+	font-size:85%;
+	font-weight:bold;
+	color:#003776;
+	height : 24px;
+	text-align:center;
+	width:169px;
+	padding:2px 2px 2px 2px;
+}
+.HoursReportSelected
+{
+	font-family:Verdana,Arial;
+	font-size:85%;
+	font-weight:bold;
+	color:#003776;
+	height: 24px;
+	text-align:center;
+	width:169px;
+	padding:2px 2px 2px 2px;
+	border: inset 1px #003776
+}
+.InvoiceUnselected
+{
+	font-family:Verdana,Arial;
+	font-size:85%;
+	font-weight:bold;
+	color:#003776;
+	height : 24px;
+	text-align:center;
+	width:159px;
+	padding:2px 2px 2px 2px;
+}
+.InvoiceSelected
+{
+	font-family:Verdana,Arial;
+	font-size:85%;
+	font-weight:bold;
+	color:#003776;
+	height: 24px;
+	text-align:center;
+	width:159px;
+	padding:2px 2px 2px 2px;
+	border: inset 1px #003776
+}
+.EmployeeHistoryUnselected
+{
+	font-family:Verdana,Arial;
+	font-size:85%;
+	font-weight:bold;
+	color:#003776;
+	height : 24px;
+	text-align:center;
+	width:169px;
+	padding:2px 2px 2px 2px;
+}
+.EmployeeHistorySelected
+{
+	font-family:Verdana,Arial;
+	font-size:85%;
+	font-weight:bold;
+	color:#003776;
+	height: 24px;
+	text-align:center;
+	width:169px;
+	padding:2px 2px 2px 2px;
+	border: inset 1px #003776
+}
+.HoursReport_StartSelect
+{
+	position:absolute;
+	left:5px;
+}
+.HoursReport_EndSelect
+{
+	position:absolute;
+	left:500px;
+}
+.InputTableHeader
+{
+	background-image:url(../images/table_background.gif);
+}
+.InputTableLabelText
+{
+	vertical-align:middle;
+	font-family: Verdana, Arial;
+	font-weight: bold;
+	font-size: 89%;
+	color:Black;
+	text-align:left;
+}
+.TableActionLabelText
+{
+	vertical-align:middle;
+	font-family: Verdana, Arial;
+	font-weight: bold;
+	font-size: 80%;
+	color:#666666;
+	text-align:left;
+	text-decoration:none;
+	vertical-align:middle;
+}
+.InputTableInputLabelText
+{
+	vertical-align:middle;
+	font-family: Verdana, Arial;
+	font-weight: normal;
+	font-size: 90%;
+	color:Black;
+	text-align:left;
+}
+.ResultTableHeaderRowText
+{
+	padding:0pt 2pt 0pt 2pt; 
+	height:24px; 
+	color:#666666;
+	background-image:url(../Images/tableheader.gif);
+	background-color:#cccccc; 
+	text-align:left; 
+	font-family:Arial; 
+	font-size:88%; 
+	font-weight:bold;
+	border-bottom:solid 1px #cccccc;
+	vertical-align:middle;
+}
+.ResultTableRowText
+{
+	padding:2pt 2pt 2pt 2pt; 
+	color:#333333; 
+	text-align:left; 
+	font-family:verdana,arial; 
+	font-size:85%; 
+	font-weight:normal;
+	border-bottom:solid 1px #cccccc;
+}
+.ResultTableAlternateRowText
+{
+	background-color:#F2F2F2; 
+	border-bottom:solid 0pt #cccccc; 
+	padding:2pt 2pt 2pt 2pt; 
+	color:#333333; 
+	text-align:left; 
+	font-family:verdana,arial; 
+	font-size:85%; 
+	font-weight:normal;
+	border-bottom:solid 1px #cccccc;
+}
+.ResultTableLinkLabelText
+{
+	font-family: Verdana, Arial;
+	font-weight: normal;
+	font-size: 100%;
+	text-align:left;
+	color:#666666;
+}
+.ResultTableDetailRowText
+{
+	padding:2pt 2pt 2pt 2pt; 
+	color:#333333; 
+	text-align:left; 
+	font-family:verdana,arial; 
+	font-size:90%; 
+	font-weight:normal;
+}
+.ResultTableDetailAlternateRowText
+{
+	background-color:#F2F2F2; 
+	padding:2pt 2pt 2pt 2pt; 
+	color:#333333; 
+	text-align:left; 
+	font-family:verdana,arial; 
+	font-size:90%; 
+	font-weight:normal;
+}
+.ResultTableAddNewRecordText
+{
+	background-color:#FFFF99; 
+	border-bottom:solid 1px #cccccc; 
+	padding:2pt 2pt 2pt 2pt; 
+	color:#333333; 
+	text-align:left; 
+	font-family:verdana,arial; 
+	font-size:90%; 
+	font-weight:normal;
+}
+.ResultTableTotalsText
+{
+	background-color:LightBlue; 
+	border-bottom:solid 1px #cccccc; 
+	padding:2pt 2pt 2pt 2pt; 
+	color:#333333; 
+	text-align:left; 
+	font-family:verdana,arial; 	
+	font-size:90%; 
+	font-weight:bold;
+}
