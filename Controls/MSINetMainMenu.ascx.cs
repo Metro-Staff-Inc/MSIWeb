@@ -249,17 +249,6 @@ namespace MSI.Web.Controls
             {
                 removeItem("Map Suncast ID");
             }
-            /* remove days report if necessary */
-            if (_clientId != 326 && _clientId != 325 && _clientId != 327
-                && _clientId != 127 && _clientId != 295 && _clientId != 302 
-                && _clientId != 388 && _clientId != 340 && _clientId != 181 && _clientId != 92
-                && _clientId != 406 && _clientId != 383
-                /* !( (_clientId == 388 || _clientId == 340 || _clientId == 181 || _clientId == 92) && 
-                 user.Equals("ITDEPT") || user.Equals("MCHAVEZ")) */
-            )
-            {
-                removeItem("Days Worked");
-            }
             
             if ( _clientId != 2 && _clientId != 226 && _clientId != 178 && _clientId != 272 && _clientId != 274 &&
                 _clientId != 259 && _clientId != 256 && _clientId != 166 && _clientId != 127 && _clientId != 275 &&
