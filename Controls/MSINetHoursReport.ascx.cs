@@ -1083,12 +1083,14 @@ namespace MSI.Web.Controls
                         Decimal payRate = _boundEmployeeHistory.GetEmployeePayRate();
                         ((HiddenField)e.Item.FindControl("hdnPayRate")).Value = payRate.ToString("$#,##0.00");
                         Decimal multiplier = (Decimal)ClientInfo.Multiplier;
+                        /* This was removed as of 10-15-2024 by Dan. Should NEVER be hardcoded and is calculating incorrectly.
                         if (_clientId == 309)  //if show bill rate instead of pay rate
                         {
                             payRate = Math.Round((Decimal).15 + payRate * (Decimal)1.233, 2, MidpointRounding.AwayFromZero);
                             multiplier = (Decimal)1.2506;
                         }
-                        else multiplier = 1.0M;
+                        */
+                        multiplier = 1.0M;
                         //payRate = Math.Round(payRate, 2);
                         ((Label)e.Item.FindControl("lblPayRate")).Text = payRate.ToString("$#,##0.00");
                         if( (_clientId == 165) && !Context.User.Identity.Name.ToUpper().Equals("VIRGINIA") && 
@@ -1439,7 +1441,7 @@ namespace MSI.Web.Controls
                         ((HtmlTableCell)e.Item.FindControl("tdTotalWeek")).Visible = false;
                     }
                     */
-                    ((HtmlTableCell)e.Item.FindControl("tdTotalWeek")).Visible = false;
+                        ((HtmlTableCell)e.Item.FindControl("tdTotalWeek")).Visible = false;
                     if (this.ClientPrefs.DisplayBonuses && (this.Context.User.Identity.Name.ToUpper().Equals("ITDEPT")
                         || this.Context.User.Identity.Name.ToUpper().Equals("JULIO")
                         || this.Context.User.Identity.Name.ToUpper().Equals("BADANIS")
@@ -1685,8 +1687,10 @@ namespace MSI.Web.Controls
             }
             else if (e.Item.ItemType == ListItemType.Header)
             {
+                /* This was removed as of 10-15-2024 by Dan. Should NEVER be hardcoded and is calculating incorrectly.
                 if ( _clientId == 309 )
                     ((HtmlTableCell)e.Item.FindControl("tdPayRateHead")).InnerText = "Bill Rate";
+                */
                 if (ClientPrefs.DisplayPayRate && payRateJobCodeEligible)
                 {
                     if( _clientId != 165 || Context.User.Identity.Name.ToUpper().Equals("VIRGINIA") ||

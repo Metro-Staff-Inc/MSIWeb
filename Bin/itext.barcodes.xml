@@ -4,6 +4,13 @@
         <name>itext.barcodes</name>
     </assembly>
     <members>
+        <member name="T:iText.Barcodes.Barcode128">
+            <summary>BarCode 128 is a high-density linear barcode symbology defined in ISO/IEC 15417:2007.</summary>
+            <remarks>
+            BarCode 128 is a high-density linear barcode symbology defined in ISO/IEC 15417:2007.
+            It is used for alphanumeric or numeric-only barcodes. It can encode all 128 characters of ASCII
+            </remarks>
+        </member>
         <member name="F:iText.Barcodes.Barcode128.CODE128">
             <summary>A type of barcode</summary>
         </member>
@@ -56,6 +63,17 @@
             <summary>Creates new Barcode128, which will use the provided font</summary>
             <param name="document">The document to which the barcode will be added</param>
             <param name="font">The font to use</param>
+        </member>
+        <member name="T:iText.Barcodes.Barcode128.Barcode128CodeSet">
+            <summary>The code set to be used to start encoding.</summary>
+        </member>
+        <member name="M:iText.Barcodes.Barcode128.SetCodeSet(iText.Barcodes.Barcode128.Barcode128CodeSet)">
+            <summary>Sets the code set to use.</summary>
+            <param name="codeSet">the code set to use.</param>
+        </member>
+        <member name="M:iText.Barcodes.Barcode128.GetCodeSet">
+            <summary>Get the code set that is used.</summary>
+            <returns>the code set.</returns>
         </member>
         <member name="M:iText.Barcodes.Barcode128.RemoveFNC1(System.String)">
             <summary>Removes the FNC1 codes in the text.</summary>
@@ -188,6 +206,22 @@
             <param name="numDigits">the number of digits to pack. It is always an even number</param>
             <returns>the packed digits, two digits per character</returns>
         </member>
+        <member name="T:iText.Barcodes.Barcode1D">
+            <summary>Base class for the barcode types that have 1D representation.</summary>
+            <remarks>
+            Base class for the barcode types that have 1D representation.
+            This means all data is encoded in the width of the bars. And the height of the bars is constant.
+            </remarks>
+        </member>
+        <member name="F:iText.Barcodes.Barcode1D.ALIGN_LEFT">
+            <summary>Constant that defines left alignment.</summary>
+        </member>
+        <member name="F:iText.Barcodes.Barcode1D.ALIGN_RIGHT">
+            <summary>Constant that defines right alignment.</summary>
+        </member>
+        <member name="F:iText.Barcodes.Barcode1D.ALIGN_CENTER">
+            <summary>Constant that defines center alignment.</summary>
+        </member>
         <member name="F:iText.Barcodes.Barcode1D.x">
             <summary>The minimum bar width.</summary>
         </member>
@@ -250,6 +284,14 @@
         <member name="F:iText.Barcodes.Barcode1D.altText">
             <summary>The alternate text to be used, if present.</summary>
         </member>
+        <member name="M:iText.Barcodes.Barcode1D.#ctor(iText.Kernel.Pdf.PdfDocument)">
+            <summary>
+            Creates new
+            <see cref="T:iText.Barcodes.Barcode1D"/>
+            instance.
+            </summary>
+            <param name="document">The document</param>
+        </member>
         <member name="M:iText.Barcodes.Barcode1D.GetX">
             <summary>Gets the minimum bar width.</summary>
             <returns>the minimum bar width</returns>
@@ -274,6 +316,10 @@
         <member name="M:iText.Barcodes.Barcode1D.SetFont(iText.Kernel.Font.PdfFont)">
             <summary>Sets the text font.</summary>
             <param name="font">the text font. Set to <c>null</c> to suppress any text</param>
+        </member>
+        <member name="M:iText.Barcodes.Barcode1D.GetSize">
+            <summary>Gets the size of the text.</summary>
+            <returns>the size</returns>
         </member>
         <member name="M:iText.Barcodes.Barcode1D.SetSize(System.Single)">
             <summary>Sets the size of the text.</summary>
@@ -475,6 +521,18 @@
             </remarks>
             <param name="width">The width</param>
         </member>
+        <member name="M:iText.Barcodes.Barcode1D.GetDescender">
+            <summary>Gets the descender value of the font.</summary>
+            <returns>the descender value of the font</returns>
+        </member>
+        <member name="T:iText.Barcodes.Barcode2D">
+            <summary>This is a class that is used to implement the logic common to all 2D barcodes.</summary>
+            <remarks>
+            This is a class that is used to implement the logic common to all 2D barcodes.
+            A 2D barcode is a barcode with two dimensions; this means that
+            data can be encoded vertically and horizontally.
+            </remarks>
+        </member>
         <member name="M:iText.Barcodes.Barcode2D.GetBarcodeSize">
             <summary>
             Gets the maximum area that the barcode and the text, if
@@ -511,6 +569,19 @@
             <param name="foreground">The color of the pixels. It can be <c>null</c></param>
             <param name="document">The document</param>
             <returns>the XObject.</returns>
+        </member>
+        <member name="T:iText.Barcodes.Barcode39">
+            <summary>This class represents the barcode Code 39.</summary>
+            <remarks>
+            This class represents the barcode Code 39.
+            <para />
+            Code 39 is a variable length, discrete
+            barcode symbology defined in ISO/IEC 16388:2007.
+            <para />
+            The Code 39 specification defines 43 characters, consisting of uppercase letters (A through Z), numeric digits (0
+            through 9) and a number of special characters (-, ., $, /, +, %, and space). An additional character (denoted '*') is
+            used for both start and stop delimiters. Each character is composed of nine elements: five bars and four spaces.
+            </remarks>
         </member>
         <member name="F:iText.Barcodes.Barcode39.BARS">
             <summary>The bars to generate the code.</summary>
@@ -614,6 +685,16 @@
             <param name="textColor">the color of the text. It can be <c>null</c></param>
             <returns>the dimensions the barcode occupies</returns>
         </member>
+        <member name="T:iText.Barcodes.BarcodeCodabar">
+            <summary>Implementation of the Codabar barcode.</summary>
+            <remarks>
+            Implementation of the Codabar barcode.
+            <para />
+            Codabar was designed to be accurately read even when printed on dot-matrix printers for multi-part forms such as
+            FedEx airbills and blood bank forms, where variants are still in use as of 2007. Although newer symbologies hold more
+            information in a smaller space.
+            </remarks>
+        </member>
         <member name="F:iText.Barcodes.BarcodeCodabar.CHARS">
             <summary>The index chars to <c>BARS</c>.</summary>
         </member>
@@ -641,6 +722,11 @@
             <summary>Creates the bars.</summary>
             <param name="text">the text to create the bars</param>
             <returns>the bars</returns>
+        </member>
+        <member name="M:iText.Barcodes.BarcodeCodabar.CalculateChecksum(System.String)">
+            <summary>Calculates the checksum.</summary>
+            <param name="code">the value to calculate the checksum for</param>
+            <returns>the checksum for the given value</returns>
         </member>
         <member name="M:iText.Barcodes.BarcodeCodabar.GetBarcodeSize">
             <summary>
@@ -694,6 +780,20 @@
             <param name="textColor">the color of the text. It can be <c>null</c></param>
             <returns>the dimensions the barcode occupies</returns>
         </member>
+        <member name="T:iText.Barcodes.BarcodeDataMatrix">
+            <summary>
+            A Data Matrix is a two-dimensional bar code consisting of black and white "cells" or dots arranged in either a square
+            or
+            rectangular pattern, also known as a matrix.
+            </summary>
+            <remarks>
+            A Data Matrix is a two-dimensional bar code consisting of black and white "cells" or dots arranged in either a square
+            or
+            rectangular pattern, also known as a matrix. The information to be encoded can be text or numeric data. Usual data
+            size is from a few bytes up to 1556 bytes. The length of the encoded data depends on the number of cells in the
+            matrix.
+            </remarks>
+        </member>
         <member name="F:iText.Barcodes.BarcodeDataMatrix.DM_NO_ERROR">
             <summary>No error.</summary>
         </member>
@@ -740,12 +840,46 @@
         <member name="M:iText.Barcodes.BarcodeDataMatrix.#ctor">
             <summary>Creates an instance of this class.</summary>
         </member>
+        <member name="M:iText.Barcodes.BarcodeDataMatrix.#ctor(System.String)">
+            <summary>
+            Creates an instance of
+            <see cref="T:iText.Barcodes.BarcodeDataMatrix"/>
+            </summary>
+            <param name="code">
+            the code to generate. It should be noted that all characters will be encoded using the default
+            encoding, ISO-8859-1
+            </param>
+        </member>
+        <member name="M:iText.Barcodes.BarcodeDataMatrix.#ctor(System.String,System.String)">
+            <summary>
+            Creates an instance of
+            <see cref="T:iText.Barcodes.BarcodeDataMatrix"/>
+            </summary>
+            <param name="code">the code to generate.</param>
+            <param name="encoding">the encoding to use when generating the barcode</param>
+        </member>
+        <member name="M:iText.Barcodes.BarcodeDataMatrix.GetBarcodeSize">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="M:iText.Barcodes.BarcodeDataMatrix.PlaceBarcode(iText.Kernel.Pdf.Canvas.PdfCanvas,iText.Kernel.Colors.Color)">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="M:iText.Barcodes.BarcodeDataMatrix.CreateFormXObject(iText.Kernel.Colors.Color,iText.Kernel.Pdf.PdfDocument)">
+            <summary><inheritDoc/></summary>
+        </member>
         <member name="M:iText.Barcodes.BarcodeDataMatrix.CreateFormXObject(iText.Kernel.Colors.Color,System.Single,iText.Kernel.Pdf.PdfDocument)">
             <summary>Creates a PdfFormXObject with the barcode with given module width and module height.</summary>
             <param name="foreground">The color of the pixels. It can be <c>null</c></param>
             <param name="moduleSide">The side (width and height) of the pixels.</param>
             <param name="document">The document</param>
             <returns>the XObject.</returns>
+        </member>
+        <member name="M:iText.Barcodes.BarcodeDataMatrix.PlaceBarcode(iText.Kernel.Pdf.Canvas.PdfCanvas,iText.Kernel.Colors.Color,System.Single)">
+            <summary>Places the barcode in a PdfCanvas</summary>
+            <param name="canvas">the canvas to place the barcode on</param>
+            <param name="foreground">The foreground color of the barcode</param>
+            <param name="moduleSide">The side (width and height) of the pixels.</param>
+            <returns>the dimensions the barcode occupies</returns>
         </member>
         <member name="M:iText.Barcodes.BarcodeDataMatrix.GetBarcodeSize(System.Single,System.Single)">
             <summary>Gets the barcode size</summary>
@@ -917,6 +1051,20 @@
         <member name="M:iText.Barcodes.BarcodeDataMatrix.SetEncoding(System.String)">
             <summary>setting encoding for data matrix code ( default  encoding iso-8859-1)</summary>
             <param name="encoding">encoding for data matrix code</param>
+        </member>
+        <member name="M:iText.Barcodes.BarcodeDataMatrix.GetEncoding">
+            <summary>getting encoding for data matrix code</summary>
+            <returns>encoding for data matrix code</returns>
+        </member>
+        <member name="T:iText.Barcodes.BarcodeEAN">
+            <summary>The implementation of the barcode EAN.</summary>
+            <remarks>
+            The implementation of the barcode EAN.
+            <para />
+            The International Article Number (also known as European Article Number or EAN) is a standard describing a barcode
+            symbology and numbering system used in global trade to identify a specific retail product type, in a specific
+            packaging configuration, from a specific manufacturer
+            </remarks>
         </member>
         <member name="F:iText.Barcodes.BarcodeEAN.EAN13">
             <summary>A type of barcode</summary>
@@ -1103,6 +1251,12 @@
             <param name="barColor">the color of the bars. It can be <c>null</c></param>
             <param name="textColor">the color of the text. It can be <c>null</c></param>
             <returns>the dimensions the barcode occupies</returns>
+        </member>
+        <member name="T:iText.Barcodes.BarcodeEANSUPP">
+            <summary>
+            Implements the most commonly used EAN standard is the thirteen-digit EAN-13, a superset of the original 12-digit
+            Universal Product Code (UPC-A)
+            </summary>
         </member>
         <member name="F:iText.Barcodes.BarcodeEANSUPP.ean">
             <summary>The barcode with the EAN/UPC.</summary>
@@ -1298,6 +1452,14 @@
         <member name="F:iText.Barcodes.BarcodeMSI.BARS_PER_CHARACTER">
             <summary>The number of individual bars either drawn or not drawn per character of the <c>code</c></summary>
         </member>
+        <member name="F:iText.Barcodes.BarcodeMSI.BARS_FOR_START">
+            <summary>The number of individual bars either drawn or not drawn for the start character in the BarcodeMSI.
+                </summary>
+        </member>
+        <member name="F:iText.Barcodes.BarcodeMSI.BARS_FOR_STOP">
+            <summary>The number of individual bars either drawn or not drawn for the stop character in the BarcodeMSI.
+                </summary>
+        </member>
         <member name="M:iText.Barcodes.BarcodeMSI.#ctor(iText.Kernel.Pdf.PdfDocument)">
             <summary>Creates a new BarcodeMSI.</summary>
             <remarks>
@@ -1376,6 +1538,18 @@
             <summary>Calculates the mod 10 checksum digit using the Luhn algorithm.</summary>
             <param name="text">the barcode data</param>
             <returns>the checksum digit</returns>
+        </member>
+        <member name="T:iText.Barcodes.BarcodePDF417">
+            <summary>
+            PDF417 is a stacked linear barcode format used in a variety of applications such as transport, identification cards,
+            and inventory management.
+            </summary>
+            <remarks>
+            PDF417 is a stacked linear barcode format used in a variety of applications such as transport, identification cards,
+            and inventory management. "PDF" stands for Portable Data File. The "417" signifies that each pattern in the code
+            consists of 4 bars and spaces in a pattern that is 17 units (modules) long.
+            It is defined in ISO 15438.
+            </remarks>
         </member>
         <member name="F:iText.Barcodes.BarcodePDF417.PDF417_USE_ASPECT_RATIO">
             <summary>Auto-size is made based on <c>aspectRatio</c> and <c>yHeight</c>.</summary>
@@ -1485,6 +1659,31 @@
             Set the default settings that correspond to <c>PDF417_USE_ASPECT_RATIO</c>
             and <c>PDF417_AUTO_ERROR_LEVEL</c>.
             </summary>
+        </member>
+        <member name="M:iText.Barcodes.BarcodePDF417.GetBarcodeSize">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="M:iText.Barcodes.BarcodePDF417.PlaceBarcode(iText.Kernel.Pdf.Canvas.PdfCanvas,iText.Kernel.Colors.Color)">
+            <summary><inheritDoc/></summary>
+        </member>
+        <member name="M:iText.Barcodes.BarcodePDF417.PlaceBarcode(iText.Kernel.Pdf.Canvas.PdfCanvas,iText.Kernel.Colors.Color,System.Single,System.Single)">
+            <summary>
+            Places the barcode in a
+            <see cref="T:iText.Kernel.Pdf.Canvas.PdfCanvas"/>.
+            </summary>
+            <param name="canvas">
+            the
+            <see cref="T:iText.Kernel.Pdf.Canvas.PdfCanvas"/>
+            where the barcode will be placed
+            </param>
+            <param name="foreground">
+            the
+            <see cref="T:iText.Kernel.Colors.Color"/>
+            of the bars of the barcode
+            </param>
+            <param name="moduleWidth">the width of the thinnest bar</param>
+            <param name="moduleHeight">the height of the bars</param>
+            <returns>the dimensions the barcode occupies</returns>
         </member>
         <member name="M:iText.Barcodes.BarcodePDF417.PaintCode">
             <summary>Paints the barcode.</summary>
@@ -1629,8 +1828,142 @@
             <remarks>Sets the Y pixel height relative to X. It is usually 3.</remarks>
             <param name="yHeight">the Y pixel height relative to X</param>
         </member>
+        <member name="M:iText.Barcodes.BarcodePDF417.OutCodeword17(System.Int32)">
+            <summary>Adds the code word to the correct code word to the 17th bit.</summary>
+            <param name="codeword">the code word</param>
+        </member>
+        <member name="M:iText.Barcodes.BarcodePDF417.OutCodeword18(System.Int32)">
+            <summary>Adds the code word to the correct code word to the 18th bit.</summary>
+            <param name="codeword">the code word</param>
+        </member>
+        <member name="M:iText.Barcodes.BarcodePDF417.OutCodeword(System.Int32)">
+            <summary>Utility method that adds a codeword to the barcode.</summary>
+            <param name="codeword">the codeword to add</param>
+        </member>
+        <member name="M:iText.Barcodes.BarcodePDF417.OutStopPattern">
+            <summary>Adds the stop pattern to the output.</summary>
+        </member>
+        <member name="M:iText.Barcodes.BarcodePDF417.OutStartPattern">
+            <summary>Adds the start pattern to the output.</summary>
+        </member>
+        <member name="M:iText.Barcodes.BarcodePDF417.OutPaintCode">
+            <summary>Adds the barcode to the output bits.</summary>
+        </member>
+        <member name="M:iText.Barcodes.BarcodePDF417.CalculateErrorCorrection(System.Int32)">
+            <summary>Calculates the error correction codewords.</summary>
+            <param name="dest">length of the code words</param>
+        </member>
+        <member name="M:iText.Barcodes.BarcodePDF417.TextCompaction(System.Int32,System.Int32)">
+            <summary>Compacts the codewords.</summary>
+            <param name="start">the start position</param>
+            <param name="length">the length</param>
+        </member>
+        <member name="M:iText.Barcodes.BarcodePDF417.BasicNumberCompaction(System.Int32,System.Int32)">
+            <summary>Compacts the codewords.</summary>
+            <param name="start">the start position</param>
+            <param name="length">the length</param>
+        </member>
+        <member name="M:iText.Barcodes.BarcodePDF417.GetTextTypeAndValue(System.Int32,System.Int32)">
+            <summary>Gets the text type and value.</summary>
+            <param name="maxLength">the maximum length</param>
+            <param name="idx">the index</param>
+            <returns>the text type and value</returns>
+        </member>
+        <member name="M:iText.Barcodes.BarcodePDF417.CheckSegmentType(iText.Barcodes.BarcodePDF417.Segment,System.Char)">
+            <summary>Checks whether the segment is of a certain type.</summary>
+            <param name="segment">the segment to check</param>
+            <param name="type">the type to check against</param>
+            <returns>true if the segment is of the specified type</returns>
+        </member>
+        <member name="M:iText.Barcodes.BarcodePDF417.GetSegmentLength(iText.Barcodes.BarcodePDF417.Segment)">
+            <summary>Calculates the length of the given segment</summary>
+            <param name="segment">the segment to check</param>
+            <returns>the length of the segment</returns>
+        </member>
+        <member name="M:iText.Barcodes.BarcodePDF417.NumberCompaction(System.Int32,System.Int32)">
+            <summary>Compacts the code words.</summary>
+            <param name="start">the start position</param>
+            <param name="length">the length</param>
+        </member>
+        <member name="M:iText.Barcodes.BarcodePDF417.ByteCompaction6(System.Int32)">
+            <summary>Compacts the code words</summary>
+            <param name="start">the start position</param>
+        </member>
+        <member name="M:iText.Barcodes.BarcodePDF417.Assemble">
+            <summary>Assembles the data of the code words.</summary>
+        </member>
+        <member name="M:iText.Barcodes.BarcodePDF417.MaxPossibleErrorLevel(System.Int32)">
+            <summary>Calculates the highest error level that can be used for the remaining number of data codewords.</summary>
+            <param name="remain">the number of data codewords</param>
+            <returns>the highest error level that can be used</returns>
+        </member>
+        <member name="M:iText.Barcodes.BarcodePDF417.DumpList">
+            <summary>Prints the segments to standard output.</summary>
+        </member>
+        <member name="M:iText.Barcodes.BarcodePDF417.GetMaxSquare">
+            <summary>Calculates the max square that can contain the barcode.</summary>
+            <remarks>
+            Calculates the max square that can contain the barcode.
+            And sets the codeColumns and codeRows variables.
+            </remarks>
+            <returns>the max square that can contain the barcode</returns>
+        </member>
+        <member name="T:iText.Barcodes.BarcodePDF417.Segment">
+            <summary>A container that encapsulates all data needed for a segment.</summary>
+        </member>
+        <member name="M:iText.Barcodes.BarcodePDF417.Segment.#ctor(System.Char,System.Int32,System.Int32)">
+            <summary>
+            Creates a new
+            <see cref="T:iText.Barcodes.BarcodePDF417.Segment"/>
+            instance.
+            </summary>
+            <param name="type">the type of segment</param>
+            <param name="start">the start of the segment</param>
+            <param name="end">the end of the segment</param>
+        </member>
+        <member name="T:iText.Barcodes.BarcodePDF417.SegmentList">
+            <summary>An utility class that encapsulates a list of segments.</summary>
+        </member>
+        <member name="M:iText.Barcodes.BarcodePDF417.SegmentList.Add(System.Char,System.Int32,System.Int32)">
+            <summary>Adds a new segment to the list</summary>
+            <param name="type">the type of the segment</param>
+            <param name="start">the start position</param>
+            <param name="end">the end position</param>
+        </member>
+        <member name="M:iText.Barcodes.BarcodePDF417.SegmentList.Get(System.Int32)">
+            <summary>Gets the segment at the specified index</summary>
+            <param name="idx">the index</param>
+            <returns>the segment at the specified index or null if the index is out of bounds</returns>
+        </member>
+        <member name="M:iText.Barcodes.BarcodePDF417.SegmentList.Remove(System.Int32)">
+            <summary>Removes the segment at the specified index</summary>
+            <param name="idx">the index</param>
+        </member>
+        <member name="M:iText.Barcodes.BarcodePDF417.SegmentList.Size">
+            <summary>Gets the number of segments in the list</summary>
+            <returns>the number of segments in the list</returns>
+        </member>
+        <member name="T:iText.Barcodes.BarcodePostnet">
+            <summary>
+            POSTNET (Postal Numeric Encoding Technique) is a barcode symbology used by the United States Postal Service to assist
+            in directing mail.
+            </summary>
+            <remarks>
+            POSTNET (Postal Numeric Encoding Technique) is a barcode symbology used by the United States Postal Service to assist
+            in directing mail. The ZIP Code or ZIP+4 code is encoded in half- and full-height bars.[1] Most often, the delivery
+            point is added, usually being the last two digits of the address or PO box number.
+            </remarks>
+        </member>
         <member name="F:iText.Barcodes.BarcodePostnet.BARS">
             <summary>The bars for each character.</summary>
+        </member>
+        <member name="M:iText.Barcodes.BarcodePostnet.#ctor(iText.Kernel.Pdf.PdfDocument)">
+            <summary>
+            Creates new
+            <see cref="T:iText.Barcodes.BarcodePostnet"/>
+            instance.
+            </summary>
+            <param name="document">The document</param>
         </member>
         <member name="M:iText.Barcodes.BarcodePostnet.GetBarsPostnet(System.String)">
             <summary>Creates the bars for Postnet.</summary>
@@ -1654,6 +1987,13 @@
             and default character set (ISO-8859-1).
             </summary>
             <param name="content">the text to be encoded</param>
+        </member>
+        <member name="M:iText.Barcodes.BarcodeQRCode.#ctor">
+            <summary>
+            Creates an instance of the
+            <see cref="T:iText.Barcodes.BarcodeQRCode"/>
+            class.
+            </summary>
         </member>
         <member name="M:iText.Barcodes.BarcodeQRCode.GetCode">
             <summary>Gets the current data.</summary>
@@ -1712,6 +2052,13 @@
             <param name="document">The document</param>
             <returns>the XObject.</returns>
         </member>
+        <member name="T:iText.Barcodes.Dmcode.DmParams">
+            <summary>Class that contains the parameters for a DM code.</summary>
+            <remarks>
+            Class that contains the parameters for a DM code.
+            It contains all the information needed to create one data matrix entry
+            </remarks>
+        </member>
         <member name="M:iText.Barcodes.Dmcode.DmParams.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>Creates a DM code parameter block</summary>
             <param name="height">total height</param>
@@ -1722,11 +2069,17 @@
             <param name="dataBlock">size of a data-block</param>
             <param name="errorBlock">size of a error-correction block</param>
         </member>
+        <member name="T:iText.Barcodes.Dmcode.Placement">
+            <summary>Utility class that helps to place the data in the barcode.</summary>
+        </member>
         <member name="M:iText.Barcodes.Dmcode.Placement.DoPlacement(System.Int32,System.Int32)">
             <summary>Execute the placement</summary>
             <param name="nrow">number of rows</param>
             <param name="ncol">number of columns</param>
             <returns>array containing appropriate values for ECC200</returns>
+        </member>
+        <member name="T:iText.Barcodes.Dmcode.ReedSolomon">
+            <summary>This class holds the error correction code for a data block.</summary>
         </member>
         <member name="M:iText.Barcodes.Dmcode.ReedSolomon.GenerateECC(System.Byte[],System.Int32,System.Int32,System.Int32)">
             <summary>Calculates the error correction code for the given parameters.</summary>
@@ -1735,9 +2088,24 @@
             <param name="datablock">size of a datablock</param>
             <param name="nc">size of a errorblock</param>
         </member>
+        <member name="T:iText.Barcodes.Exceptions.BarcodesExceptionMessageConstant">
+            <summary>Class that bundles all the error message templates as constants.</summary>
+        </member>
+        <member name="T:iText.Barcodes.Exceptions.WriterException">
+            <summary>
+            A base class which covers the range of exceptions which may occur when encoding a barcode using
+            the Writer framework.
+            </summary>
+        </member>
+        <member name="M:iText.Barcodes.Exceptions.WriterException.#ctor">
+            <summary>Creates a WriterException.</summary>
+        </member>
+        <member name="M:iText.Barcodes.Exceptions.WriterException.#ctor(System.String)">
+            <summary>Creates a WriterException with a message.</summary>
+            <param name="message">message of the exception</param>
+        </member>
         <member name="T:iText.Barcodes.Qrcode.BitArray">
             <summary>A simple, fast array of bits, represented compactly by an array of ints internally.</summary>
-            <author>Sean Owen</author>
         </member>
         <member name="M:iText.Barcodes.Qrcode.BitArray.Get(System.Int32)">
             <param name="i">bit to get.</param>
@@ -1792,8 +2160,6 @@
             The ordering of bits is row-major. Within each int, the least significant bits are used first,
             meaning they represent lower x values. This is compatible with BitArray's implementation.
             </remarks>
-            <author>Sean Owen</author>
-            <author>dswitkin@google.com (Daniel Switkin)</author>
         </member>
         <member name="M:iText.Barcodes.Qrcode.BitMatrix.Get(System.Int32,System.Int32)">
             <summary>Gets the requested bit, where true means black.</summary>
@@ -1854,8 +2220,6 @@
             dynamically resizeable. This implementation is reasonable but there is a lot of function calling
             in loops I'd like to get rid of.
             </remarks>
-            <author>satorux@google.com (Satoru Takabayashi) - creator</author>
-            <author>dswitkin@google.com (Daniel Switkin) - ported from C++</author>
         </member>
         <member name="M:iText.Barcodes.Qrcode.BitVector.#ctor">
             <summary>Create a bitvector usng the default size</summary>
@@ -1924,7 +2288,6 @@
         </member>
         <member name="T:iText.Barcodes.Qrcode.ByteArray">
             <summary>This class implements an array of unsigned bytes.</summary>
-            <author>dswitkin@google.com (Daniel Switkin)</author>
         </member>
         <member name="M:iText.Barcodes.Qrcode.ByteArray.#ctor">
             <summary>Creates a new ByteArray instance with size 0.</summary>
@@ -1976,7 +2339,6 @@
             JAVAPORT: The original code was a 2D array of ints, but since it only ever gets assigned
             -1, 0, and 1, I'm going to use less memory and go with bytes.
             </remarks>
-            <author>dswitkin@google.com (Daniel Switkin)</author>
         </member>
         <member name="M:iText.Barcodes.Qrcode.ByteMatrix.#ctor(System.Int32,System.Int32)">
             <summary>Create a ByteMatix of given width and height, with the values initialized to 0</summary>
@@ -2022,7 +2384,6 @@
             Encapsulates a Character Set ECI, according to "Extended Channel Interpretations" 5.3.1.1
             of ISO 18004.
             </summary>
-            <author>Sean Owen</author>
         </member>
         <member name="M:iText.Barcodes.Qrcode.CharacterSetECI.GetEncodingName">
             <returns>name of the encoding.</returns>
@@ -2041,7 +2402,6 @@
         </member>
         <member name="T:iText.Barcodes.Qrcode.EncodeHintType">
             <summary>These are a set of hints that you may pass to Writers to specify their behavior.</summary>
-            <author>dswitkin@google.com (Daniel Switkin)</author>
         </member>
         <member name="F:iText.Barcodes.Qrcode.EncodeHintType.ERROR_CORRECTION">
             <summary>Specifies what degree of error correction to use, for example in QR Codes (type Integer).</summary>
@@ -2051,10 +2411,6 @@
         </member>
         <member name="F:iText.Barcodes.Qrcode.EncodeHintType.MIN_VERSION_NR">
             <summary>Specifies the minimal version level to use, for example in QR Codes (type Integer).</summary>
-        </member>
-        <member name="T:iText.Barcodes.Qrcode.Encoder">
-            <author>satorux@google.com (Satoru Takabayashi) - creator</author>
-            <author>dswitkin@google.com (Daniel Switkin) - ported from C++</author>
         </member>
         <member name="M:iText.Barcodes.Qrcode.Encoder.Encode(System.String,iText.Barcodes.Qrcode.ErrorCorrectionLevel,iText.Barcodes.Qrcode.QRCode)">
             <summary>Encode "bytes" with the error correction level "ecLevel".</summary>
@@ -2156,7 +2512,6 @@
             See ISO 18004:2006, 6.5.1. This enum encapsulates the four error correction levels
             defined by the QR code standard.
             </remarks>
-            <author>Sean Owen</author>
         </member>
         <member name="F:iText.Barcodes.Qrcode.ErrorCorrectionLevel.L">
             <summary>L = ~7% correction</summary>
@@ -2174,6 +2529,14 @@
             <summary>Gets the ordinal value.</summary>
             <returns>the ordinal</returns>
         </member>
+        <member name="M:iText.Barcodes.Qrcode.ErrorCorrectionLevel.GetBits">
+            <summary>Gets the bits.</summary>
+            <returns>the bits</returns>
+        </member>
+        <member name="M:iText.Barcodes.Qrcode.ErrorCorrectionLevel.GetName">
+            <summary>Gets the name.</summary>
+            <returns>the name</returns>
+        </member>
         <member name="M:iText.Barcodes.Qrcode.ErrorCorrectionLevel.ForBits(System.Int32)">
             <param name="bits">int containing the two bits encoding a QR Code's error correction level</param>
             <returns>
@@ -2187,7 +2550,6 @@
             Encapsulates a QR Code's format information, including the data mask used and
             error correction level.
             </summary>
-            <author>Sean Owen</author>
             <seealso cref="T:iText.Barcodes.Qrcode.ErrorCorrectionLevel"/>
         </member>
         <member name="F:iText.Barcodes.Qrcode.FormatInformation.FORMAT_INFO_DECODE_LOOKUP">
@@ -2232,7 +2594,6 @@
             for convenience and speed (but at the cost of memory).
             Only the bottom 8 bits are really used.
             </remarks>
-            <author>Sean Owen</author>
         </member>
         <member name="M:iText.Barcodes.Qrcode.GF256.#ctor(System.Int32)">
             <summary>Create a representation of GF(256) using the given primitive polynomial.</summary>
@@ -2272,7 +2633,6 @@
             Much credit is due to William Rucklidge since portions of this code are an indirect
             port of his C++ Reed-Solomon implementation.
             </remarks>
-            <author>Sean Owen</author>
         </member>
         <member name="M:iText.Barcodes.Qrcode.GF256Poly.#ctor(iText.Barcodes.Qrcode.GF256,System.Int32[])">
             <param name="field">
@@ -2315,10 +2675,6 @@
         </member>
         <member name="M:iText.Barcodes.Qrcode.GF256Poly.ToString">
             <returns>String representation of the Galois Field polynomial.</returns>
-        </member>
-        <member name="T:iText.Barcodes.Qrcode.MaskUtil">
-            <author>satorux@google.com (Satoru Takabayashi) - creator</author>
-            <author>dswitkin@google.com (Daniel Switkin) - ported from C++</author>
         </member>
         <member name="M:iText.Barcodes.Qrcode.MaskUtil.ApplyMaskPenaltyRule1(iText.Barcodes.Qrcode.ByteMatrix)">
             <summary>Apply mask penalty rule 1 and return the penalty.</summary>
@@ -2374,10 +2730,6 @@
             <param name="x">width coordiante</param>
             <param name="y">height-coordinate</param>
             <returns>the mask bit at that position</returns>
-        </member>
-        <member name="T:iText.Barcodes.Qrcode.MatrixUtil">
-            <author>satorux@google.com (Satoru Takabayashi) - creator</author>
-            <author>dswitkin@google.com (Daniel Switkin) - ported from C++</author>
         </member>
         <member name="M:iText.Barcodes.Qrcode.MatrixUtil.BuildMatrix(iText.Barcodes.Qrcode.BitVector,iText.Barcodes.Qrcode.ErrorCorrectionLevel,System.Int32,System.Int32,iText.Barcodes.Qrcode.ByteMatrix)">
             <summary>Build 2D matrix of QR Code from "dataBits" with "ecLevel", "version" and "getMaskPattern".</summary>
@@ -2501,7 +2853,6 @@
             See ISO 18004:2006, 6.4.1, Tables 2 and 3. This enum encapsulates the various modes in which
             data can be encoded to bits in the QR code standard.
             </remarks>
-            <author>Sean Owen</author>
         </member>
         <member name="M:iText.Barcodes.Qrcode.Mode.ForBits(System.Int32)">
             <param name="bits">four bits encoding a QR Code data mode</param>
@@ -2531,8 +2882,18 @@
             <returns>the name of the mode.</returns>
         </member>
         <member name="T:iText.Barcodes.Qrcode.QRCode">
-            <author>satorux@google.com (Satoru Takabayashi) - creator</author>
-            <author>dswitkin@google.com (Daniel Switkin) - ported from C++</author>
+            <summary>
+            A QR code (short for "quick-response code") is a type of two-dimensional matrix barcode, invented in 1994, by
+            Japanese company Denso Wave for labelling automobile parts.[1][2] A barcode is a machine-readable optical image that
+            contains information specific to the labelled item.
+            </summary>
+            <remarks>
+            A QR code (short for "quick-response code") is a type of two-dimensional matrix barcode, invented in 1994, by
+            Japanese company Denso Wave for labelling automobile parts.[1][2] A barcode is a machine-readable optical image that
+            contains information specific to the labelled item. In practice, QR codes contain data for a locator, an identifier,
+            and web tracking. To efficiently store data, QR codes use four standardized modes of encoding (i) numeric, (ii)
+            alphanumeric, (iii) byte or binary, and (iv) kanji.[3]
+            </remarks>
         </member>
         <member name="M:iText.Barcodes.Qrcode.QRCode.#ctor">
             <summary>Create a QR-code object with unitialized parameters</summary>
@@ -2655,7 +3016,6 @@
         </member>
         <member name="T:iText.Barcodes.Qrcode.QRCodeWriter">
             <summary>This object renders a QR Code as a ByteMatrix 2D array of greyscale values.</summary>
-            <author>dswitkin@google.com (Daniel Switkin)</author>
         </member>
         <member name="M:iText.Barcodes.Qrcode.QRCodeWriter.Encode(System.String,System.Int32,System.Int32)">
             <summary>Encode a string into a QR code with dimensions width x height, using error-correction level L and the smallest version for which he contents fit into the QR-code?
@@ -2679,8 +3039,6 @@
         </member>
         <member name="T:iText.Barcodes.Qrcode.ReedSolomonEncoder">
             <summary>Implements Reed-Solomon encoding, as the name implies.</summary>
-            <author>Sean Owen</author>
-            <author>William Rucklidge</author>
         </member>
         <member name="M:iText.Barcodes.Qrcode.ReedSolomonEncoder.#ctor(iText.Barcodes.Qrcode.GF256)">
             <summary>
@@ -2701,20 +3059,8 @@
             <param name="toEncode">data to encode</param>
             <param name="ecBytes">error correction bytes</param>
         </member>
-        <member name="T:iText.Barcodes.Qrcode.ReedSolomonException">
-            <summary>
-            Thrown when an exception occurs during Reed-Solomon decoding, such as when
-            there are too many errors to correct.
-            </summary>
-            <author>Sean Owen</author>
-        </member>
-        <member name="M:iText.Barcodes.Qrcode.ReedSolomonException.#ctor(System.String)">
-            <summary>Creates a ReedSolomonException with a message.</summary>
-            <param name="message">the message of the exception</param>
-        </member>
         <member name="T:iText.Barcodes.Qrcode.Version">
             <summary>See ISO 18004:2006 Annex D.</summary>
-            <author>Sean Owen</author>
         </member>
         <member name="F:iText.Barcodes.Qrcode.Version.VERSION_DECODE_INFO">
             <summary>See ISO 18004:2006 Annex D.</summary>
@@ -2789,20 +3135,6 @@
         </member>
         <member name="M:iText.Barcodes.Qrcode.Version.BuildVersions">
             <summary>See ISO 18004:2006 6.5.1 Table 9.</summary>
-        </member>
-        <member name="T:iText.Barcodes.Qrcode.WriterException">
-            <summary>
-            A base class which covers the range of exceptions which may occur when encoding a barcode using
-            the Writer framework.
-            </summary>
-            <author>dswitkin@google.com (Daniel Switkin)</author>
-        </member>
-        <member name="M:iText.Barcodes.Qrcode.WriterException.#ctor">
-            <summary>Creates a WriterException.</summary>
-        </member>
-        <member name="M:iText.Barcodes.Qrcode.WriterException.#ctor(System.String)">
-            <summary>Creates a WriterException with a message.</summary>
-            <param name="message">message of the exception</param>
         </member>
     </members>
 </doc>
