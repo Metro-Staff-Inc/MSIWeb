@@ -17,7 +17,7 @@ body
     margin-top:8px;
 	height:123px;
 	width:1000px;
-	background-color:#003776;
+	background-color:#222222;
 	position:relative;
 	left:0px;
 	top:0px;
@@ -28,7 +28,7 @@ body
 {
 	height:109px;
 	width:112px;
-	background-color:#003776;
+	//background-color:#003776;
 	position:absolute;
 	left:25px;
 	top:5px;
@@ -36,12 +36,12 @@ body
 }
 .MastHead_Heading
 {
-	height:50px;
+	height:112px;
 	width:451px;
-	background-color:#003776;
+	//background-color:#003776;
 	position:absolute;
-	left:330px;
-	top:20px;
+	left:150px;
+	top:5px;
 	z-index:3;
 }
 .MastHead_Nav
