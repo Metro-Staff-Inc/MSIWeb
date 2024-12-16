@@ -697,8 +697,7 @@ namespace MSI.Web.Controls
                             this.lnkCreateInvoice.Visible = false;
                         }
                     }
-                    if( this.Context.User.Identity.Name.ToLower().Equals("itdept") || this.Context.User.Identity.Name.ToLower().Equals("badanis")
-                        || this.Context.User.Identity.Name.ToLower().Equals("mchavez") || this.Context.User.Identity.Name.ToLower().Equals("garciae"))
+                    if( this.Context.User.IsInRole("UnapproveHours"))
                     {
                         this.btnSubmitApproved.Enabled = true;
                         this.btnSubmitApproved.Text = "UnApprove Hours";
