@@ -27,19 +27,19 @@ namespace MSI.Web.MSINet.BusinessLogic
         private AdministrativeDB setClientPreferencesDB = new AdministrativeDB();
         private HelperFunctions helperFunctions = new HelperFunctions();
 
-        public Boolean SetClientPreferences( int clientID, Boolean displayJobCodes, Boolean displayPayRates,
+        public Boolean SetClientPreferences( int clientID, Boolean displayPayRates, Boolean displayJobCodes, 
                                                     Boolean submitHours, Boolean generateInvoice, Boolean approveHours,
                                                         Boolean displaySchedule, Boolean enablePunchReports, Boolean employeeHistoryExactPunchTimes,
                                                     Boolean ticketTrackingExactLatePunches, Boolean displayWeeklyReportsSundayToSaturday,
                                                     Boolean displayBonuses, Boolean displayPayRateMaintenance, Boolean displayWeeklyReportsWednesdayToTuesday,
                                                     Boolean displayTemps, Boolean displayStartDate, Boolean displayBreakTimes, Boolean displayExactPunchTimes, Boolean rosterBasedPayRates, 
-                                                    Boolean showLocationsHoursReport, Boolean displayWeeklyReportsSaturdayToFriday)
+                                                    Boolean showLocationsHoursReport, Boolean displayWeeklyReportsSaturdayToFriday, Boolean displayWeeklyReportsFridayToThursday)
         {
-            return setClientPreferencesDB.SetClientPreferences(clientID, displayJobCodes,  
-                                    displayPayRates, submitHours, generateInvoice, approveHours, displaySchedule, enablePunchReports, 
+            return setClientPreferencesDB.SetClientPreferences(clientID, displayPayRates, displayJobCodes,  
+                                    submitHours, generateInvoice, approveHours, displaySchedule, enablePunchReports, 
                                     employeeHistoryExactPunchTimes, ticketTrackingExactLatePunches, displayWeeklyReportsSundayToSaturday,
                                     displayBonuses, displayPayRateMaintenance, displayWeeklyReportsWednesdayToTuesday, displayTemps, displayStartDate, 
-                                    displayBreakTimes, displayExactPunchTimes, rosterBasedPayRates, showLocationsHoursReport, displayWeeklyReportsSaturdayToFriday);
+                                    displayBreakTimes, displayExactPunchTimes, rosterBasedPayRates, showLocationsHoursReport, displayWeeklyReportsSaturdayToFriday, displayWeeklyReportsFridayToThursday);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace MSI.Web.MSINet.BusinessEntities
         private bool _ticketTrackingExactLatePunches = false;
         private bool _displayWeeklyReportsSundayToSaturday = false;
         private bool _displayWeeklyReportsSaturdayToFriday = false;
-        private bool _displayWeeklyReportsWednesdayToTuesday = false;
+        private bool _displayWeeklyReportsWednesdayToTuesday = false;        
         private bool _displayBonuses = false;
         private bool _displayPayRateMaintenance = false;
         private bool _displayTemps = true;
@@ -30,6 +30,7 @@ namespace MSI.Web.MSINet.BusinessEntities
         private bool _rosterBasedPayRates = false;
         private bool _showLocationsHoursReport = false;
         private bool _exactPunchInOut = false;
+        private bool _displayWeeklyReportsFridayToThursday = false;
 
 
         public ClientPreferences()
@@ -45,7 +46,7 @@ namespace MSI.Web.MSINet.BusinessEntities
             bool displayWeeklyReportsSaturdayToSunday, bool displayBonuses, bool displayPayRateMaintenance, 
             bool displayWeeklyReportsWednesdayToTuesday, bool displayTemps, bool displayStartDate, bool displayBreakTimes,
             bool useExactTimes, bool rosterBasedPayRates, bool showLocationsHoursReport, bool displayWeeklyReportSaturdayToFriday, 
-            bool exactPunchInOut)
+            bool exactPunchInOut, bool displayWeeklyReportFridayToThursday)
         {
             _clientId = clientId;
             _displayPayRate = displayPayRates;
@@ -69,6 +70,7 @@ namespace MSI.Web.MSINet.BusinessEntities
             _showLocationsHoursReport = showLocationsHoursReport;
             _displayWeeklyReportsSaturdayToFriday = displayWeeklyReportSaturdayToFriday;
             _exactPunchInOut = exactPunchInOut;
+            _displayWeeklyReportsFridayToThursday = displayWeeklyReportFridayToThursday;
         }
 
 		public int CompareTo ( object obj ) 
@@ -243,6 +245,17 @@ namespace MSI.Web.MSINet.BusinessEntities
             set
             {
                 _displayWeeklyReportsSaturdayToFriday = value;
+            }
+        }
+        public bool DisplayWeeklyReportsFridayToThursday
+        {
+            get
+            {
+                return _displayWeeklyReportsFridayToThursday;
+            }
+            set
+            {
+                _displayWeeklyReportsFridayToThursday = value;
             }
         }
         public bool DisplayWeeklyReportsWednesdayToTuesday

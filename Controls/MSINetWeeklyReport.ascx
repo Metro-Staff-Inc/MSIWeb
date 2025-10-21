@@ -27,7 +27,7 @@
 
 <div id="reportMain">
     <div id="reportParams">
-    <span>Week of:</span><br />
+    <span>Week Ending:</span><br />
     <input id="weekEnd" type="text" size="10" />
     <input id="btnWeekEnd" type="button" value="GO" />
     <input id="btnPrintTest" type="button" value="PRINT!" onclick="return btnPrintTest_onclick()" />

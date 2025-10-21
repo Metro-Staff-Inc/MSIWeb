@@ -165,6 +165,16 @@ namespace MSI.Web.Controls
                     this.dwrWTYes.Checked = false;
                     this.dwrWTNo.Checked = true;
                 }
+                if (ClientPrefs.DisplayWeeklyReportsFridayToThursday)
+                {
+                    this.dwrFTYes.Checked = true;
+                    this.dwrFTNo.Checked = false;
+                }
+                else
+                {
+                    this.dwrFTYes.Checked = false;
+                    this.dwrFTNo.Checked = true;
+                }
                 if (ClientPrefs.DisplayBonuses)
                 {
                     this.dbonNo.Checked = false;
@@ -256,7 +266,7 @@ namespace MSI.Web.Controls
                                                     this.dwrYes.Checked == true, this.dbonYes.Checked == true, this.prmlYes.Checked == true,
                                                     this.dwrWTYes.Checked == true, this.dTempsYes.Checked == true, this.dsdYes.Checked == true,
                                                     this.dbtYes.Checked == true, this.deptYes.Checked == true, this.rbprYes.Checked == true,
-                                                    this.slhrYes.Checked == true, this.dwrSFYes.Checked == true );
+                                                    this.slhrYes.Checked == true, this.dwrSFYes.Checked == true, this.dwrFTYes.Checked == true);
 
             ClientPrefs.DisplayInvoice = this.giYes.Checked;
             ClientPrefs.DisplayPayRate = this.dprYes.Checked;
@@ -278,6 +288,7 @@ namespace MSI.Web.Controls
             ClientPrefs.RosterBasedPayRates = this.rbprYes.Checked;
             ClientPrefs.ShowLocationsHoursReport = this.slhrYes.Checked;
             ClientPrefs.DisplayWeeklyReportsSaturdayToFriday = this.dwrSFYes.Checked;
+            ClientPrefs.DisplayWeeklyReportsFridayToThursday = this.dwrFTYes.Checked;
             if (result)
             {
                 this.lblPreferencesUpdated.Text = "Client Preferences Updated!";

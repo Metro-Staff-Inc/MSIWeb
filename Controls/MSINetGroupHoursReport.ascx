@@ -556,7 +556,7 @@
                         <asp:Table ID="Table1" runat="server">
                             <asp:TableRow ID="TableRow1" runat="server">
                                 <asp:TableCell ID="TableCell1" runat="server">
-                                <div><asp:Label ID="Label1" runat="server" Text="Week of:"/></div>
+                                <div><asp:Label ID="Label1" runat="server" Text="Week Ending:"/></div>
                                 <div><asp:DropDownList  runat="server" ID="txtCalendar" /></div>
                                 <asp:CheckBox Enabled="false" runat="server" ID="chkBoxExact" /><asp:Label ID="Label2" runat="server" Text="Exact Times"/>
                                 </asp:TableCell>

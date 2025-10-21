@@ -18,7 +18,7 @@ Copyright (C) Microsoft Corporation. All rights reserved.
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{903d94f1-22b9-4c69-950e-9b1e9accef69}</ProjectGuid>
     <SourceWebPhysicalPath>$(MSBuildThisFileDirectory)</SourceWebPhysicalPath>
-    <SourceWebVirtualPath>/msiweb</SourceWebVirtualPath>
+    <SourceWebVirtualPath>/OldWebtrax-Clean</SourceWebVirtualPath>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <SourceWebProject>
     </SourceWebProject>

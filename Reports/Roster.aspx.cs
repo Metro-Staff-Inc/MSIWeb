@@ -55,6 +55,35 @@ public partial class Reports_Roster : System.Web.UI.Page
         rptrRoster.DataSource = roster.rosters;
         rptrRoster.DataBind();
         //CreatePDFDocument2(roster);
+        
+        // Add diagnostic logging for assembly loading
+        try
+        {
+            // Try to explicitly load BouncyCastle to see which version is being used
+            var bcAssembly = System.Reflection.Assembly.Load("BouncyCastle.Cryptography");
+            string logPath = HttpContext.Current.Server.MapPath("~/App_Data/assembly_info.log");
+            File.AppendAllText(logPath, DateTime.Now.ToString() + ": Loaded BouncyCastle.Cryptography: " +
+                bcAssembly.FullName + Environment.NewLine);
+        }
+        catch (Exception ex)
+        {
+            string logPath = HttpContext.Current.Server.MapPath("~/App_Data/assembly_info.log");
+            File.AppendAllText(logPath, DateTime.Now.ToString() + ": Error loading BouncyCastle.Cryptography: " +
+                ex.Message + Environment.NewLine);
+            
+            // Try loading the older version
+            try
+            {
+                var bcAssembly = System.Reflection.Assembly.Load("BouncyCastle.Crypto");
+                File.AppendAllText(logPath, DateTime.Now.ToString() + ": Loaded BouncyCastle.Crypto: " +
+                    bcAssembly.FullName + Environment.NewLine);
+            }
+            catch (Exception ex2)
+            {
+                File.AppendAllText(logPath, DateTime.Now.ToString() + ": Error loading BouncyCastle.Crypto: " +
+                    ex2.Message + Environment.NewLine);
+            }
+        }
     }
     public void CreatePDFDocument2(RosterInfo roster)
     {
@@ -133,20 +162,45 @@ public partial class Reports_Roster : System.Web.UI.Page
 
     public void CreatePDFDocument(string strHtml)
     {
-        string fileName = DateTime.Now.ToString("yyyyMMdd_hhmmss");
-        string strFileName = HttpContext.Current.Server.MapPath(fileName);
-        // step 1: creation of a document-object
-        Document document = new Document();
-        // step 2:
-        // we create a writer that listens to the document
-        PdfWriter.GetInstance(document, new FileStream(strFileName, FileMode.Create));
-        StringReader se = new StringReader(strHtml);
-        
-        HTMLWorker obj = new HTMLWorker(document);
-        document.Open();
-        obj.Parse(se);
-        document.Close();
-        ShowPdf(strFileName);
+        try
+        {
+            string fileName = DateTime.Now.ToString("yyyyMMdd_hhmmss");
+            string strFileName = HttpContext.Current.Server.MapPath(fileName);
+            // step 1: creation of a document-object
+            Document document = new Document();
+            // step 2:
+            // we create a writer that listens to the document
+            PdfWriter.GetInstance(document, new FileStream(strFileName, FileMode.Create));
+            StringReader se = new StringReader(strHtml);
+            
+            HTMLWorker obj = new HTMLWorker(document);
+            document.Open();
+            obj.Parse(se);
+            document.Close();
+            ShowPdf(strFileName);
+        }
+        catch (Exception ex)
+        {
+            // Log the full exception details including inner exceptions
+            string errorMessage = "Error in CreatePDFDocument: " + ex.Message;
+            if (ex.InnerException != null)
+            {
+                errorMessage += " Inner exception: " + ex.InnerException.Message;
+                
+                // Check specifically for BouncyCastle related errors
+                if (ex.InnerException.Message.Contains("BouncyCastle"))
+                {
+                    errorMessage += " BouncyCastle error detected. Stack trace: " + ex.InnerException.StackTrace;
+                }
+            }
+            
+            // Log to a file for debugging
+            string logPath = HttpContext.Current.Server.MapPath("~/App_Data/pdf_error.log");
+            File.AppendAllText(logPath, DateTime.Now.ToString() + ": " + errorMessage + Environment.NewLine);
+            
+            // Display error to user
+            Response.Write("Error generating PDF: " + errorMessage);
+        }
     }
 
     public void ShowPdf(string strFileName)

@@ -635,6 +635,35 @@ namespace MSI.Web.MSINet.Common
             }
             return retDate;
         }
+        public DateTime GetCSTWeekEndingThursdayDateFromDate(DateTime dateIn)
+        {
+            DateTime retDate = new DateTime(1, 1, 1);
+            switch (dateIn.DayOfWeek)
+            {
+                case DayOfWeek.Monday:
+                    retDate = dateIn.AddDays(3);
+                    break;
+                case DayOfWeek.Tuesday:
+                    retDate = dateIn.AddDays(2);
+                    break;
+                case DayOfWeek.Wednesday:
+                    retDate = dateIn.AddDays(1);
+                    break;
+                case DayOfWeek.Thursday:
+                    retDate = dateIn.AddDays(0);
+                    break;
+                case DayOfWeek.Friday:
+                    retDate = dateIn.AddDays(6);
+                    break;
+                case DayOfWeek.Saturday:
+                    retDate = dateIn.AddDays(5);
+                    break;
+                case DayOfWeek.Sunday:
+                    retDate = dateIn.AddDays(4);
+                    break;
+            }
+            return retDate;
+        }
         public DateTime GetCSTWeekEndingTuesdayDateFromDate(DateTime dateIn)
         {
             DateTime retDate = new DateTime(1, 1, 1);
@@ -1390,6 +1419,82 @@ namespace MSI.Web.MSINet.Common
             }
         }
 
+        public bool NewSummaryAppliesToBillingPeriodThursday(string shiftStartTime, string shiftEndTime, DateTime punchDateTime, DateTime periodStartDateTime,
+            DateTime periodEndDateTime, DateTime punchWeekEnd, DateTime weekEnd, int clientId, int shiftType, int wsCount)
+        {
+            bool sameWeekEnd = false;
+            bool appliesToPeriod = true;
+            DateTime weekEnd2 = new DateTime(1900, 1, 1);
+            DateTime nullDate = new DateTime(1900, 1, 1);
+
+            if (punchDateTime.DayOfWeek == DayOfWeek.Thursday)
+            {
+                if (punchWeekEnd != null && punchWeekEnd != nullDate)
+                {
+                    if (weekEnd.Day != punchWeekEnd.Day)
+                    {
+                        appliesToPeriod = false;
+                    }
+                    else
+                    {
+                        sameWeekEnd = true;
+                    }
+                }
+            }
+            else
+            { /*
+                if (this.GetCSTWeekEndingSaturdayDateFromDate(punchDateTime).Day != weekEnd.Day)
+                {
+                    appliesToPeriod = false;
+                }
+               */
+                /* handle third shift starting on or after midnight on the last day of the roster term */
+                bool endOfWeekThirdShift = (shiftType >= 3 && punchDateTime.DayOfWeek == DayOfWeek.Friday &&
+                    punchDateTime > periodStartDateTime.AddHours(24) && shiftStartTime.CompareTo(shiftEndTime) > 0);
+                bool endOfWeekSecondShift = (shiftType == 2 && punchDateTime.DayOfWeek == DayOfWeek.Friday &&
+                    punchDateTime > periodStartDateTime.AddHours(24));
+
+                bool startOfWeek = (punchDateTime.DayOfWeek == DayOfWeek.Friday &&
+                    punchDateTime < periodStartDateTime.AddHours(9));
+
+                bool startOfWeekThirdShift = (shiftType != 1 && punchDateTime.DayOfWeek == DayOfWeek.Friday &&
+                    punchDateTime < periodStartDateTime.AddHours(9));
+
+                if (endOfWeekThirdShift && punchDateTime.TimeOfDay.Hours <= 9)
+                    weekEnd2 = weekEnd.AddDays(7);
+                else if (endOfWeekSecondShift && punchDateTime.TimeOfDay.Hours <= 5)
+                    weekEnd2 = weekEnd.AddDays(7);
+                else
+                    weekEnd2 = weekEnd;
+                DateTime pdt = this.GetCSTWeekEndingThursdayDateFromDate(punchDateTime);
+                if ((pdt.Day != weekEnd.Day && pdt.Day != weekEnd2.Day) || startOfWeekThirdShift)
+                {
+                    appliesToPeriod = false;
+                }
+                if (startOfWeekThirdShift)
+                {
+                    appliesToPeriod = true;
+                }
+                if (startOfWeek && shiftType > 1 && clientId != 258)
+                {
+                    appliesToPeriod = false;
+                }
+            }
+
+            if (sameWeekEnd)
+            {
+                return true;
+            }
+            else if (appliesToPeriod)
+            {
+                return NewSummaryAppliesToBillingPeriodThursday(shiftStartTime, shiftEndTime, punchDateTime, periodStartDateTime, periodEndDateTime, clientId, shiftType, wsCount);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         int count = 0;
         public bool NewSummaryAppliesToBillingPeriod(string shiftStartTime, string shiftEndTime, DateTime punchDateTime, DateTime periodStartDateTime,
             DateTime periodEndDateTime, DateTime punchWeekEnd, DateTime weekEnd, int clientId, int shiftType)
@@ -1614,6 +1719,51 @@ namespace MSI.Web.MSINet.Common
                         int diff = 6;
                         if (clientId == 7) /* JHM TEMPORARY - Special case for Simms */
                             diff = 9;
+                        if (shiftStartDif.TotalHours > diff)
+                        {
+                            retVal = false;
+                        }
+                    }
+                }
+            }
+            return retVal;
+        }
+
+        public bool NewSummaryAppliesToBillingPeriodThursday(string shiftStartTime, string shiftEndTime, DateTime punchDateTime, DateTime periodStartDateTime,
+            DateTime periodEndDateTime, int clientId, int shiftType, int wsCount)
+        {
+            bool retVal = true;
+
+            //make sure punch date/time is not for the next period
+            //if (punchDateTime.Date >= periodEndDateTime.AddDays(1).Date)
+            //{
+            //    //should we check if the punch is missing a check in?
+            //    retVal = false;
+            //}
+            if (punchDateTime.Date == periodEndDateTime.AddDays(1).Date && (shiftType == 1 && punchDateTime.TimeOfDay.Hours >= 4))
+            {
+                //should we check if the punch is missing a check in?
+                retVal = false;
+            }
+            else if (punchDateTime.Date == periodEndDateTime.Date && (shiftType == 1 && punchDateTime.TimeOfDay.Hours >= 23))
+            {
+                retVal = false;
+            }
+            else
+            {
+                //if the punch is a monday
+                //if the difference between the punch date/time and the shift start is more than
+                //6 hours then it was from the previous period's sunday so ignore.
+                if (punchDateTime.DayOfWeek == DayOfWeek.Friday)
+                {
+                    DateTime tempShiftStart = DateTime.Parse(punchDateTime.ToString("MM/dd/yyyy ") + shiftStartTime);
+                    DateTime tempShiftEnd = DateTime.Parse(punchDateTime.ToString("MM/dd/yyyy ") + shiftEndTime);
+                    if (shiftType != 1 && punchDateTime.TimeOfDay.Hours <= 6)
+                        tempShiftStart = tempShiftStart.AddDays(-1);
+                    if (tempShiftEnd < tempShiftStart)
+                    {
+                        TimeSpan shiftStartDif = tempShiftStart - punchDateTime;
+                        int diff = 6;
                         if (shiftStartDif.TotalHours > diff)
                         {
                             retVal = false;

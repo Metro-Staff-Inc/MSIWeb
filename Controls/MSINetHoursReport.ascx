@@ -2349,7 +2349,7 @@
                         <asp:Table runat="server">
                             <asp:TableRow runat="server">
                                 <asp:TableCell runat="server">
-                                <div><asp:Label runat="server" Text="Week of:"/></div>
+                                <div><asp:Label runat="server" Text="Week Ending:"/></div>
                                 <div><asp:DropDownList  runat="server" ID="txtCalendar" /><input runat="server" type="hidden" id="weekEndDate" /><input runat="server" type="hidden" id="weekStartDate"/></div>
                                 <div><select runat="server" id="selectEmployees">
                                     <option value="10000" selected="selected">All Employees</option>

@@ -39,7 +39,7 @@ namespace MSI.Web.MSINet.DataAccess
                                 Boolean displayWeeklyReportsSundayToSaturday, Boolean displayBonuses, Boolean displayPayRateMaintenance, 
                                 Boolean displayWeeklyReportsWednesdayToTuesday, Boolean displayTemps, Boolean displayStartDate, 
                                 Boolean displayBreakTimes, Boolean displayExactPunchTimes, Boolean rosterBasedPayRates, 
-                                Boolean showLocationsHoursReport, Boolean displayWeeklyReportsSaturdayToFriday)
+                                Boolean showLocationsHoursReport, Boolean displayWeeklyReportsSaturdayToFriday, Boolean displayWeeklyReportsFridayToThursday)
         {
             Boolean success = false;
             DbCommand cw;
@@ -68,6 +68,7 @@ namespace MSI.Web.MSINet.DataAccess
             dbSvc.AddInParameter(cw, "@rosterBasedPayRates", DbType.Boolean, rosterBasedPayRates);
             dbSvc.AddInParameter(cw, "@showLocationsHoursReport", DbType.Boolean, showLocationsHoursReport);
             dbSvc.AddInParameter(cw, "@displayWeeklyReportsSaturdayToFriday", DbType.Boolean, displayWeeklyReportsSaturdayToFriday);
+            dbSvc.AddInParameter(cw, "@displayWeeklyReportsFridayToThursday", DbType.Boolean, displayWeeklyReportsFridayToThursday);
             try
             {
                 int rows = dbSvc.ExecuteNonQuery(cw);

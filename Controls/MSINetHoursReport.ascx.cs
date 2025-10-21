@@ -521,6 +521,11 @@ namespace MSI.Web.Controls
                     while (dt.DayOfWeek != DayOfWeek.Friday)
                         dt = dt.AddDays(1);
                 }
+                else if (ClientPrefs.DisplayWeeklyReportsFridayToThursday)
+                {
+                    while (dt.DayOfWeek != DayOfWeek.Thursday)
+                        dt = dt.AddDays(1);
+                }
                 else
                 {
                     while (dt.DayOfWeek != DayOfWeek.Sunday)
@@ -1387,6 +1392,24 @@ namespace MSI.Web.Controls
                             displayHiddenHours(((HiddenField)e.Item.FindControl("lblWeekDay6HiddenHours")), _boundEmployeeHistory.MondaySummary);
                             displayHiddenHours(((HiddenField)e.Item.FindControl("lblWeekDay7HiddenHours")), _boundEmployeeHistory.TuesdaySummary);
                         }
+                        else if (this.WeekEnding.DayOfWeek.Equals(DayOfWeek.Thursday))
+                        {
+                            displayHours(((Label)e.Item.FindControl("lblWeekDay1Hours")), _boundEmployeeHistory.FridaySummary);
+                            displayHours(((Label)e.Item.FindControl("lblWeekDay2Hours")), _boundEmployeeHistory.SaturdaySummary);
+                            displayHours(((Label)e.Item.FindControl("lblWeekDay3Hours")), _boundEmployeeHistory.SundaySummary);
+                            displayHours(((Label)e.Item.FindControl("lblWeekDay4Hours")), _boundEmployeeHistory.MondaySummary);
+                            displayHours(((Label)e.Item.FindControl("lblWeekDay5Hours")), _boundEmployeeHistory.TuesdaySummary);
+                            displayHours(((Label)e.Item.FindControl("lblWeekDay6Hours")), _boundEmployeeHistory.WednesdaySummary);
+                            displayHours(((Label)e.Item.FindControl("lblWeekDay7Hours")), _boundEmployeeHistory.ThursdaySummary);
+
+                            displayHiddenHours(((HiddenField)e.Item.FindControl("lblWeekDay1HiddenHours")), _boundEmployeeHistory.FridaySummary);
+                            displayHiddenHours(((HiddenField)e.Item.FindControl("lblWeekDay2HiddenHours")), _boundEmployeeHistory.SaturdaySummary);
+                            displayHiddenHours(((HiddenField)e.Item.FindControl("lblWeekDay3HiddenHours")), _boundEmployeeHistory.SundaySummary);
+                            displayHiddenHours(((HiddenField)e.Item.FindControl("lblWeekDay4HiddenHours")), _boundEmployeeHistory.MondaySummary);
+                            displayHiddenHours(((HiddenField)e.Item.FindControl("lblWeekDay5HiddenHours")), _boundEmployeeHistory.TuesdaySummary);
+                            displayHiddenHours(((HiddenField)e.Item.FindControl("lblWeekDay6HiddenHours")), _boundEmployeeHistory.WednesdaySummary);
+                            displayHiddenHours(((HiddenField)e.Item.FindControl("lblWeekDay7HiddenHours")), _boundEmployeeHistory.ThursdaySummary);
+                        }
                         else
                         {
                             displayHiddenHours(((HiddenField)e.Item.FindControl("lblWeekDay2HiddenHours")), _boundEmployeeHistory.MondaySummary);
@@ -1769,6 +1792,16 @@ namespace MSI.Web.Controls
                     ((Label)e.Item.FindControl("lblWeekDay6")).Text = "Mon";
                     ((Label)e.Item.FindControl("lblWeekDay7")).Text = "Tue";
                 }
+                else if (this.WeekEnding.DayOfWeek.Equals(DayOfWeek.Thursday))
+                {
+                    ((Label)e.Item.FindControl("lblWeekDay4")).Text = "Mon";
+                    ((Label)e.Item.FindControl("lblWeekDay5")).Text = "Tue";
+                    ((Label)e.Item.FindControl("lblWeekDay6")).Text = "Wed";
+                    ((Label)e.Item.FindControl("lblWeekDay7")).Text = "Thr";
+                    ((Label)e.Item.FindControl("lblWeekDay1")).Text = "Fri";
+                    ((Label)e.Item.FindControl("lblWeekDay2")).Text = "Sat";
+                    ((Label)e.Item.FindControl("lblWeekDay3")).Text = "Sun";
+                }
 
                 HtmlTableRow trExcelTitle = (HtmlTableRow)e.Item.FindControl("trExcelTitle");
                 HtmlTableRow trExcelWeekEnding = (HtmlTableRow)e.Item.FindControl("trExcelWeekEnding");
@@ -1925,6 +1958,8 @@ namespace MSI.Web.Controls
                         offset = 6;
                     else if (this.WeekEnding.DayOfWeek.Equals(DayOfWeek.Friday))
                         offset = 5;
+                    else if (this.WeekEnding.DayOfWeek.Equals(DayOfWeek.Thursday))
+                        offset = 4;
                     else if (this.WeekEnding.DayOfWeek.Equals(DayOfWeek.Tuesday))
                         offset = 2;
                     //Mon
