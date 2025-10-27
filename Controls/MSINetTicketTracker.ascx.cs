@@ -644,6 +644,14 @@ namespace MSI.Web.Controls
                 {
                     Context.Items.Add("weekEndDate", _helper.GetCSTWeekEndingFridayDateFromDate(DateTime.Parse(Context.Items["startDate"].ToString())));
                 }
+                else if (ClientPrefs.DisplayWeeklyReportsFridayToThursday)
+                {
+                    Context.Items.Add("weekEndDate", _helper.GetCSTWeekEndingThursdayDateFromDate(DateTime.Parse(Context.Items["startDate"].ToString())));
+                }
+                else if (ClientPrefs.DisplayWeeklyReportsFridayToThursday)
+                {
+                    Context.Items.Add("weekEndDate", _helper.GetCSTWeekEndingThursdayDateFromDate(DateTime.Parse(Context.Items["startDate"].ToString())));
+                }
                 else
                     Context.Items.Add("weekEndDate", _helper.GetCSTWeekEndingDateFromDate(DateTime.Parse(Context.Items["startDate"].ToString())));
                 Server.Transfer("~/auth/EmployeeHistory.aspx", false);

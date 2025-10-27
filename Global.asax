@@ -62,10 +62,10 @@
 
     private void EnableCrossDomainAjaxCall()
     {
+        /*HttpContext.Current.Response.AddHeader("Access-Control-Allow-Origin",
+                      "http://localhost:55248");*/
         HttpContext.Current.Response.AddHeader("Access-Control-Allow-Origin",
-                      "http://localhost:55248");
-        //HttpContext.Current.Response.AddHeader("Access-Control-Allow-Origin",
-        //              "http://msiwebtrax.com");
+                      "http://msiwebtrax.com");
 
         if (HttpContext.Current.Request.HttpMethod == "OPTIONS")
         {

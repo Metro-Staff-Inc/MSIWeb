@@ -32,14 +32,19 @@ namespace MSI.Web.MSINet.DataAccess
             //add the calculate summary hours flag
             System.Diagnostics.Debug.WriteLine(dr.ToString());
 
-            ClientPreferences retClientPref = new ClientPreferences(dr.GetInt32(dr.GetOrdinal("client_id")), dr.GetBoolean(dr.GetOrdinal("display_pay_rates")),
-                dr.GetBoolean(dr.GetOrdinal("display_job_codes")), dr.GetBoolean(dr.GetOrdinal("display_submit_hours")),
-                dr.GetBoolean(dr.GetOrdinal("display_invoice")), dr.GetBoolean(dr.GetOrdinal("approve_hours")),
-                dr.GetBoolean(dr.GetOrdinal("display_schedule")), dr.GetBoolean(dr.GetOrdinal("enable_punch_reports")),
+            ClientPreferences retClientPref = new ClientPreferences(dr.GetInt32(dr.GetOrdinal("client_id")),
+                dr.GetBoolean(dr.GetOrdinal("display_pay_rates")),
+                dr.GetBoolean(dr.GetOrdinal("display_job_codes")),
+                dr.GetBoolean(dr.GetOrdinal("display_submit_hours")),
+                dr.GetBoolean(dr.GetOrdinal("display_invoice")),
+                dr.GetBoolean(dr.GetOrdinal("approve_hours")),
+                dr.GetBoolean(dr.GetOrdinal("display_schedule")),
+                dr.GetBoolean(dr.GetOrdinal("enable_punch_reports")),
                 dr.GetBoolean(dr.GetOrdinal("employee_history_exact_punch_times")),
                 dr.GetBoolean(dr.GetOrdinal("ticket_tracking_exact_late_punches")),
                 dr.GetBoolean(dr.GetOrdinal("display_weekly_reports_sunday_to_saturday")),
-                dr.GetBoolean(dr.GetOrdinal("display_bonuses")), dr.GetBoolean(dr.GetOrdinal("display_pay_rate_maintenance")),
+                dr.GetBoolean(dr.GetOrdinal("display_bonuses")),
+                dr.GetBoolean(dr.GetOrdinal("display_pay_rate_maintenance")),
                 dr.GetBoolean(dr.GetOrdinal("display_weekly_reports_wednesday_to_tuesday")),
                 dr.GetBoolean(dr.GetOrdinal("display_temps")),
                 dr.GetBoolean(dr.GetOrdinal("display_start_date")),
@@ -48,7 +53,8 @@ namespace MSI.Web.MSINet.DataAccess
                 dr.GetBoolean(dr.GetOrdinal("roster_based_pay_rates")),
                 dr.GetBoolean(dr.GetOrdinal("show_locations_hours_report")),
                 dr.GetBoolean(dr.GetOrdinal("display_weekly_reports_saturday_to_friday")),
-                dr.GetBoolean(dr.GetOrdinal("exact_punch_in_out")));
+                dr.GetBoolean(dr.GetOrdinal("exact_punch_in_out")),
+                dr.GetBoolean(dr.GetOrdinal("display_weekly_reports_friday_to_thursday")));
             return retClientPref;
         }
 

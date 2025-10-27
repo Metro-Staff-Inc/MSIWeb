@@ -247,7 +247,7 @@ namespace MSI.Web.Controls
                 else
                     sortByDept = false;
             }
-            hoursReportInput.UseExactTimes = showExact;
+            hoursReportInput.UseExactTimes = _clientPrefs.UseExactTimes;
             if (_clientInfo.ClientID == 381)
             {
                 hoursReportInput.UseExactTimes = _clientPrefs.UseExactTimes;
@@ -521,6 +521,11 @@ namespace MSI.Web.Controls
                     while (dt.DayOfWeek != DayOfWeek.Friday)
                         dt = dt.AddDays(1);
                 }
+                else if (ClientPrefs.DisplayWeeklyReportsFridayToThursday)
+                {
+                    while (dt.DayOfWeek != DayOfWeek.Thursday)
+                        dt = dt.AddDays(1);
+                }
                 else
                 {
                     while (dt.DayOfWeek != DayOfWeek.Sunday)
@@ -697,8 +702,7 @@ namespace MSI.Web.Controls
                             this.lnkCreateInvoice.Visible = false;
                         }
                     }
-                    if( this.Context.User.Identity.Name.ToLower().Equals("itdept") || this.Context.User.Identity.Name.ToLower().Equals("badanis")
-                        || this.Context.User.Identity.Name.ToLower().Equals("mchavez") || this.Context.User.Identity.Name.ToLower().Equals("garciae"))
+                    if( this.Context.User.IsInRole("UnapproveHours"))
                     {
                         this.btnSubmitApproved.Enabled = true;
                         this.btnSubmitApproved.Text = "UnApprove Hours";
@@ -1083,12 +1087,14 @@ namespace MSI.Web.Controls
                         Decimal payRate = _boundEmployeeHistory.GetEmployeePayRate();
                         ((HiddenField)e.Item.FindControl("hdnPayRate")).Value = payRate.ToString("$#,##0.00");
                         Decimal multiplier = (Decimal)ClientInfo.Multiplier;
+                        /* This was removed as of 10-15-2024 by Dan. Should NEVER be hardcoded and is calculating incorrectly.
                         if (_clientId == 309)  //if show bill rate instead of pay rate
                         {
                             payRate = Math.Round((Decimal).15 + payRate * (Decimal)1.233, 2, MidpointRounding.AwayFromZero);
                             multiplier = (Decimal)1.2506;
                         }
-                        else multiplier = 1.0M;
+                        */
+                        multiplier = 1.0M;
                         //payRate = Math.Round(payRate, 2);
                         ((Label)e.Item.FindControl("lblPayRate")).Text = payRate.ToString("$#,##0.00");
                         if( (_clientId == 165) && !Context.User.Identity.Name.ToUpper().Equals("VIRGINIA") && 
@@ -1386,6 +1392,24 @@ namespace MSI.Web.Controls
                             displayHiddenHours(((HiddenField)e.Item.FindControl("lblWeekDay6HiddenHours")), _boundEmployeeHistory.MondaySummary);
                             displayHiddenHours(((HiddenField)e.Item.FindControl("lblWeekDay7HiddenHours")), _boundEmployeeHistory.TuesdaySummary);
                         }
+                        else if (this.WeekEnding.DayOfWeek.Equals(DayOfWeek.Thursday))
+                        {
+                            displayHours(((Label)e.Item.FindControl("lblWeekDay1Hours")), _boundEmployeeHistory.FridaySummary);
+                            displayHours(((Label)e.Item.FindControl("lblWeekDay2Hours")), _boundEmployeeHistory.SaturdaySummary);
+                            displayHours(((Label)e.Item.FindControl("lblWeekDay3Hours")), _boundEmployeeHistory.SundaySummary);
+                            displayHours(((Label)e.Item.FindControl("lblWeekDay4Hours")), _boundEmployeeHistory.MondaySummary);
+                            displayHours(((Label)e.Item.FindControl("lblWeekDay5Hours")), _boundEmployeeHistory.TuesdaySummary);
+                            displayHours(((Label)e.Item.FindControl("lblWeekDay6Hours")), _boundEmployeeHistory.WednesdaySummary);
+                            displayHours(((Label)e.Item.FindControl("lblWeekDay7Hours")), _boundEmployeeHistory.ThursdaySummary);
+
+                            displayHiddenHours(((HiddenField)e.Item.FindControl("lblWeekDay1HiddenHours")), _boundEmployeeHistory.FridaySummary);
+                            displayHiddenHours(((HiddenField)e.Item.FindControl("lblWeekDay2HiddenHours")), _boundEmployeeHistory.SaturdaySummary);
+                            displayHiddenHours(((HiddenField)e.Item.FindControl("lblWeekDay3HiddenHours")), _boundEmployeeHistory.SundaySummary);
+                            displayHiddenHours(((HiddenField)e.Item.FindControl("lblWeekDay4HiddenHours")), _boundEmployeeHistory.MondaySummary);
+                            displayHiddenHours(((HiddenField)e.Item.FindControl("lblWeekDay5HiddenHours")), _boundEmployeeHistory.TuesdaySummary);
+                            displayHiddenHours(((HiddenField)e.Item.FindControl("lblWeekDay6HiddenHours")), _boundEmployeeHistory.WednesdaySummary);
+                            displayHiddenHours(((HiddenField)e.Item.FindControl("lblWeekDay7HiddenHours")), _boundEmployeeHistory.ThursdaySummary);
+                        }
                         else
                         {
                             displayHiddenHours(((HiddenField)e.Item.FindControl("lblWeekDay2HiddenHours")), _boundEmployeeHistory.MondaySummary);
@@ -1439,7 +1463,7 @@ namespace MSI.Web.Controls
                         ((HtmlTableCell)e.Item.FindControl("tdTotalWeek")).Visible = false;
                     }
                     */
-                    ((HtmlTableCell)e.Item.FindControl("tdTotalWeek")).Visible = false;
+                        ((HtmlTableCell)e.Item.FindControl("tdTotalWeek")).Visible = false;
                     if (this.ClientPrefs.DisplayBonuses && (this.Context.User.Identity.Name.ToUpper().Equals("ITDEPT")
                         || this.Context.User.Identity.Name.ToUpper().Equals("JULIO")
                         || this.Context.User.Identity.Name.ToUpper().Equals("BADANIS")
@@ -1685,8 +1709,10 @@ namespace MSI.Web.Controls
             }
             else if (e.Item.ItemType == ListItemType.Header)
             {
+                /* This was removed as of 10-15-2024 by Dan. Should NEVER be hardcoded and is calculating incorrectly.
                 if ( _clientId == 309 )
                     ((HtmlTableCell)e.Item.FindControl("tdPayRateHead")).InnerText = "Bill Rate";
+                */
                 if (ClientPrefs.DisplayPayRate && payRateJobCodeEligible)
                 {
                     if( _clientId != 165 || Context.User.Identity.Name.ToUpper().Equals("VIRGINIA") ||
@@ -1765,6 +1791,16 @@ namespace MSI.Web.Controls
                     ((Label)e.Item.FindControl("lblWeekDay5")).Text = "Sun";
                     ((Label)e.Item.FindControl("lblWeekDay6")).Text = "Mon";
                     ((Label)e.Item.FindControl("lblWeekDay7")).Text = "Tue";
+                }
+                else if (this.WeekEnding.DayOfWeek.Equals(DayOfWeek.Thursday))
+                {
+                    ((Label)e.Item.FindControl("lblWeekDay4")).Text = "Mon";
+                    ((Label)e.Item.FindControl("lblWeekDay5")).Text = "Tue";
+                    ((Label)e.Item.FindControl("lblWeekDay6")).Text = "Wed";
+                    ((Label)e.Item.FindControl("lblWeekDay7")).Text = "Thr";
+                    ((Label)e.Item.FindControl("lblWeekDay1")).Text = "Fri";
+                    ((Label)e.Item.FindControl("lblWeekDay2")).Text = "Sat";
+                    ((Label)e.Item.FindControl("lblWeekDay3")).Text = "Sun";
                 }
 
                 HtmlTableRow trExcelTitle = (HtmlTableRow)e.Item.FindControl("trExcelTitle");
@@ -1922,6 +1958,8 @@ namespace MSI.Web.Controls
                         offset = 6;
                     else if (this.WeekEnding.DayOfWeek.Equals(DayOfWeek.Friday))
                         offset = 5;
+                    else if (this.WeekEnding.DayOfWeek.Equals(DayOfWeek.Thursday))
+                        offset = 4;
                     else if (this.WeekEnding.DayOfWeek.Equals(DayOfWeek.Tuesday))
                         offset = 2;
                     //Mon

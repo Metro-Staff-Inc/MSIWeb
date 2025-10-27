@@ -62,7 +62,8 @@ namespace MSI.Web.Controls
             {
                 if (this._clientPrefs.DisplayWeeklyReportsSundayToSaturday == false &&
                     this._clientPrefs.DisplayWeeklyReportsWednesdayToTuesday == false &&
-                    this._clientPrefs.DisplayWeeklyReportsSaturdayToFriday == false)
+                    this._clientPrefs.DisplayWeeklyReportsSaturdayToFriday == false &&
+                    this._clientPrefs.DisplayWeeklyReportsFridayToThursday == false)
                     this.weekEnd.Value = "7";
                 else if (this._clientPrefs.DisplayWeeklyReportsSundayToSaturday == true)
                     this.weekEnd.Value = "6";
@@ -70,6 +71,8 @@ namespace MSI.Web.Controls
                     this.weekEnd.Value = "3";
                 else if (this._clientPrefs.DisplayWeeklyReportsSaturdayToFriday == true)
                     this.weekEnd.Value = "5";
+                else if (this._clientPrefs.DisplayWeeklyReportsFridayToThursday == true)
+                    this.weekEnd.Value = "4";
             }
         }
     }

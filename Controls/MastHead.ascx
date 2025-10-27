@@ -13,11 +13,11 @@
     <asp:Panel ID="pnlMastHead" runat="server" CssClass="MastHead">
         &nbsp;
         <asp:Panel ID="Panel2" runat="server" CssClass="MastHead_Logo">
-            <img src="../images/MSILogo.jpg" border="0" alt="Metro Staff, Inc." id="IMG1" />
+            <img src="../images/MSILogo.png" border="0" alt="Metro Staff, Inc." id="IMG1" />
         </asp:Panel>
         &nbsp;
         <asp:Panel ID="Panel3" runat="server" CssClass="MastHead_Heading" >
-            <img src="../images/MetroStaffHeaderText.jpg" border="0" alt="Metro Staff, Inc." id="IMG2" />
+            <img src="../images/MetroStaffHeaderText.png" border="0" alt="Metro Staff, Inc." id="IMG2" />
         </asp:Panel>
     </asp:Panel>
 <asp:Panel ID="pnlMastHeadMobile" runat="server" Height="50px" HorizontalAlign="Left"

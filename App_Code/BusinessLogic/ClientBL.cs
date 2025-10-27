@@ -77,7 +77,7 @@ namespace MSI.Web.MSINet.BusinessLogic
             DateTime dt = endDate;
             hoursReportInput.EndDateTime = DateTime.Parse(dt.ToString("MM/dd/yyyy") + " 23:59:59");
 
-            hoursReportInput.UseExactTimes = false;
+            hoursReportInput.UseExactTimes = _clientPrefs.UseExactTimes;
             if( _clientInfo.ClientID == 381 )
             {
                 hoursReportInput.UseExactTimes = _clientPrefs.UseExactTimes;
@@ -117,7 +117,7 @@ namespace MSI.Web.MSINet.BusinessLogic
                 DateTime dt = endDate;
                 hoursReportInput.EndDateTime = DateTime.Parse(dt.ToString("MM/dd/yyyy") + " 23:59:59");
 
-                hoursReportInput.UseExactTimes = false;
+                hoursReportInput.UseExactTimes = _clientPrefs.UseExactTimes;
                 if (_clientInfo.ClientID == 381)
                 {
                     hoursReportInput.UseExactTimes = _clientPrefs.UseExactTimes;

@@ -763,6 +763,11 @@ namespace MSI.Web.MSINet.DataAccess
                                     sumVal = _helper.NewSummaryAppliesToBillingPeriodFriday(dr.GetString(dr.GetOrdinal("shift_start_time")), dr.GetString(dr.GetOrdinal("shift_end_time")), punchRound /*currentDate*/, 
                                         hoursReport.StartDateTime, hoursReport.EndDateTime, dr.GetDateTime(dr.GetOrdinal("week_ending_date")), weekEndingDate, hoursReport.ClientID, currentShift, employeeHistory.WorkSummaries.Count);
                                 }
+                                else if (weekEndingDate.DayOfWeek == DayOfWeek.Thursday)
+                                {
+                                    sumVal = _helper.NewSummaryAppliesToBillingPeriodThursday(dr.GetString(dr.GetOrdinal("shift_start_time")), dr.GetString(dr.GetOrdinal("shift_end_time")), punchRound /*currentDate*/,
+                                        hoursReport.StartDateTime, hoursReport.EndDateTime, dr.GetDateTime(dr.GetOrdinal("week_ending_date")), weekEndingDate, hoursReport.ClientID, currentShift, employeeHistory.WorkSummaries.Count);
+                                }
                                 else if (weekEndingDate.DayOfWeek == DayOfWeek.Tuesday)
                                 {
                                     sumVal = _helper.NewSummaryAppliesToBillingPeriodTuesday(dr.GetString(dr.GetOrdinal("shift_start_time")), dr.GetString(dr.GetOrdinal("shift_end_time")), punchRound /*currentDate*/, hoursReport.StartDateTime, hoursReport.EndDateTime, dr.GetDateTime(dr.GetOrdinal("week_ending_date")), weekEndingDate, hoursReport.ClientID, currentShift);

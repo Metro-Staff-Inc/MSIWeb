@@ -182,6 +182,15 @@
                             <asp:RadioButton GroupName="slhrGroup" ID="slhrNo" runat="server" /> No
                         </td>
                     </tr>
+                    <tr class="Row">
+                    <td>
+                        Display Weekly Reports From Friday to Thursday
+                    </td>
+                    <td>
+                        <asp:RadioButton GroupName="dwr4Group" ID="dwrFTYes" runat="server"/> Yes
+                        <asp:RadioButton GroupName="dwr4Group" ID="dwrFTNo" runat="server" /> No
+                    </td>
+                </tr>
                     <tr>
                         <td>
                             <asp:Button id="btnSubmitChanges" text="Update" tooltip="Update Client Preferences" onclick="btnGo_Click" runat="server" />
