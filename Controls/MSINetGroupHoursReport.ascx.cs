@@ -192,7 +192,7 @@ namespace MSI.Web.Controls
                 if (chkBoxExact.Checked == true)
                     showExact = true;
             }
-            hoursReportInput.UseExactTimes = showExact;
+            hoursReportInput.UseExactTimes = _clientPrefs.UseExactTimes;
             string badgeNum = "";
             GroupHoursReportBL groupHoursReportBL = new GroupHoursReportBL();
             string userId = Context.User.Identity.Name.ToLower();

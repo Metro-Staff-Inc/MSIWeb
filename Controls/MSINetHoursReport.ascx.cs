@@ -247,7 +247,7 @@ namespace MSI.Web.Controls
                 else
                     sortByDept = false;
             }
-            hoursReportInput.UseExactTimes = showExact;
+            hoursReportInput.UseExactTimes = _clientPrefs.UseExactTimes;
             if (_clientInfo.ClientID == 381)
             {
                 hoursReportInput.UseExactTimes = _clientPrefs.UseExactTimes;
