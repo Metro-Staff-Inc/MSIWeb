@@ -1,0 +1,1 @@
+<%@ WebService Language="C#" CodeBehind="~/App_Code/MSIWebTraxUserManagement.cs" Class="MSI.Web.Services.MSIWebTraxUserManagement" %>
