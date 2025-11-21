@@ -26,6 +26,24 @@
     <!-- Custom styles for this template -->
     <link href="../Styles/bootstrap-3.3.5/docs/examples/navbar-fixed-top/navbar-fixed-top.css" rel="stylesheet" />
     <link href="../Styles/bootstrap-3.3.5/docs/examples/navbar-fixed-top/navbarOverride.css" rel="stylesheet" />
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind CSS Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-green': '#98C73A',
+                        'brand-grey': '#666666',
+                        'brand-black': '#222222'
+                    }
+                }
+            }
+        }
+    </script>
 
 </head>
 <body>

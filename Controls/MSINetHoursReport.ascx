@@ -1,6 +1,6 @@
 ﻿   <%@ Control Language="C#" AutoEventWireup="true" CodeFile="MSINetHoursReport.ascx.cs" Inherits="MSI.Web.Controls.MSINetHoursReport" %>
     
-    <asp:Panel ID="pnlJSCode" Visible="false" runat="server">
+    <asp:Panel ID="pnlJSCode" Visible="false" runat="server" class="w-full max-w-6xl mx-auto">
     <link href="../Includes/css/ui-lightness/jquery-ui-1.8.17.custom.css" rel="stylesheet" type="text/css" />
     <link href="../Includes/flexigrid.pack.css" rel="stylesheet" type="text/css" />
     <script src="../Scripts/flexigrid.pack.js" type="text/javascript"></script>
@@ -27,7 +27,7 @@
         position:absolute;
         width:auto;
         height:200px;
-        border:6px double Blue;
+        border:6px double #98C73A;
         border-radius:12px; /*css3"../Client/"*/
         /*visibility:visible;*/
         display:none;
@@ -36,74 +36,182 @@
     .ttBtn
     {
         font-size:13px;
-    }    
+        background-color: #98C73A;
+        color: white;
+        font-weight: 500;
+        border-radius: 0.375rem;
+        padding: 0.5rem 1rem;
+    }
+    .ttBtn:hover {
+        opacity: 0.9;
+    }
     .ttDate
     {
         font-size:13px;
-    }    
+        width: 100%;
+        border-radius: 0.375rem;
+        border-color: #d1d5db;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        padding: 0.5rem 0.75rem;
+    }
+    .ttDate:focus {
+        --tw-ring-color: #98C73A;
+        --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+        --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+        box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+        border-color: #98C73A;
+    }
     .underLine
     {
         text-decoration:underline;
+        color: #98C73A;
     }
     #popup h1
     {
         margin-left:12px;
         margin-right:12px;
-        font-size:2.5em;
-        border-bottom:1px solid Black;
+        font-size:1.5rem;
+        font-weight:500;
+        color:#222222;
+        border-bottom:1px solid #e5e7eb;
+        padding-bottom:0.5rem;
+        margin-bottom:0.5rem;
     }
     #popup h2
     {
         margin-left:12px;
         margin-right:12px;
-        font-size:1.75em;
+        font-size:1.25rem;
+        font-weight:500;
+        color:#222222;
+        margin-bottom:0.5rem;
     }
     #addPunchDetail
     {
-        background-color:Yellow;
-        font-size:1.75em;
+        background-color:#98C73A;
+        color:white;
+        font-size:1.25rem;
+        font-weight:500;
         margin-left:16px;
+        padding:0.5rem 1rem;
+        border-radius:0.375rem;
     }
     .popupClose
     {
         padding:8px;
         float:right;
+        cursor:pointer;
     }
-    .tooltip 
+    .tooltip
     {
         position: absolute;
-        border: 4px solid #333;
+        border: 4px solid #666666;
         z-index: 2;
-        background-color: #ffed8a;
-        padding: 2px 6px;
-    }		
+        background-color: #f9fafb;
+        padding: 0.5rem 1rem;
+        border-radius: 0.375rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
     .popupClose
         .popupCloseBtn
         {
             width: 16px;
             height: 16px;
+            border-radius: 9999px;
+            padding: 2px;
+            background-color: #f3f4f6;
+            transition: all 0.2s;
         }
+        
+    .popupClose .popupCloseBtn:hover {
+        background-color: #e5e7eb;
+        transform: scale(1.1);
+    }
     .hover
     {
-        border:2px solid LightYellow;
+        border:2px solid #98C73A;
+        border-radius: 0.375rem;
     }
     .Detail
     {
         width:1000px;
+        max-width: 100%;
+        margin: 0 auto;
+    }
+    
+    .tblDetail {
+        width: 100%;
+        max-width: 6xl;
+        margin: 0 auto;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        overflow: hidden;
+        border: 1px solid #e5e7eb;
+    }
+    
+    .tblDetail th {
+        background-color: #666666;
+        color: white;
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding: 0.75rem 1.5rem;
+        text-align: left;
+    }
+    
+    .tblDetail tr {
+        border-bottom: 1px solid #e5e7eb;
+    }
+    
+    .tblDetail tr:last-child {
+        border-bottom: 0;
+    }
+    
+    .tblDetail tr:nth-child(even) {
+        background-color: #f9fafb;
+    }
+    
+    .tblDetail tr:hover {
+        background-color: #f3f4f6;
+    }
+    
+    .tblDetail td {
+        padding: 1rem 1.5rem;
+        font-size: 0.875rem;
+        color: #222222;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     #tblApprove th
     {
         font-weight:bolder;
-        background-color: lightyellow;
+        background-color: #666666;
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-size: 0.875rem;
+        padding: 0.75rem 1.5rem;
+        text-align: left;
     }
     #tblApprove, #tblApprove th, #tblApprove td
     {
-        border: 1px solid black;
+        border: 1px solid #e5e7eb;
         border-collapse: collapse;
     }
-    #tblApprove th, #tblApprove td    
+    #tblApprove th, #tblApprove td
     {
-        padding: 15px;
+        padding: 1rem 1.5rem;
+    }
+    #tblApprove tr:nth-child(even) {
+        background-color: #f9fafb;
+    }
+    #tblApprove tr:hover {
+        background-color: #f3f4f6;
+    }
+    #tblApprove tr:last-child {
+        border-bottom: 0;
     }
     </style>
     
@@ -181,13 +289,13 @@
             }
             var popup = "<div class='popupClose' onclick='popupClose()'>" +
                     "<img alt='Close' title='Click to close' class='popupCloseBtn' src='../Images/Close.png' /></div>" +
-                    "<h1><span>Add Punch</span></h1>" +
-                    "<h2>Set Time: ";
+                    "<h1 class='text-xl font-medium text-brand-black border-b border-gray-200 pb-2 mb-2'><span>Add Punch</span></h1>" +
+                    "<h2 class='text-lg font-medium text-brand-black mb-2'>Set Time: ";
             //alert(popup);
             /* date */
-            popup += "<input type='text' id='punchDate' size='8' value='" + mnt + "/" + day + "/" + year + "'/>";
+            popup += "<input type='text' id='punchDate' class='w-full rounded-md border-gray-300 shadow-sm focus:ring-2 focus:ring-brand-green focus:border-brand-green px-3 py-2 text-sm' size='8' value='" + mnt + "/" + day + "/" + year + "'/>";
             /* hour */
-            popup += "<select id='punchHour'>";
+            popup += "<select id='punchHour' class='w-full rounded-md border-gray-300 shadow-sm focus:ring-2 focus:ring-brand-green focus:border-brand-green'>";
             for (i = 1; i <= 12; i++) {
                 var val = i;
                 if (i < 10)
@@ -201,7 +309,7 @@
             popup += "</select>";
 
             /* minutes */
-            popup += "<select id='punchMin'>";
+            popup += "<select id='punchMin' class='w-full rounded-md border-gray-300 shadow-sm focus:ring-2 focus:ring-brand-green focus:border-brand-green'>";
             for (i = 0; i < 60; i += 5) {
                 var val = i;
                 if (i < 10)
@@ -216,7 +324,7 @@
             popup += "</select>";
 
             /* am / pm */
-            popup += "<select id='punchAMPM'>";
+            popup += "<select id='punchAMPM' class='w-full rounded-md border-gray-300 shadow-sm focus:ring-2 focus:ring-brand-green focus:border-brand-green'>";
             if (am == 'AM') {
                 popup += "<option selected='selected' value='0'>AM</option>";
                 popup += "<option value='12'>PM</option>";
@@ -238,13 +346,13 @@
             var rounded = mnt + "/" + dy + "/" + year + " " + h + ":" + m + " " + am;
             var popup = "<div class='popupClose' onclick='popupClose()'>" +
                     "<img alt='Close' title='Click to close' class='popupCloseBtn' src='../Images/Close.png' /></div>" +
-                    "<h1><span>Modify Punch</span></h1>" +
-                    "<h2><span>Exact Punch Time: " + exact + "</span></h2>" +   
-                    "<h2>Change Time: ";
+                    "<h1 class='text-xl font-medium text-brand-black border-b border-gray-200 pb-2 mb-2'><span>Modify Punch</span></h1>" +
+                    "<h2 class='text-lg font-medium text-brand-black mb-2'><span>Exact Punch Time: " + exact + "</span></h2>" +
+                    "<h2 class='text-lg font-medium text-brand-black mb-2'>Change Time: ";
             /* date */
-            popup += "<input type='text' id='punchDate' size='8' value='" + mnt + "/" + dy + "/" + year + "'/>";
+            popup += "<input type='text' id='punchDate' class='w-full rounded-md border-gray-300 shadow-sm focus:ring-2 focus:ring-brand-green focus:border-brand-green px-3 py-2 text-sm' size='8' value='" + mnt + "/" + dy + "/" + year + "'/>";
             /* hour */
-            popup += "<select id='punchHour'>";
+            popup += "<select id='punchHour' class='w-full rounded-md border-gray-300 shadow-sm focus:ring-2 focus:ring-brand-green focus:border-brand-green'>";
             for (i = 1; i <= 12; i++) {
                 var val = i;
                 if (i < 10)
@@ -257,7 +365,7 @@
             popup += "</select>";
 
             /* minutes */
-            popup += "<select id='punchMin'>";
+            popup += "<select id='punchMin' class='w-full rounded-md border-gray-300 shadow-sm focus:ring-2 focus:ring-brand-green focus:border-brand-green'>";
             for (i = 0; i < 60; i += 5) {
                 var val = i;
                 if (i < 10)
@@ -272,7 +380,7 @@
             popup += "</select>";
 
             /* am / pm */
-            popup += "<select id='punchAMPM'>";
+            popup += "<select id='punchAMPM' class='w-full rounded-md border-gray-300 shadow-sm focus:ring-2 focus:ring-brand-green focus:border-brand-green'>";
             if (am == 'AM') {
                 popup += "<option selected='selected' value='0'>AM</option>";
                 popup += "<option value='12'>PM</option>";
@@ -282,7 +390,7 @@
                 popup += "<option value='0'>AM</option>";
             }
             popup += "</select>";
-            popup += "<input type='button' id='updateBtn' onclick='updatePunch(" + id +  ")' value='Update'/>";
+            popup += "<input type='button' id='updateBtn' onclick='updatePunch(" + id +  ")' value='Update' class='bg-brand-green hover:bg-opacity-90 text-white font-medium rounded-md px-4 py-2'/>";
             popup += "</h2>";
             popup += "<div id='punchResults'></div>";
             return popup;
@@ -558,9 +666,9 @@
         function approvalStatus(rowId, punchInfo) {
             if ($("#approveDialog").length == 0 ) {
                 approveCount = 0;
-                $("<div id='approveDialog'><h2>Punch Approval</h2><hr/>" + 
-                    "<table  id='tblApprove'><thead><tr><th>Name</th><th>ID #</th><th>Total Punches</th><th>Status</th><th>Supervisor</th></tr></thead>" +
-                    "<tbody></tbody>" + 
+                $("<div id='approveDialog' class='w-full max-w-6xl mx-auto rounded-lg shadow-md overflow-hidden border border-gray-200'><h2 class='text-xl font-medium text-brand-black mb-2'>Punch Approval</h2><hr/>" +
+                    "<table id='tblApprove' class='w-full max-w-6xl mx-auto rounded-lg shadow-md overflow-hidden border border-gray-200'><thead><tr><th>Name</th><th>ID #</th><th>Total Punches</th><th>Status</th><th>Supervisor</th></tr></thead>" +
+                    "<tbody></tbody>" +
                     "</div>").dialog({
                     height: 400,
                     width: 600,
@@ -590,7 +698,7 @@
             if (on == true) {
                 if (titleBar == null)
                     titleBar = "loading";
-                $("<div id='waiting'><h3 style='padding-left:88px'>please wait...</h3><img style='padding-left:88px' src='../Images/ajax-loader.gif'/></div>").dialog(
+                $("<div id='waiting' class='w-full max-w-6xl mx-auto rounded-lg shadow-md overflow-hidden border border-gray-200 p-4'><h3 class='text-lg font-medium text-brand-black mb-2 text-center'>please wait...</h3><div class='flex justify-center'><img src='../Images/ajax-loader.gif'/></div></div>").dialog(
                 {
                     open: function (event, ui) {
                         $(this).closest('.ui-dialog').find('.ui-dialog-titlebar-close').hide();
@@ -605,7 +713,7 @@
 
         jQuery(document).ready(
             function () {
-                $("input[id*='btnExportHTML']").click(function () {
+                $("input[id*='btnExportHTML']").addClass("bg-brand-green hover:bg-opacity-90 text-white font-medium rounded-md px-4 py-2").click(function () {
                     exportHRToXlsx("tblHoursReport");
                 });
                 $("span[id*='999lblFirstPunch'").click(function () {
@@ -615,15 +723,15 @@
                     var firstPunch = $(this).text();
                     var tableWidth = 520;
                     var $firstPunchDialog =
-                    $("<div id='firstPunchDialog'>" +
-                        "<table style='width:" + tableWidth + "px'><thead><tr style='background-color:#CCC'>" +
+                    $("<div id='firstPunchDialog' class='w-full max-w-6xl mx-auto rounded-lg shadow-md overflow-hidden border border-gray-200'>" +
+                        "<table class='w-full max-w-6xl mx-auto rounded-lg shadow-md overflow-hidden border border-gray-200' style='width:" + tableWidth + "px'><thead><tr class='bg-brand-grey text-white text-sm font-medium uppercase tracking-wider px-6 py-3 text-left'>" +
                         "<th><span>Badge #</span></th><th><span>Name</span></th><th><span>Start Date</span></th><th><span>New Start Date</span></th>" +
                         "</tr></thead>" +
-                        "<tbody><tr>" +
-                        "<td><span>" + badge + "</span></td><td><span>" + name + "</span></td><td><span>" + firstPunch +
-                        "</span></td><td><span><input id='newFirstPunch' type='text' size='8'/></span></td>" +
+                        "<tbody class='hover:bg-gray-50 even:bg-gray-50 odd:bg-white border-b border-gray-200 last:border-b-0'><tr>" +
+                        "<td class='px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis'><span>" + badge + "</span></td><td class='px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis'><span>" + name + "</span></td><td class='px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis'><span>" + firstPunch +
+                        "</span></td><td class='px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis'><span><input id='newFirstPunch' type='text' size='8' class='w-full rounded-md border-gray-300 shadow-sm focus:ring-2 focus:ring-brand-green focus:border-brand-green px-3 py-2 text-sm'/></span></td>" +
                         "</tr>" +
-                        "<tr id='trResults'><td>" + '<img style="height:40px;width:40px;" src="../Images/ajax-loader.gif" />' + "</td><td colspan='3'><h1 id='firstPunchResults' style='color:Blue'></h1></td></tr>" +
+                        "<tr id='trResults'><td class='px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis'>" + '<img style="height:40px;width:40px;" src="../Images/ajax-loader.gif" />' + "</td><td colspan='3' class='px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis'><h1 id='firstPunchResults' style='color:Blue'></h1></td></tr>" +
                         "</tbody>" +
                         "</table>" +
                     "</div>");
@@ -680,17 +788,17 @@
                     var punchDt = $(this).closest('tr').next('tr').find('.tblDetail').find('tr[id*="tableRow_0"]').find('span[id*="lblCheckIn_0"]').attr("exact");
                     var shift = $(deptRow).find("input[id*='hdnShift']").val();
                     var $payRateDialog =
-                    $("<div id='payrate'>" +
-                        "<table><thead><tr style='background-color:#CCC'>" +
+                    $("<div id='payrate' class='w-full max-w-6xl mx-auto rounded-lg shadow-md overflow-hidden border border-gray-200'>" +
+                        "<table class='w-full max-w-6xl mx-auto rounded-lg shadow-md overflow-hidden border border-gray-200'><thead><tr class='bg-brand-grey text-white text-sm font-medium uppercase tracking-wider px-6 py-3 text-left'>" +
                         "<th><span>Badge #</span></th><th><span>Name</span></th><th><span>Pay Rate</span></th><th><span>New Pay Rate</span></th><th><span>ALL Depts (Same Shift)</span></th>" +
                         "</tr></thead>" +
-                        "<tbody><tr>" +
-                        "<td><span>" + badge + "</span></td><td><span>" + name + "</span></td><td><span>" + payRate +
-                        "</span></td><td><span>$<input id='newPayRate' type='text' size='4'/></span></td>" +
-                        "<td><input type='checkbox' id='allDepts'/>" +
+                        "<tbody class='hover:bg-gray-50 even:bg-gray-50 odd:bg-white border-b border-gray-200 last:border-b-0'><tr>" +
+                        "<td class='px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis'><span>" + badge + "</span></td><td class='px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis'><span>" + name + "</span></td><td class='px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis'><span>" + payRate +
+                        "</span></td><td class='px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis'><span>$<input id='newPayRate' type='text' size='4' class='w-full rounded-md border-gray-300 shadow-sm focus:ring-2 focus:ring-brand-green focus:border-brand-green px-3 py-2 text-sm'/></span></td>" +
+                        "<td class='px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis'><input type='checkbox' id='allDepts' class='rounded border-gray-300 text-brand-green focus:ring-brand-green'/>" +
                         "</tr>" +
-                        "<tr><td><span id='spanSelectDt'>Starting Date For New Pay Rate: </span><input type='text' width='10' id='selectDt'></input><input type='hidden' name='ttDateHidden'></input></td></tr>" +
-                        "<tr><td>" + '<img style="height:40px;width:40px;" src="../Images/ajax-loader.gif" />' + "</td><td colspan='3'><h1 id='payRateResults' style='color:Blue'></h1></td></tr>" +
+                        "<tr><td class='px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis'><span id='spanSelectDt' class='block text-sm font-medium text-brand-black mb-1'>Starting Date For New Pay Rate: </span><input type='text' width='10' id='selectDt' class='w-full rounded-md border-gray-300 shadow-sm focus:ring-2 focus:ring-brand-green focus:border-brand-green px-3 py-2 text-sm'></input><input type='hidden' name='ttDateHidden'></input></td></tr>" +
+                        "<tr><td class='px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis'>" + '<img style="height:40px;width:40px;" src="../Images/ajax-loader.gif" />' + "</td><td colspan='3' class='px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis'><h1 id='payRateResults' style='color:Blue'></h1></td></tr>" +
                         "</tbody>" +
                         "</table>" +
                     "</div>");
@@ -824,7 +932,7 @@
                     return !isNaN(parseFloat(n)) && isFinite(n);
                 }
                 $("#btnApprove").click(function () {
-                    $("<div><p>Please approve hours by clicking the \"APR\" button on each employee's line</p></div>").dialog({
+                    $("<div class='w-full max-w-6xl mx-auto rounded-lg shadow-md overflow-hidden border border-gray-200 p-4'><p class='text-sm text-brand-black'>Please approve hours by clicking the \"APR\" button on each employee's line</p></div>").dialog({
                         async: "false",
                         title: "Employee Hours Approval",
                         buttons: {
@@ -834,7 +942,7 @@
                         }
                     });
                 });
-                $(".btnTimeline").click(function () {
+                $(".btnTimeline").addClass("bg-brand-green hover:bg-opacity-90 text-white font-medium rounded-md px-4 py-2").click(function () {
                     var tr = $(this).parent().parent(); // btn's row
                     var timeline = tr.next('tr');
                     if( timeline.hasClass('trTimeline')) {
@@ -845,7 +953,7 @@
                     tr.find("td").each(function () {
                         colspan += $(this).prop("colspan");
                     });
-                    tr.after("<tr class='trTimeline'><td colspan='" + colspan + "'><div id='punchTimeline'></div></td></tr>");
+                    tr.after("<tr class='trTimeline'><td colspan='" + colspan + "'><div id='punchTimeline' class='w-full max-w-6xl mx-auto rounded-lg shadow-md overflow-hidden border border-gray-200 p-4'></div></td></tr>");
                     setTimeline(tr);
                 });
                 var pl = new Array($("span[id*='lblBadgeNumber']").length);
@@ -918,22 +1026,23 @@
                     print(pl);
                 });
                 updateAuthorized = ($("input[id*='hdnUpdPunches']").val() == 'True') && $("span[id*='lblApprovalHeader']").length == 0;
-                $('.DlyHrs:even').addClass('DlyHrsAlt');
+                $('.DlyHrs:even').addClass('DlyHrsAlt bg-gray-50');
+                $('.DlyHrs').addClass('hover:bg-gray-50 border-b border-gray-200');
                 var myClass;
-                $('tr[class*="DlyHrs"]').hover(
+                $('tr[class*="DlyHrs"]').addClass('hover:bg-gray-50 border-b border-gray-200').hover(
                     function () {
                         myClass = $(this).attr("class");
-                        $(this).addClass("highLight").removeClass(myClass);
+                        $(this).addClass("bg-gray-100").removeClass(myClass);
                     }, function () {
-                        $(this).removeClass("highLight").addClass(myClass);
+                        $(this).removeClass("bg-gray-100").addClass(myClass);
                     }
                 );
                 $('span[id*="lblSwipeDateTime"]').hover(
                     function () {
                         myClass = $(this).attr("class");
-                        $(this).addClass("underLine").removeClass(myClass);
+                        $(this).addClass("underline text-brand-green").removeClass(myClass);
                     }, function () {
-                        $(this).removeClass("underLine").addClass(myClass);
+                        $(this).removeClass("underline text-brand-green").addClass(myClass);
                     }).click(function () {
                         alert("You clicked me! " + $(this).text());
                     });
@@ -941,7 +1050,7 @@
                 $("span[id*='CheckInExact_']").attr("title", "Click to view image");
                 $("span[id*='CheckOutExact_']").attr("title", "Click to view image");
 
-                var btn = "<input type='button' onclick='updateBonuses()' disabled='disabled' id='inpUpdBonuses' value='Bonus' />";
+                var btn = "<input type='button' onclick='updateBonuses()' disabled='disabled' id='inpUpdBonuses' value='Bonus' class='bg-brand-green hover:bg-opacity-90 text-white font-medium rounded-md px-4 py-2' />";
                 $("span[id*='spanUpdBonuses']").html(btn);
 
                 if ($("input[id*='hdnUpdBonuses']").val() == 'true') {
@@ -966,7 +1075,7 @@
                     });
                     $("span[id*='BonusItem']").each(function (index) {
                         //console.log(index + ": " + $(this).text());
-                        var inp = "$<input type='text' onClick='this.select();' size='3' style='text-align:right' id='bonusPay" +
+                        var inp = "$<input type='text' onClick='this.select();' size='3' class='w-full rounded-md border-gray-300 shadow-sm focus:ring-2 focus:ring-brand-green focus:border-brand-green px-3 py-2 text-sm text-right' id='bonusPay" +
                         index + "' value='" + $(this).text() + "' store='" + $(this).text() + "'/>";
                         $(this).parent().html(inp).change(
                         function (e) {
@@ -977,10 +1086,10 @@
                 }
                 $('tr[id*="exception"]').hover(
                     function () {
-                        $(this).find('td').addClass("highLight2");
+                        $(this).find('td').addClass("bg-gray-100");
                     },
                     function () {
-                        $(this).find('td').removeClass("highLight2");
+                        $(this).find('td').removeClass("bg-gray-100");
                     }
                 ).click(
 	                function (e) {
@@ -989,10 +1098,10 @@
 	                });
                 $('tr[class*="DlyHrs"]').find('td:nth-child(2)').hover(
                     function () {
-                        $(this).addClass("underLine");
+                        $(this).addClass("underline text-brand-green");
                     },
                     function () {
-                        $(this).removeClass("underLine");
+                        $(this).removeClass("underline text-brand-green");
                     }
                 ).click(
 	                function (e) {
@@ -1002,24 +1111,24 @@
 	                    if (fg.length == 0) {
 	                        if (updateAuthorized) {
 	                            nxtTr.find('td').find('table').find('tbody').append(
-                                '<tr noBadge="true"><td id="A' + parseInt(Math.random() * 100000000) +
-                                '" class="time"><span>Add a punch</span></td><td id="B' +
-                                parseInt(Math.random() * 100000000) +
-                                '" class="time"><span>Add a punch</span></td><td><span></span></td></tr>' +
-                                '<tr noBadge="true"><td id="A' + parseInt(Math.random() * 100000000) +
-                                '" class="time"><span>Add a punch</span></td><td id="B' +
-                                parseInt(Math.random() * 100000000) +
-                                '" class="time"><span>Add a punch</span></td><td><span></span></td></tr>' +
-                                '<tr noBadge="true"><td id="A' + parseInt(Math.random() * 100000000) +
-                                '" class="time"><span>Add a punch</span></td><td id="B' +
-                                parseInt(Math.random() * 100000000) +
-                                '" class="time" split="true"><span>Split Shift</span></td><td><span></span></td></tr>'
+	                               '<tr noBadge="true" class="hover:bg-gray-50 even:bg-gray-50 odd:bg-white border-b border-gray-200 last:border-b-0"><td id="A' + parseInt(Math.random() * 100000000) +
+	                               '" class="time px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis"><span>Add a punch</span></td><td id="B' +
+	                               parseInt(Math.random() * 100000000) +
+	                               '" class="time px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis"><span>Add a punch</span></td><td class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis"><span></span></td></tr>' +
+	                               '<tr noBadge="true" class="hover:bg-gray-50 even:bg-gray-50 odd:bg-white border-b border-gray-200 last:border-b-0"><td id="A' + parseInt(Math.random() * 100000000) +
+	                               '" class="time px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis"><span>Add a punch</span></td><td id="B' +
+	                               parseInt(Math.random() * 100000000) +
+	                               '" class="time px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis"><span>Add a punch</span></td><td class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis"><span></span></td></tr>' +
+	                               '<tr noBadge="true" class="hover:bg-gray-50 even:bg-gray-50 odd:bg-white border-b border-gray-200 last:border-b-0"><td id="A' + parseInt(Math.random() * 100000000) +
+	                               '" class="time px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis"><span>Add a punch</span></td><td id="B' +
+	                               parseInt(Math.random() * 100000000) +
+	                               '" class="time px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis" split="true"><span>Split Shift</span></td><td class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis"><span></span></td></tr>'
                                 );
 	                        }
-	                        nxtTr.find('td').find('table').flexigrid({ showToggleBtn: false, colResize: false });
+	                        nxtTr.find('td').find('table').addClass('w-full max-w-6xl mx-auto rounded-lg shadow-md overflow-hidden border border-gray-200 tblDetail').flexigrid({ showToggleBtn: false, colResize: false });
 
 	                        $(nxtTr).find(".unassignedDisplay").click(function () {
-	                            $("<div id='unassigned'></div>").dialog({
+	                            $("<div id='unassigned' class='w-full max-w-6xl mx-auto rounded-lg shadow-md overflow-hidden border border-gray-200 p-4'></div>").dialog({
 	                                close: function (event, ui) { $('#unassigned').remove(); },
 	                                resizable: false,
 	                                height: 320,
@@ -1034,7 +1143,7 @@
 	                            });
 	                        });
 
-	                        $(nxtTr).find(".punchDisplay").click(function () {
+	                        $(nxtTr).find(".punchDisplay").addClass("bg-brand-green hover:bg-opacity-90 text-white font-medium rounded-md px-4 py-2").click(function () {
 	                            var hDiv = $(this).closest('div[class="hDiv"]');
 	                            var cDrag = $(hDiv).next('div[class="cDrag"]');
 	                            var bDiv = $(cDrag).next('div[class="bDiv"]');
@@ -1053,12 +1162,12 @@
 	                            }
 	                        });
 	                        if (updateAuthorized) {
-	                            nxtTr.find('td').find('table').find('tbody').find('tr[nobadge="true"]').find('td[class="time"]').hover(
-                                function () {
-                                    $(this).addClass("underLine");
-                                },
-                                function () {
-                                    $(this).removeClass("underLine");
+	                            nxtTr.find('td').find('table').find('tbody').find('tr[nobadge="true"]').find('td[class*="time"]').hover(
+	                               function () {
+	                                   $(this).addClass("underline text-brand-green");
+	                               },
+	                               function () {
+	                                   $(this).removeClass("underline text-brand-green");
                                 }).click(function (e) {
                                     if ($(this).attr("split") != "true")
                                         adjustPunches(e, $(this));
@@ -1077,12 +1186,12 @@
                 else {
                     $title = "Click for punch info";
                 }
-                $('.tblDetail').find('tr').find('td[class="time"]').find('span[punchid]').closest('td').attr("title", $title).hover(
+                $('.tblDetail').find('tr').addClass('hover:bg-gray-50 even:bg-gray-50 odd:bg-white border-b border-gray-200 last:border-b-0').find('td[class*="time"]').addClass('px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis').find('span[punchid]').closest('td').attr("title", $title).hover(
                     function () {
-                        $(this).addClass("underLine");
+                        $(this).addClass("underline text-brand-green");
                     },
                     function () {
-                        $(this).removeClass("underLine");
+                        $(this).removeClass("underline text-brand-green");
                     }
                 ).click(function (e) {
 
@@ -1090,10 +1199,10 @@
                 });
                 $('td[id*="tdDepartmentHead"]').hover(
                     function () {
-                        $(this).addClass("underLine");
+                        $(this).addClass("underline text-brand-green");
                     },
                     function () {
-                        $(this).removeClass("underLine");
+                        $(this).removeClass("underline text-brand-green");
                     }
                 ).click(function () {
                     $(this).parent('tr').nextUntil('tr[id*="trDepartmentTot"]').each(function () {
@@ -1103,7 +1212,7 @@
                             $(this).toggle();
                     });
                 });
-                $("input[id*='btnLineApprove']").click(function () {
+                $("input[id*='btnLineApprove']").addClass("bg-brand-green hover:bg-opacity-90 text-white font-medium rounded-md px-4 py-2").click(function () {
                     var punchInfo = {};
                     punchInfo["badge"] = $(this).closest("tr").find("span[id*='lblBadge']").text();
                     punchInfo["name"] = $(this).closest("tr").find("span[id*='lblLastName']").text() + ", " +
@@ -1193,7 +1302,7 @@
                         addPunch(e, $(td), id);
                     }
                     else {
-                        var d = $('<div class="img" updTime="false" updMove="false"></div>', {});
+                        var d = $('<div class="img w-full max-w-6xl mx-auto rounded-lg shadow-md overflow-hidden border border-gray-200" updTime="false" updMove="false"></div>', {});
                         var sY = $(window).scrollTop() + $(window).height();
                         var topTR = $targ.closest('table').closest('tr').prev('tr');
                         var name = topTR.find('span[id*="LastName"]').text() + ", " + topTR.find('span[id*="FirstName"]').text();
@@ -1242,7 +1351,7 @@
                         document.getElementById("ttDel").onclick = function () {
                             var userID = $('input[id$="userID"]').val();
                             //alert("punch id = " + punchID);
-                            $("<div id='delPrompt'><p>Are you sure you want to delete this punch?</p></div>").dialog({
+                            $("<div id='delPrompt' class='w-full max-w-6xl mx-auto rounded-lg shadow-md overflow-hidden border border-gray-200 p-4'><p class='text-sm text-brand-black'>Are you sure you want to delete this punch?</p></div>").dialog({
                                 height: 200,
                                 width: 350,
                                 title: "Delete punch for " + name + "<br/>Actual: " + $targ.attr("exact") +
@@ -1375,7 +1484,7 @@
                                         "</b><br/> and <br/><b>" + end.toLocaleString() + "</b>";
                             }
                             if (warning.length > 0) /* warning dialog */{
-                                $('<div>' + warning + '</div>').dialog({
+                                $('<div class="w-full max-w-6xl mx-auto rounded-lg shadow-md overflow-hidden border border-gray-200 p-4">' + warning + '</div>').dialog({
                                     title: "<b>Punch adjust Warning!</b>",
                                     width: "460px",
 
@@ -1474,20 +1583,20 @@
             var shiftNames = ["", "1st Shift", "2nd Shift", "3rd Shift", "Shift A", "Shift B", "Shift C", "Shift D"];
             function addMoveHtml(curShift, curDept) {
                 var deptMain = "";
-                var moveRows = "<tr><td class='ttBtn' colspan='4'><hr/>Move:</td></tr><tr>";
-                var shiftOpts = "<td colspan='1'><select id='moveShifts'>";
+                var moveRows = "<tr class='hover:bg-gray-50 even:bg-gray-50 odd:bg-white border-b border-gray-200 last:border-b-0'><td class='ttBtn px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis' colspan='4'><hr/><span class='block text-sm font-medium text-brand-black mb-1'>Move:</span></td></tr><tr class='hover:bg-gray-50 even:bg-gray-50 odd:bg-white border-b border-gray-200 last:border-b-0'>";
+                var shiftOpts = "<td class='px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis' colspan='1'><select id='moveShifts' class='w-full rounded-md border-gray-300 shadow-sm focus:ring-2 focus:ring-brand-green focus:border-brand-green'>";
                 for (var i = 0; i < shiftData.length; i = i + 1) {
                     shiftOpts += "<option value='" + shiftData[i].Type + "' ";
                     if ((i + 1) == curShift)
                         shiftOpts += "selected ";
                     shiftOpts += ">" + shiftNames[shiftData[i].Type] + "</option>";
-                    var deptOpts = "<td colspan='3' dept='" + shiftData[i].Type + "' style='";
+                    var deptOpts = "<td class='px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis' colspan='3' dept='" + shiftData[i].Type + "' style='";
                     if (curShift != shiftData[i].Type)
                         deptOpts += "display:none;";
                     else {
                         deptOpts += "display:block;";
                     }
-                    deptOpts += "'><select class='moveDepts'>";
+                    deptOpts += "'><select class='moveDepts w-full rounded-md border-gray-300 shadow-sm focus:ring-2 focus:ring-brand-green focus:border-brand-green'>";
                     for (var j = 0; j < shiftData[i].Department.length; j = j + 1) {
                         deptOpts += "<option value='" + shiftData[i].Department[j].Id + "' ";
                         if( curDept == shiftData[i].Department[j].Id )
@@ -1586,12 +1695,12 @@
             var clientId = $("input[id*='clientID']").val();
             var dir = $('input[id*="_clientDir"]').val();
 
-            var ret = "<table class=\"img\">";
+            var ret = "<table class=\"img w-full max-w-6xl mx-auto rounded-lg shadow-md overflow-hidden border border-gray-200\">";
             //ret += "<tr><td colspan='4'>" + nm + "</td><td id=\"videoBox\" hidden='true' rowspan='4'><video id=\"video\" width=\"400\" controls>"
             //    + "Your browser does not support HTML5 video.</video></tr>";
-            ret += "<tr><td colspan='4'>" + htmlDate(dtEx, false) + "<input id='exactDate' type='hidden' value='" + dtEx + "'/></td></tr>";
-            ret += "<tr><td colspan='4'>" + htmlDate(dtRnd, false) + "<input id='roundedDate' type='hidden' value='" + dtRnd + "'/></td></tr>";
-            ret += "<tr><td colspan='4' width=\"320\" height=\"246\">";
+            ret += "<tr class='hover:bg-gray-50 even:bg-gray-50 odd:bg-white border-b border-gray-200 last:border-b-0'><td colspan='4' class='px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis'>" + htmlDate(dtEx, false) + "<input id='exactDate' type='hidden' value='" + dtEx + "'/></td></tr>";
+            ret += "<tr class='hover:bg-gray-50 even:bg-gray-50 odd:bg-white border-b border-gray-200 last:border-b-0'><td colspan='4' class='px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis'>" + htmlDate(dtRnd, false) + "<input id='roundedDate' type='hidden' value='" + dtRnd + "'/></td></tr>";
+            ret += "<tr class='hover:bg-gray-50 even:bg-gray-50 odd:bg-white border-b border-gray-200 last:border-b-0'><td colspan='4' class='px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis' width=\"320\" height=\"246\">";
 
             if (manual == 'False') {
                 if (dir != 165 && dir != 185 && dir != 399) {
@@ -1620,25 +1729,25 @@
                 }
             }
             else {
-                ret += "<table width='100%'><thead><tr><th colspan='4'>Manual Override</th></thead></tr>" +
-                    "<tbody><tr><td><span style='font-size:16px'>Created By:</span></td><td><span style='font-size:16px'>" + createdBy + "</span></td></tr>" +
-                    "<tr><td><span style='font-size:16px'>Created On:</span></td><td><span style='font-size:16px'>" + createdDt + "</span></td></tr>";
+                ret += "<table class='w-full max-w-6xl mx-auto rounded-lg shadow-md overflow-hidden border border-gray-200'><thead><tr class='bg-brand-grey text-white text-sm font-medium uppercase tracking-wider px-6 py-3 text-left'><th colspan='4'>Manual Override</th></thead></tr>" +
+                    "<tbody class='hover:bg-gray-50 even:bg-gray-50 odd:bg-white border-b border-gray-200 last:border-b-0'><tr><td class='px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis'><span class='text-sm font-medium text-brand-black'>Created By:</span></td><td class='px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis'><span class='text-sm'>" + createdBy + "</span></td></tr>" +
+                    "<tr class='hover:bg-gray-50 even:bg-gray-50 odd:bg-white border-b border-gray-200 last:border-b-0'><td class='px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis'><span class='text-sm font-medium text-brand-black'>Created On:</span></td><td class='px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis'><span class='text-sm'>" + createdDt + "</span></td></tr>";
                 if (updatedBy.length > 1) {
                     ret +=
-                        "<tbody><tr><td><span style='font-size:16px'>Updated By:</span></td><td><span style='font-size:16px'>" + updatedBy + "</span></td></tr>" +
-                        "<tr><td><span style='font-size:16px'>Updated On:</span></td><td><span style='font-size:16px'>" + updatedDt + "</span></td></tr>";
+                        "<tbody class='hover:bg-gray-50 even:bg-gray-50 odd:bg-white border-b border-gray-200 last:border-b-0'><tr><td class='px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis'><span class='text-sm font-medium text-brand-black'>Updated By:</span></td><td class='px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis'><span class='text-sm'>" + updatedBy + "</span></td></tr>" +
+                        "<tr class='hover:bg-gray-50 even:bg-gray-50 odd:bg-white border-b border-gray-200 last:border-b-0'><td class='px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis'><span class='text-sm font-medium text-brand-black'>Updated On:</span></td><td class='px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis'><span class='text-sm'>" + updatedDt + "</span></td></tr>";
                 }
                 ret += "</tbody></table>";
             }
             ret += "</td></tr>";
             if (updateAuthorized) {
                 /* update punches */
-                ret += "<tr><td colspan='4' class='ttBtn'><hr/>Update:<span style='float:right; padding-right:8px' onclick='closePopUps()'>close</span></td></tr>";
-                ret += "<tr><td id='punchTime' colspan='4'>" + htmlDate(dtRnd, true) + "</td></tr>";
+                ret += "<tr class='hover:bg-gray-50 even:bg-gray-50 odd:bg-white border-b border-gray-200 last:border-b-0'><td colspan='4' class='ttBtn px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis'><hr/>Update:<span style='float:right; padding-right:8px' onclick='closePopUps()'>close</span></td></tr>";
+                ret += "<tr class='hover:bg-gray-50 even:bg-gray-50 odd:bg-white border-b border-gray-200 last:border-b-0'><td id='punchTime' colspan='4' class='px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis'>" + htmlDate(dtRnd, true) + "</td></tr>";
                 /* move punches */
                 ret += addMoveHtml(curShift, curDept);
-                ret += "<tr><td colspan='4'><input id='ttUpd' class='ttBtn' type='button' disabled='true' value='Update Punch Record'/>";
-                ret += "<input id='ttDel' class='ttBtn' type='button' value='Delete Punch Record'/></td>";
+                ret += "<tr class='hover:bg-gray-50 even:bg-gray-50 odd:bg-white border-b border-gray-200 last:border-b-0'><td colspan='4' class='px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis'><input id='ttUpd' class='ttBtn bg-brand-green hover:bg-opacity-90 text-white font-medium rounded-md px-4 py-2' type='button' disabled='true' value='Update Punch Record'/>";
+                ret += "<input id='ttDel' class='ttBtn bg-brand-green hover:bg-opacity-90 text-white font-medium rounded-md px-4 py-2 ml-2' type='button' value='Delete Punch Record'/></td>";
                 /* split shift */
                 //ret += 
             }
@@ -1691,10 +1800,10 @@
                 $sel = "<select";
                 $selClose = "</select>";
 
-                var ret = $inp + $disabled + " class='ttDate' type='text' size='14' value='" + Months[parseInt(mnth, 10)] + day + ", " + yr;
+                var ret = $inp + $disabled + " class='ttDate w-full rounded-md border-gray-300 shadow-sm focus:ring-2 focus:ring-brand-green focus:border-brand-green px-3 py-2 text-sm' type='text' size='14' value='" + Months[parseInt(mnth, 10)] + day + ", " + yr;
                 ret += "'>" + $inpClose + $inp + " class='ttDateHidden' type='hidden' value='" + mnth + " " + day + " " + yr + "'>" + $inpClose;
 
-                ret += $sel + $disabled + " name='hours'>";
+                ret += $sel + $disabled + " class='w-full rounded-md border-gray-300 shadow-sm focus:ring-2 focus:ring-brand-green focus:border-brand-green' name='hours'>";
                 for (var i = 1; i <= 12; i++) {
                     ret += "<option value='" + i + "'";
                     if (i != hrs)
@@ -1703,7 +1812,7 @@
                         ret += " selected>" + i + "</option>";
                 }
                 ret += $selClose + ":";
-                ret += $sel + $disabled + " name='mins'>";
+                ret += $sel + $disabled + " class='w-full rounded-md border-gray-300 shadow-sm focus:ring-2 focus:ring-brand-green focus:border-brand-green' name='mins'>";
                 for (var i = 0; i < 60; i += 5) {
                     var v = i;
                     if (i < 10)
@@ -1716,7 +1825,7 @@
                 }
                 ret += $selClose + " ";
 
-                ret += $sel + $disabled + " name='amPm'>";
+                ret += $sel + $disabled + " class='w-full rounded-md border-gray-300 shadow-sm focus:ring-2 focus:ring-brand-green focus:border-brand-green' name='amPm'>";
                 if (amPm == "AM")
                     ret += "<option value='AM' selected>AM</option><option value='PM'>PM</option>";
                 else
@@ -1744,12 +1853,12 @@
             //alert(dept + ", " + topSect.find('p[id*="pDeptStart"]').length + ", " + topSect.find('p[id*="pDeptStart"]').text());
             var weekStart = topSect.find('p[id*="pDeptStart"]').text();
             var weekEnd = topSect.find('p[id*="pDeptEnd"]').text();
-            var d = $("<div id='addPunch' class='tooltip'>" +
-                "<div id='adder' cr_id='" + crID + "' td='" + $td.attr('id') + "'>Add punch for:<span style='float:right; padding-right:8px' onclick='closePopUps()'>close</span><hr/>" +
-                "<span style='font-size:16px;'>" + name + '</span><br/>' +
-                "ID# <span id='apBadge' style='font-size:16px;'>" + badge + "</span>" +
+            var d = $("<div id='addPunch' class='tooltip w-full max-w-6xl mx-auto rounded-lg shadow-md overflow-hidden border border-gray-200'>" +
+                "<div id='adder' cr_id='" + crID + "' td='" + $td.attr('id') + "' class='p-4'>Add punch for:<span style='float:right; padding-right:8px' onclick='closePopUps()'>close</span><hr/>" +
+                "<span class='text-lg font-medium text-brand-black'>" + name + '</span><br/>' +
+                "ID# <span id='apBadge' class='text-lg font-medium text-brand-black'>" + badge + "</span>" +
                 "<p>" + htmlDate(dtRnd, true) + "</p><hr/>" +
-                "<input type='button' style='float:right; padding-right:8px;' onclick='createPunch()' value='ADD'/>" +
+                "<input type='button' style='float:right; padding-right:8px;' onclick='createPunch()' value='ADD' class='bg-brand-green hover:bg-opacity-90 text-white font-medium rounded-md px-4 py-2'/>" +
                 "<input type='hidden' value='" + dept + "' class='hdnDept'/>" +
                 "<input type='hidden' value='" + shiftType + "' class='hdnShift'/>" +
                 "<input type='hidden' value='" + weekStart + "' class='hdnStart'/>" +
@@ -1797,7 +1906,7 @@
                                         "</b><br/> and <br/><b>" + end.toLocaleString() + "</b>";
                 }
                 if (warning.length > 0) /* warning dialog */{
-                    $('<div>' + warning + '</div>').dialog({
+                    $('<div class="w-full max-w-6xl mx-auto rounded-lg shadow-md overflow-hidden border border-gray-200 p-4">' + warning + '</div>').dialog({
                         title: "<b>Add Punch Warning!</b>",
                         width: "460px",
                         draggable: true,
@@ -2321,37 +2430,36 @@
     </script>
     </asp:Panel>
 
-        <asp:Menu ID="mnuHoursReport" runat="server" BackColor="#E3EAEB" DynamicHorizontalOffset="2"
-            Font-Names="Verdana" Font-Size="0.8em" ForeColor="#666666" Orientation="Horizontal"
-            StaticSubMenuIndent="10px" EnableViewState="false">
-            <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
-            <DynamicHoverStyle BackColor="#666666" ForeColor="White" />
-            <DynamicMenuStyle BackColor="#E3EAEB" />
-            <StaticSelectedStyle BackColor="Blue" ForeColor="White" />
-            <DynamicSelectedStyle BackColor="Blue" BorderColor="White" />
-            <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+        <asp:Menu ID="mnuHoursReport" runat="server" CssClass="w-full bg-white rounded-lg shadow-md overflow-hidden mb-6"
+            Orientation="Horizontal" EnableViewState="false">
+            <StaticMenuItemStyle CssClass="inline-block px-6 py-3 text-brand-grey hover:bg-brand-green hover:text-white transition-colors duration-200" />
+            <DynamicHoverStyle CssClass="bg-brand-green text-white" />
+            <DynamicMenuStyle CssClass="bg-white rounded-md shadow-lg" />
+            <StaticSelectedStyle CssClass="bg-brand-green text-white font-medium" />
+            <DynamicSelectedStyle CssClass="bg-brand-green text-white" />
+            <DynamicMenuItemStyle CssClass="px-6 py-3 hover:bg-brand-green hover:text-white transition-colors duration-200" />
             <Items>
                 <asp:MenuItem Selected="True" Text="Roster Tracking" Value="Roster"></asp:MenuItem>
                 <asp:MenuItem Text="Day Labor Tracking" Value="Day Labor"></asp:MenuItem>
             </Items>
-            <StaticHoverStyle BackColor="#666666" ForeColor="White" />
+            <StaticHoverStyle CssClass="bg-brand-green text-white" />
         </asp:Menu>
-        <asp:Panel ID="pnlHeader" runat="server" BackColor="#E0E0E0" Width="1100px">
+        <asp:Panel ID="pnlHeader" runat="server" CssClass="w-full max-w-6xl mx-auto bg-gray-100 rounded-lg shadow-md p-4 mb-6">
             <asp:HiddenField ID="hdnUpdBonuses" runat="server" Value="false" />
             <asp:HiddenField ID="hdnUpdPunches" runat="server" Value="false" />
             <asp:HiddenField ID="hdnUpdPayRates" runat="server" Value="false" />
-            <asp:Table ID="tblPeriod" runat="server" Width="100%">
+            <asp:Table ID="tblPeriod" runat="server" CssClass="w-full">
                 <asp:TableRow>
-                    <asp:TableCell ColumnSpan="4"><b><asp:Label ID="lblHoursConfirmation" runat="server" visible="false" Font-Bold="true" ForeColor="red" Font-Names="Arial" Font-Size="12pt" Text="Hours have been successfully submitted."></asp:Label></b></asp:TableCell>
+                    <asp:TableCell ColumnSpan="4"><b><asp:Label ID="lblHoursConfirmation" runat="server" visible="false" CssClass="text-red-600 font-bold text-lg" Text="Hours have been successfully submitted."></asp:Label></b></asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
-                    <asp:TableCell VerticalAlign="Top" HorizontalAlign="left" Width="320px">
-                        <asp:Table runat="server">
+                    <asp:TableCell VerticalAlign="Top" HorizontalAlign="left" CssClass="w-1/3">
+                        <asp:Table runat="server" CssClass="w-full">
                             <asp:TableRow runat="server">
                                 <asp:TableCell runat="server">
-                                <div><asp:Label runat="server" Text="Week Ending:"/></div>
-                                <div><asp:DropDownList  runat="server" ID="txtCalendar" /><input runat="server" type="hidden" id="weekEndDate" /><input runat="server" type="hidden" id="weekStartDate"/></div>
-                                <div><select runat="server" id="selectEmployees">
+                                <div><asp:Label runat="server" CssClass="block text-sm font-medium text-brand-black mb-1" Text="Week Ending:"/></div>
+                                <div><asp:DropDownList runat="server" ID="txtCalendar" CssClass="w-full rounded-md border-gray-300 shadow-sm focus:ring-2 focus:ring-brand-green focus:border-brand-green" /><input runat="server" type="hidden" id="weekEndDate" /><input runat="server" type="hidden" id="weekStartDate"/></div>
+                                <div class="mt-2"><select runat="server" id="selectEmployees" CssClass="w-full rounded-md border-gray-300 shadow-sm focus:ring-2 focus:ring-brand-green focus:border-brand-green">
                                     <option value="10000" selected="selected">All Employees</option>
                                     <option value="90">Less Than 90 Days</option>
                                     <option value="60">Less Than 60 Days</option>
@@ -2359,29 +2467,36 @@
                                     <%--<option value="-1">All Employees Incl. Invalid Punches</option>--%> 
                                     </select>
                                 </div>
-                                <br />
-                                <asp:CheckBox Enabled="true" runat="server" ID="chkboxUnassigned" /><asp:Label ID="Label10" runat="server" Text="Include Unassigned Punches"/><br />
-                                <asp:CheckBox Visible="false" Enabled="true" runat="server" ID="chkboxSupervisor" /><asp:Label Visible="false" ID="lblSupervisor" runat="server" Text="Show Supervisors / Cost Centers"/>
+                                <div class="mt-4">
+                                <asp:CheckBox Enabled="true" runat="server" ID="chkboxUnassigned" CssClass="rounded text-brand-green focus:ring-brand-green mr-2" /><asp:Label ID="Label10" runat="server" CssClass="text-sm text-brand-black" Text="Include Unassigned Punches"/>
+                                </div>
+                                <div class="mt-2">
+                                <asp:CheckBox Visible="false" Enabled="true" runat="server" ID="chkboxSupervisor" CssClass="rounded text-brand-green focus:ring-brand-green mr-2" /><asp:Label Visible="false" ID="lblSupervisor" runat="server" CssClass="text-sm text-brand-black" Text="Show Supervisors / Cost Centers"/>
+                                </div>
                                 </asp:TableCell>
-                                <asp:TableCell runat="server" ID="deptChooser" Visible="false">
-                                    <div><asp:RadioButton ViewStateMode="Enabled" GroupName="rbtnDepts" ID="rbtnDept" runat="server" Text="Berlin" /></div>
-                                    <div><asp:RadioButton ViewStateMode="Enabled" GroupName="rbtnDepts" ID="rbtnDept2" runat="server" Text="Amer.Litho" /></div>
-                                    <div><asp:RadioButton ViewStateMode="Enabled" GroupName="rbtnDepts" Checked="true" ID="rbtnDept3" runat="server" Text="Both" /></div>
+                                <asp:TableCell runat="server" ID="deptChooser" Visible="false" CssClass="p-2">
+                                    <div class="mb-2"><asp:RadioButton ViewStateMode="Enabled" GroupName="rbtnDepts" ID="rbtnDept" runat="server" CssClass="rounded text-brand-green focus:ring-brand-green mr-2" Text="Berlin" /></div>
+                                    <div class="mb-2"><asp:RadioButton ViewStateMode="Enabled" GroupName="rbtnDepts" ID="rbtnDept2" runat="server" CssClass="rounded text-brand-green focus:ring-brand-green mr-2" Text="Amer.Litho" /></div>
+                                    <div class="mb-2"><asp:RadioButton ViewStateMode="Enabled" GroupName="rbtnDepts" Checked="true" ID="rbtnDept3" runat="server" CssClass="rounded text-brand-green focus:ring-brand-green mr-2" Text="Both" /></div>
                                 </asp:TableCell>
-                                <asp:TableCell>
-                                    <div><label>Sort By:</label></div>
-                                    <div><asp:RadioButton ViewStateMode="Enabled" GroupName="rbtnSortOrder" ID="rbtnShifts" runat="server" Text="Shift" /></div>
-                                    <div><asp:RadioButton ViewStateMode="Enabled" GroupName="rbtnSortOrder" ID="rbtnDepts" Checked="true" runat="server" Text="Dept." /></div>
+                                <asp:TableCell CssClass="p-2">
+                                    <div class="mb-2"><label class="block text-sm font-medium text-brand-black">Sort By:</label></div>
+                                    <div class="mb-2"><asp:RadioButton ViewStateMode="Enabled" GroupName="rbtnSortOrder" ID="rbtnShifts" runat="server" CssClass="rounded text-brand-green focus:ring-brand-green mr-2" Text="Shift" /></div>
+                                    <div class="mb-2"><asp:RadioButton ViewStateMode="Enabled" GroupName="rbtnSortOrder" ID="rbtnDepts" Checked="true" runat="server" CssClass="rounded text-brand-green focus:ring-brand-green mr-2" Text="Dept." /></div>
                                 </asp:TableCell>
                             </asp:TableRow>
                         </asp:Table>
                     </asp:TableCell>
-                    <asp:TableCell VerticalAlign="Top" HorizontalAlign="left" Width="230px"><asp:Image ID="Image1" ImageUrl="../Images/clear_spacer.gif" runat="server" Height="35px" Width="1px" BorderWidth="0" />
-                        <asp:Button id="btnGo"  onclick="btnGo_Click" runat="server" Text="View Hours Report"></asp:Button>
-                        <asp:Button id="btnCSV" onclick="btnGo_Click" runat="server" CommandName="GenerateCSV" Text="Generate CSV"></asp:Button>
-                        <input runat="server" type="button" id="peekABoo" value="peek"/>
+                    <asp:TableCell VerticalAlign="Top" HorizontalAlign="left" CssClass="w-1/3 p-2">
+                        <asp:Image ID="Image1" ImageUrl="../Images/clear_spacer.gif" runat="server" Height="35px" Width="1px" BorderWidth="0" />
+                        <div class="space-y-2">
+                            <asp:Button id="btnGo" onclick="btnGo_Click" runat="server" CssClass="bg-brand-green hover:bg-opacity-90 text-white font-medium rounded-md px-4 py-2" Text="View Hours Report"></asp:Button>
+                            <asp:Button id="btnCSV" onclick="btnGo_Click" runat="server" CssClass="bg-brand-green hover:bg-opacity-90 text-white font-medium rounded-md px-4 py-2" CommandName="GenerateCSV" Text="Generate CSV"></asp:Button>
+                            <input runat="server" type="button" id="peekABoo" CssClass="bg-brand-grey hover:bg-opacity-90 text-white font-medium rounded-md px-4 py-2" value="peek"/>
+                        </div>
                         
-                        <asp:DropDownList id="btnOffice" runat="server">
+                        <div class="mt-4">
+                        <asp:DropDownList id="btnOffice" runat="server" CssClass="w-full rounded-md border-gray-300 shadow-sm focus:ring-2 focus:ring-brand-green focus:border-brand-green">
                             <asp:ListItem Selected="True" Text="All Offices" Value="*"></asp:ListItem>
                             <asp:ListItem Text="Elgin" Value="E"></asp:ListItem>
                             <asp:ListItem Text="Aurora" Value="R"></asp:ListItem>
@@ -2393,91 +2508,97 @@
                             <asp:ListItem Text="Villa Park" Value="V"></asp:ListItem>
                             <asp:ListItem Text="Wheeling" Value="H"></asp:ListItem>
                         </asp:DropDownList>
-                        <input hidden="hidden" runat="server" type="button" id="btnExportHTML" value="Export HTML to Excel" />
-                        <br />
-                        <asp:Button id="btnSubmitApproved" onclick="btnGo_Click" runat="server" Text="Submit Approved Hours" CommandName="SubmitApproved"></asp:Button>
+                        </div>
+                        <input hidden="hidden" runat="server" type="button" id="btnExportHTML" CssClass="bg-brand-green hover:bg-opacity-90 text-white font-medium rounded-md px-4 py-2" value="Export HTML to Excel" />
+                        <div class="mt-4">
+                        <asp:Button id="btnSubmitApproved" onclick="btnGo_Click" runat="server" CssClass="bg-brand-green hover:bg-opacity-90 text-white font-medium rounded-md px-4 py-2 w-full" Text="Submit Approved Hours" CommandName="SubmitApproved"></asp:Button>
+                        </div>
                         <input type="hidden" id="hdnApproveList" runat="server" enableviewstate="false" value="" />
                     </asp:TableCell>
-                    <asp:TableCell VerticalAlign="Top" HorizontalAlign="left" Width="180px">
+                    <asp:TableCell VerticalAlign="Top" HorizontalAlign="left" CssClass="w-1/3 p-2">
                         <asp:Image ID="Image2" ImageUrl="../Images/clear_spacer.gif" runat="server" Height="35px" Width="1px" BorderWidth="0" />
-                        <asp:HyperLink ID="lnkExport" Target="_blank" NavigateURL="~/auth/HoursReportExcel.aspx?date=" runat="server" Text="Export Summary to Excel"></asp:HyperLink>
-                        <br /><asp:HyperLink ID="lnkExportDetail" Target="_blank" NavigateURL="~/auth/HoursReportExcel.aspx?date=" runat="server" Text="Export Detail to Excel"></asp:HyperLink>
-                        <br /><asp:HyperLink ID="lnkExportPeekABoo" Target="_blank" NavigateURL="~/auth/HoursReportExcel.aspx?date=" runat="server" Text="Export Data For PeekABoo"></asp:HyperLink>
+                        <div class="space-y-2">
+                            <asp:HyperLink ID="lnkExport" Target="_blank" NavigateURL="~/auth/HoursReportExcel.aspx?date=" runat="server" CssClass="block text-brand-green hover:underline" Text="Export Summary to Excel"></asp:HyperLink>
+                            <asp:HyperLink ID="lnkExportDetail" Target="_blank" NavigateURL="~/auth/HoursReportExcel.aspx?date=" runat="server" CssClass="block text-brand-green hover:underline" Text="Export Detail to Excel"></asp:HyperLink>
+                            <asp:HyperLink ID="lnkExportPeekABoo" Target="_blank" NavigateURL="~/auth/HoursReportExcel.aspx?date=" runat="server" CssClass="block text-brand-green hover:underline" Text="Export Data For PeekABoo"></asp:HyperLink>
+                        </div>
                     </asp:TableCell>
-                    <asp:TableCell VerticalAlign="Top" HorizontalAlign="Right">
-                        <asp:Panel ID="pnlTotals" runat="server" BackColor="White" BorderStyle="Inset" HorizontalAlign="Center" Width="260px">
-                            <asp:Label ID="Label2" runat="server" Text="Total Regular Hours:" Width="130px" CssClass="MSINetBodyText_Right"></asp:Label>
-                            <asp:Label ID="lblRegularHrs" runat="server" CssClass="MSINetBodyText_Right" Text="0.00" Width="80px"></asp:Label><br />
-                            <asp:Label ID="lblTTest" runat="server" Text="Total Overtime Hours:" Width="130px" CssClass="MSINetBodyText_Right"></asp:Label>
-                            <asp:Label ID="lblOTHrs" runat="server" CssClass="MSINetBodyText_Right" Text="0.00" Width="80px"></asp:Label>
+                    <asp:TableCell VerticalAlign="Top" HorizontalAlign="Right" CssClass="p-2">
+                        <asp:Panel ID="pnlTotals" runat="server" CssClass="bg-white rounded-lg shadow-md p-4 text-center">
+                            <div class="flex justify-between items-center mb-2">
+                                <asp:Label ID="Label2" runat="server" Text="Total Regular Hours:" CssClass="text-sm font-medium text-brand-black"></asp:Label>
+                                <asp:Label ID="lblRegularHrs" runat="server" CssClass="text-sm font-medium text-brand-black" Text="0.00"></asp:Label>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <asp:Label ID="lblTTest" runat="server" Text="Total Overtime Hours:" CssClass="text-sm font-medium text-brand-black"></asp:Label>
+                                <asp:Label ID="lblOTHrs" runat="server" CssClass="text-sm font-medium text-brand-black" Text="0.00"></asp:Label>
+                            </div>
                         </asp:Panel>
                     </asp:TableCell>
                 </asp:TableRow>
             </asp:Table>
      </asp:Panel>
-     <asp:Panel runat="server" ID="pnlApprovalInfo" Visible="false" style="border:solid 1px #cccccc;" Width="100%">
-        <table width="100%" border="0" cellpadding="5" cellspacing="0">
-            <tr>
-                <td colspan="3" align="left"><asp:Label runat="server" ID="lblApprovalHeader" CssClass="MSINetSectionHeading" Text="Hours for this week have been approved."></asp:Label></td>
+     <asp:Panel runat="server" ID="pnlApprovalInfo" Visible="false" CssClass="w-full max-w-6xl mx-auto rounded-lg shadow-md overflow-hidden border border-gray-200 mb-6">
+        <table class="w-full">
+            <tr class="bg-brand-green text-white">
+                <td colspan="3" class="px-6 py-3 text-left"><asp:Label runat="server" ID="lblApprovalHeader" CssClass="text-lg font-medium" Text="Hours for this week have been approved."></asp:Label></td>
             </tr>
-            <tr>
-                <td width="140" align="right"><strong><asp:Label runat="server" ID="lblApprovalDateHead" Text="Approval Date/Time:" CssClass="MSINetBodyText"></asp:Label></strong></td>
-                <td align="left" width="800" colspan="2"><asp:Label runat="server" ID="lblApprovalDate" CssClass="MSINetBodyText"></asp:Label>
+            <tr class="border-b border-gray-200">
+                <td class="px-6 py-4 text-right w-1/6"><strong><asp:Label runat="server" ID="lblApprovalDateHead" Text="Approval Date/Time:" CssClass="text-sm text-brand-black"></asp:Label></strong></td>
+                <td class="px-6 py-4 text-left" colspan="2"><asp:Label runat="server" ID="lblApprovalDate" CssClass="text-sm text-brand-black"></asp:Label>
                     <asp:Label ID="Label1" runat="server" Text="."></asp:Label></td>
             </tr>
-            <tr>
-                <td width="140" align="right"><strong><asp:Label runat="server" ID="lblApprovedByHead" Text="Approved By:" CssClass="MSINetBodyText"></asp:Label></strong></td>
-                <td align="left" width="298"><asp:Label runat="server" ID="lblApprovedBy" Text="" CssClass="MSINetBodyText"></asp:Label></td>
-                <td align="left" width="502" >
-                        <asp:LinkButton ID="lnkCreateInvoice" runat="server" Text="Generate Invoice and Finalize Week" OnClick="lnkCreateInvoice_Click"></asp:LinkButton>
+            <tr class="border-b border-gray-200">
+                <td class="px-6 py-4 text-right"><strong><asp:Label runat="server" ID="lblApprovedByHead" Text="Approved By:" CssClass="text-sm text-brand-black"></asp:Label></strong></td>
+                <td class="px-6 py-4 text-left w-1/3"><asp:Label runat="server" ID="lblApprovedBy" Text="" CssClass="text-sm text-brand-black"></asp:Label></td>
+                <td class="px-6 py-4 text-left">
+                        <asp:LinkButton ID="lnkCreateInvoice" runat="server" CssClass="bg-brand-green hover:bg-opacity-90 text-white font-medium rounded-md px-4 py-2 inline-block" Text="Generate Invoice and Finalize Week" OnClick="lnkCreateInvoice_Click"></asp:LinkButton>
                         <asp:HiddenField ID="hdnClientApprovalId" runat="server" />
                         <asp:HiddenField ID="hdnWeekEndDate" runat="server" />
                 </td>
             </tr>
         </table>
-        <br /><br />
      </asp:Panel>
-     <asp:Panel runat="server" ID="PanelNoApproval" Visible="false" style="border:solid 1px #cccccc;" Width="100%">
-        <table width="100%" border="0" cellpadding="5" cellspacing="0">
-            <tr>
-                <td colspan="3" align="left"><asp:Label runat="server" ID="Label3" CssClass="MSINetSectionHeading" Text="Hours for this week have been approved."></asp:Label></td>
+     <asp:Panel runat="server" ID="PanelNoApproval" Visible="false" CssClass="w-full max-w-6xl mx-auto rounded-lg shadow-md overflow-hidden border border-gray-200 mb-6">
+        <table class="w-full">
+            <tr class="bg-brand-green text-white">
+                <td colspan="3" class="px-6 py-3 text-left"><asp:Label runat="server" ID="Label3" CssClass="text-lg font-medium" Text="Hours for this week have been approved."></asp:Label></td>
             </tr>
-            <tr>
-                <td width="140" align="right"><strong><asp:Label runat="server" ID="Label5" Text="Approval Date/Time:" CssClass="MSINetBodyText"></asp:Label></strong></td>
-                <td align="left" width="800" colspan="2"><asp:Label runat="server" ID="Label6" CssClass="MSINetBodyText"></asp:Label>
+            <tr class="border-b border-gray-200">
+                <td class="px-6 py-4 text-right w-1/6"><strong><asp:Label runat="server" ID="Label5" Text="Approval Date/Time:" CssClass="text-sm text-brand-black"></asp:Label></strong></td>
+                <td class="px-6 py-4 text-left" colspan="2"><asp:Label runat="server" ID="Label6" CssClass="text-sm text-brand-black"></asp:Label>
                     <asp:Label ID="Label7" runat="server" Text="."></asp:Label></td>
             </tr>
-            <tr>
-                <td width="140" align="right"><strong><asp:Label runat="server" ID="Label8" Text="Approved By:" CssClass="MSINetBodyText"></asp:Label></strong></td>
-                <td align="left" width="298"><asp:Label runat="server" ID="Label9" Text="" CssClass="MSINetBodyText"></asp:Label></td>
-                <td align="left" width="502" >
-                        <asp:LinkButton ID="LinkButton1" runat="server" Text="Generate Invoice and Finalize Week" OnClick="lnkCreateInvoice_Click"></asp:LinkButton>
+            <tr class="border-b border-gray-200">
+                <td class="px-6 py-4 text-right"><strong><asp:Label runat="server" ID="Label8" Text="Approved By:" CssClass="text-sm text-brand-black"></asp:Label></strong></td>
+                <td class="px-6 py-4 text-left w-1/3"><asp:Label runat="server" ID="Label9" Text="" CssClass="text-sm text-brand-black"></asp:Label></td>
+                <td class="px-6 py-4 text-left">
+                        <asp:LinkButton ID="LinkButton1" runat="server" CssClass="bg-brand-green hover:bg-opacity-90 text-white font-medium rounded-md px-4 py-2 inline-block" Text="Generate Invoice and Finalize Week" OnClick="lnkCreateInvoice_Click"></asp:LinkButton>
                 </td>
             </tr>
         </table>
-        <br /><br />
      </asp:Panel>
 
-     <asp:Panel Visible="false" runat="server" ID="pnlUnassignedPunches">
+     <asp:Panel Visible="false" runat="server" ID="pnlUnassignedPunches" CssClass="w-full max-w-6xl mx-auto rounded-lg shadow-md overflow-hidden border border-gray-200 mb-6">
          <asp:Repeater id="rptrTicketTrackerException" OnItemDataBound="rptrTicketTrackerException_ItemDataBound" runat="server">
           
           <HeaderTemplate>
-             <table width="100%" cellpadding="0" cellspacing="0" style="border:solid 0pt #cccccc;">
-                <tr id="exceptions">
-                    <td id="tdBadgeNumberHeader" runat="server" class="ResultTableHeaderRowText">Badge #</td>
-                    <td id="tdNameHeader" runat="server" class="ResultTableHeaderRowText">Employee Name</td>
-                    <td class="ResultTableHeaderRowText">Swipe Date/Time</td>
-                    <td class="ResultTableHeaderRowText">Exception Message</td>
+             <table class="w-full">
+                <tr id="exceptions" class="bg-brand-grey text-white text-sm font-medium uppercase tracking-wider">
+                    <td id="tdBadgeNumberHeader" runat="server" class="px-6 py-3 text-left">Badge #</td>
+                    <td id="tdNameHeader" runat="server" class="px-6 py-3 text-left">Employee Name</td>
+                    <td class="px-6 py-3 text-left">Swipe Date/Time</td>
+                    <td class="px-6 py-3 text-left">Exception Message</td>
                 </tr>
           </HeaderTemplate>
              
           <ItemTemplate>
-             <tr>
-                   <td id="tdBadgeNumber" runat="server" class="ResultTableRowText"><asp:Label ID="lblItem" Text='' runat="server" ForeColor="#000000"></asp:Label><asp:Label ID="lblBadgeNumber" Text='<%# DataBinder.Eval(Container.DataItem, "TempNumber") %>' Runat="server"/></td>
-                   <td id="tdName" runat="server" class="ResultTableRowText"><asp:Label ID="lblFullName" Text='<%# DataBinder.Eval(Container.DataItem, "FullName") %>' Runat="server"/></td>
-                   <td class="ResultTableRowText"><asp:Label ID="lblSwipeDateTime" Text='' Runat="server"/></td>
-                   <td class="ResultTableRowText"><asp:Label ID="lblExceptionMessage" Text='' Runat="server"/></td>
-            </tr>             
+             <tr class="hover:bg-gray-50 even:bg-gray-50 odd:bg-white border-b border-gray-200 last:border-b-0">
+                   <td id="tdBadgeNumber" runat="server" class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis"><asp:Label ID="lblItem" Text='' runat="server"></asp:Label><asp:Label ID="lblBadgeNumber" Text='<%# DataBinder.Eval(Container.DataItem, "TempNumber") %>' Runat="server"/></td>
+                   <td id="tdName" runat="server" class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis"><asp:Label ID="lblFullName" Text='<%# DataBinder.Eval(Container.DataItem, "FullName") %>' Runat="server"/></td>
+                   <td class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis"><asp:Label ID="lblSwipeDateTime" Text='' Runat="server"/></td>
+                   <td class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis"><asp:Label ID="lblExceptionMessage" Text='' Runat="server"/></td>
+            </tr>
           </ItemTemplate>
           <FooterTemplate>
             </table>
@@ -2487,83 +2608,83 @@
      </asp:Panel>
 <asp:Repeater ID="rptrSupervisorList" OnItemDataBound="rptrSupervisorList_ItemDataBound" runat="server">
     <HeaderTemplate>
-    <table style="border:1px solid #0000FF; width:100%"; cellspacing="0"  cellpadding="0";>
+    <table class="w-full max-w-6xl mx-auto rounded-lg shadow-md overflow-hidden border border-gray-200">
         <thead>
-        <tr runat="server" id="top1" style="background-color:#0066FF; color:#000000; font-size: small; font-weight: bold;">
-        <td colspan="16"></td> 
+        <tr runat="server" id="top1" class="bg-brand-grey text-white">
+        <td colspan="16"></td>
         </tr>
-        <tr runat="server" id="top2" style="background-color:#0066FF; color:#000000; font-size: small; font-weight: bold;">
-        <td colspan="16"></td> 
+        <tr runat="server" id="top2" class="bg-brand-grey text-white">
+        <td colspan="16"></td>
         </tr>
-        <tr runat="server" id="top3" style="background-color:#0066FF; color:#000000; font-size: small; font-weight: bold;">
-        <td colspan="16"></td> 
+        <tr runat="server" id="top3" class="bg-brand-grey text-white">
+        <td colspan="16"></td>
         </tr>
-        <tr style="background-color:#0066FF; color:#000000; font-size: small; font-weight: bold;">
-            <td>
+        <tr class="bg-brand-grey text-white text-sm font-medium uppercase tracking-wider">
+            <td class="px-6 py-3 text-left">
                 <b>#</b>
             </td>
-            <td>
+            <td class="px-6 py-3 text-left">
                 <b>Badge #</b>
             </td>
-            <td>
+            <td class="px-6 py-3 text-left">
                 <b>Name</b>
             </td>
-            <td>
+            <td class="px-6 py-3 text-left">
                 <b>Department</b>
             </td>
-            <td>
+            <td class="px-6 py-3 text-left">
                 <b>Shift</b>
             </td>
-            <td>
+            <td class="px-6 py-3 text-left">
                 <b>Pay Rate</b>
             </td>
-            <td>
+            <td class="px-6 py-3 text-left">
                 <b>Cost Center</b>
             </td>
-            <td>
+            <td class="px-6 py-3 text-left">
                 <b>Supervisor</b>
             </td>
-            <td runat="server" id="hdrOne">
+            <td runat="server" id="hdrOne" class="px-6 py-3 text-left">
             </td>
-            <td runat="server" id="hdrTwo">
+            <td runat="server" id="hdrTwo" class="px-6 py-3 text-left">
             </td>
-            <td runat="server" id="hdrThree">
+            <td runat="server" id="hdrThree" class="px-6 py-3 text-left">
             </td>
-            <td runat="server" id="hdrFour">
+            <td runat="server" id="hdrFour" class="px-6 py-3 text-left">
             </td>
-            <td runat="server" id="hdrFive">
+            <td runat="server" id="hdrFive" class="px-6 py-3 text-left">
             </td>
-            <td runat="server" id="hdrSix">
+            <td runat="server" id="hdrSix" class="px-6 py-3 text-left">
             </td>
-            <td runat="server" id="hdrSeven">
+            <td runat="server" id="hdrSeven" class="px-6 py-3 text-left">
             </td>
-            <td>Reg Hours
+            <td class="px-6 py-3 text-left">Reg Hours
             </td>
-            <td>OT Hours
+            <td class="px-6 py-3 text-left">OT Hours
             </td>
         </tr>
     </thead>
     </HeaderTemplate>
 
     <ItemTemplate>
-    <tr runat="server" style="background-color:#EBEFF0">
-        <td id="cellEmpCount" runat="server"></td>
-        <td id="cellBadge" runat="server"></td>
-        <td id="cellName" runat="server"></td>
-        <td id="cellDept" runat="server"></td>
-        <td id="cellShift" runat="server"></td>
-        <td id="cellPayRate" runat="server"></td>
-        <td id="cellCostCenter" runat="server"></td>
-        <td id="cellSupervisor" runat="server"></td>
-        <td id="cellOne" runat="server"></td>
-        <td id="cellTwo" runat="server"></td>
-        <td id="cellThree" runat="server"></td>
-        <td id="cellFour" runat="server"></td>
-        <td id="cellFive" runat="server"></td>
-        <td id="cellSix" runat="server"></td>
-        <td id="cellSeven" runat="server"></td>
-        <td id="cellReg" runat="server"></td>
-        <td id="cellOT" runat="server"></td>
+    <tr runat="server" class="hover:bg-gray-50 even:bg-gray-50 odd:bg-white border-b border-gray-200 last:border-b-0">
+        <td id="cellEmpCount" runat="server" class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis"></td>
+        <td id="cellBadge" runat="server" class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis"></td>
+        <td id="cellName" runat="server" class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis"></td>
+        <td id="cellDept" runat="server" class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis"></td>
+        <td id="cellShift" runat="server" class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis"></td>
+        <td id="cellPayRate" runat="server" class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis"></td>
+        <td id="cellCostCenter" runat="server" class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis"></td>
+        <td id="cellSupervisor" runat="server" class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis"></td>
+        <td id="cellOne" runat="server" class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis"></td>
+        <td id="cellTwo" runat="server" class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis"></td>
+        <td id="cellThree" runat="server" class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis"></td>
+        <td id="cellFour" runat="server" class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis"></td>
+        <td id="cellFive" runat="server" class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis"></td>
+        <td id="cellSix" runat="server" class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis"></td>
+        <td id="cellSeven" runat="server" class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis"></td>
+        <td id="cellReg" runat="server" class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis"></td>
+        <td id="cellOT" runat="server" class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis"></td>
     </tr>
    </ItemTemplate>
     <FooterTemplate>
@@ -2573,7 +2694,7 @@
 
     <asp:Repeater ID="rptrHoursReport" OnItemDataBound="rptrHoursReport_ItemDataBound"  OnItemCommand="rptrHoursReport_ItemCommand" runat="server">
         <HeaderTemplate>
-             <table id="tblHoursReport" width="100%" cellpadding="0" cellspacing="0" >
+             <table id="tblHoursReport" class="w-full max-w-6xl mx-auto rounded-lg shadow-md overflow-hidden border border-gray-200">
                 <tr>
                     <td ID="tdClientNameSpc" runat="server" Visible="true"></td>
                     <td colspan="2" style="text-align:left; font-family:Arial; font-size:10pt; font-weight:bold;"><asp:Label ID="lblClientName" Runat="server" Text=""/></td>
@@ -2601,15 +2722,15 @@
                     <td colspan="1" style="mso-number-format:'m\/d'; text-align:right; font-family:Arial; font-size:10pt; font-weight:bold;"><asp:Label ID="lblExcelWeekDay7" Runat="server" Text=""/></td>
                     <td id="exlApproved"  Visible = "false" runat="server" style="mso-number-format:'m\/d'; text-align:right; font-family:Arial; font-size:10pt; font-weight:bold;"></td>
                 </tr>
-                <tr id="tempp" runat="server">
-                    <td ID="seqNum" Visible = "true" runat="server" style="padding:2pt 2pt 2pt 2pt; width:40px; height:30px; color:#ffffff; background-color:#003776; text-align:center; font-family:Arial; font-size:10pt; font-weight:bold;">Seq #</td>
-                    <td ID="hdrDept" Visible = "false" runat="server" style="padding:2pt 2pt 2pt 2pt; width:200px; height:30px; color:#ffffff; background-color:#003776; text-align:center; font-family:Arial; font-size:10pt; font-weight:bold;">Department</td>
-                    <td ID="hdrLoc" Visible = "false"  runat="server" style="padding:2pt 2pt 2pt 2pt; width:200px; height:30px; color:#ffffff; background-color:#003776; text-align:center; font-family:Arial; font-size:10pt; font-weight:bold;">Location</td>
-                    <td ID="hdrShift" Visible = "false"  runat="server" style="padding:2pt 2pt 2pt 2pt; width:80px; height:30px; color:#ffffff; background-color:#003776; text-align:center; font-family:Arial; font-size:10pt; font-weight:bold;">Shift</td>
-                    <td style="padding:2pt 2pt 2pt 2pt; width:100px; height:30px; color:#ffffff; background-color:#003776; text-align:center; font-family:Arial; font-size:10pt; font-weight:bold;">Badge #</td>
-                    <td id="hdrDispatch" visible="false" runat="server" style="padding:2pt 2pt 2pt 2pt; width:80px; height:30px; color:#ffffff; background-color:#003776; text-align:center; font-family:Arial; font-size:10pt; font-weight:bold;">Dispatch</td>
-                    <td style="padding:2pt 2pt 2pt 2pt; height:30px; color:#ffffff; background-color:#003776; text-align:left; font-family:Arial; font-size:10pt; font-weight:bold;">Employee Name</td>
-                    <td runat="server" ID="tdJobCodeHead" style="padding:2pt 2pt 2pt 2pt; width:80px; height:30px; color:#ffffff; background-color:#003776; text-align:center; font-family:Arial; font-size:10pt; font-weight:bold;">
+                <tr id="tempp" runat="server" class="bg-brand-grey text-white text-sm font-medium uppercase tracking-wider">
+                    <td ID="seqNum" Visible = "true" runat="server" class="px-6 py-3 text-left">Seq #</td>
+                    <td ID="hdrDept" Visible = "false" runat="server" class="px-6 py-3 text-left">Department</td>
+                    <td ID="hdrLoc" Visible = "false" runat="server" class="px-6 py-3 text-left">Location</td>
+                    <td ID="hdrShift" Visible = "false" runat="server" class="px-6 py-3 text-left">Shift</td>
+                    <td class="px-6 py-3 text-left">Badge #</td>
+                    <td id="hdrDispatch" visible="false" runat="server" class="px-6 py-3 text-left">Dispatch</td>
+                    <td class="px-6 py-3 text-left">Employee Name</td>
+                    <td runat="server" ID="tdJobCodeHead" class="px-6 py-3 text-left">
                         <asp:Label ID="lblJobCodeHead" runat="server">Job Code</asp:Label>
                     </td>
                     <td ID="tdShiftHead" runat="server" Visible="false" style="padding:2pt 2pt 2pt 2pt; width:80px; height:30px; color:#ffffff; background-color:#003776; text-align:center; font-family:Arial; font-size:10pt; font-weight:bold;">Shift</td>
@@ -2636,12 +2757,12 @@
           </HeaderTemplate>
               
           <ItemTemplate>
-             <tr id="trDepartment" runat="server">
+             <tr id="trDepartment" runat="server" class="bg-gray-100">
                    <%-- empty td element added and colspan reduced 12 -> 11 --%>
-                   <td id="tdDeptSpc" runat="server"></td>
-                   <td id="tdDepartmentHead" runat="server" colspan="4" style="height:17pt; border-bottom:solid 0pt #cccccc; padding:12pt 12pt 12pt 12pt; color:Black; text-align:left; font-family:Arial; font-size:12pt; font-weight:bold;"><asp:Label ID="lblDepartment" Runat="server"/><asp:HiddenField ID="hdnDept" runat="server" /><asp:HiddenField ID="hdnShift" runat="server" /></td>
-                   <td style="display:none" id="bonusMultiplyLabel"><span>Bonus Multiplier:</span></td>
-                   <td runat="server" style="display:none" id="bonusMultiplier"><input runat="server" id="txtBonusMultiplier" onClick='this.select();'  style="display:none; text-align:right;" type="text" size="6" value="0.00" /></td>
+                   <td id="tdDeptSpc" runat="server" class="px-6 py-4"></td>
+                   <td id="tdDepartmentHead" runat="server" colspan="4" class="px-6 py-4 text-left font-bold text-lg text-brand-black"><asp:Label ID="lblDepartment" Runat="server"/><asp:HiddenField ID="hdnDept" runat="server" /><asp:HiddenField ID="hdnShift" runat="server" /></td>
+                   <td style="display:none" id="bonusMultiplyLabel"><span class="text-sm font-medium text-brand-black">Bonus Multiplier:</span></td>
+                   <td runat="server" style="display:none" id="bonusMultiplier"><input runat="server" id="txtBonusMultiplier" onClick='this.select();' class="w-full rounded-md border-gray-300 shadow-sm focus:ring-2 focus:ring-brand-green focus:border-brand-green px-3 py-2 text-sm text-right" style="display:none;" type="text" size="6" value="0.00" /></td>
                    <td id="tdDeptStart" style="display:none"><p style="display:none" runat="server" id="pDeptStart"></p><p style="display:none" runat="server" id="pDeptEnd"></p></td>
              </tr>
              <tr visible="false" id="trPeek" runat="server">
@@ -2652,15 +2773,15 @@
                 <td id="tdPeekEnd" runat="server"><span runat="server" id="spPeekEnd"></span></td>
                 <td id="tdPeekApproved" runat="server"><span runat="server" id="spPeekApproved"></span></td>
              </tr>
-             <tr id="emp" class="DlyHrs" runat="server" style="width:40px; border-bottom:solid 0pt #cccccc; padding:2pt 2pt 2pt 2pt; color:Black; font-family:Arial; font-size:10pt; font-weight:normal;" >
-                     <td id="tdEmpCntSpc" runat="server" style="width:40px; border-bottom:solid 0pt #cccccc; padding:2pt 2pt 2pt 2pt; color:Black; text-align:left; font-family:Arial; font-size:10pt; font-weight:normal;">
+             <tr id="emp" class="DlyHrs hover:bg-gray-50 even:bg-gray-50 odd:bg-white border-b border-gray-200 last:border-b-0" runat="server">
+                     <td id="tdEmpCntSpc" runat="server" class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis">
                      <asp:Label ID="lblEmpCnt" Runat="server"></asp:Label>
                      </td>
-                    <td ID="rowDept" visible="false" runat="server" style="width:200px; border-bottom:solid 0pt #cccccc; padding:2pt 2pt 2pt 2pt; color:Black; text-align:left; font-family:Arial; font-size:10pt; font-weight:normal;">Breathing Hose</td>
-                    <td ID="rowLoc" visible="false" runat="server" style="width:200px; border-bottom:solid 0pt #cccccc; padding:2pt 2pt 2pt 2pt; color:Black; text-align:left; font-family:Arial; font-size:10pt; font-weight:normal;">Schaumburg</td>
-                    <td ID="rowShift" visible="false" runat="server" style="width:80px; border-bottom:solid 0pt #cccccc; padding:2pt 2pt 2pt 2pt; color:Black; text-align:left; font-family:Arial; font-size:10pt; font-weight:normal;">1st Shift</td>
+                    <td ID="rowDept" visible="false" runat="server" class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis">Breathing Hose</td>
+                    <td ID="rowLoc" visible="false" runat="server" class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis">Schaumburg</td>
+                    <td ID="rowShift" visible="false" runat="server" class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis">1st Shift</td>
                     
-                    <td runat="server" visible="true" style="cursor: move; width:100px; height:17pt; border-bottom:solid 0pt #cccccc; padding:2pt 2pt 2pt 2pt; color:Black; text-align:left; font-family:Arial; font-size:10pt; font-weight:normal;">
+                    <td runat="server" visible="true" class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis cursor-move">
                         <asp:Panel Visible="true" runat="server" ID="pnlPlusMinus">
                             <img id="i<%# GetBoundEmployeeID(false) %>" src="../Images/plus.gif" alt="" />
                             <asp:Label ID="lblBadgeNumber" Text='<%# DataBinder.Eval(Container.DataItem, "TempNumber") %>' Runat="server"/>
@@ -2712,36 +2833,36 @@
                         <HeaderTemplate>
                         <tr style="display:none;">
                             <td colspan="11">
-                                <table class="tblDetail" cellspacing="0" cellpadding="0" width="100%">
+                                <table class="tblDetail w-full rounded-lg shadow-md overflow-hidden border border-gray-200">
                                     <thead>
-                                    <tr style="width:1080px">
-                                        <th style='width:200px;'><asp:Label runat="server" Font-Size="14px">Check In</asp:Label></th>
-                                        <th style='width:200px;'><asp:Label runat="server" Font-Size="14px">Type</asp:Label></th>
-                                        <th style='width:200px;'><asp:Label runat="server" Font-Size="14px">Check Out</asp:Label></th>
-                                        <th style='width:200px;'><asp:Label runat="server" Font-Size="14px">Type</asp:Label></th>
-                                        <th style='width:160px;'><asp:Label runat="server" Font-Size="14px">Hours</asp:Label></th>
-                                        <th runat="server" id="tdBreak" style='width:80px;'><asp:Label ID="lblBreak" runat="server" Font-Size="14px">Break</asp:Label></th>
-                                        <th runat="server" id="tdFirstPunch" style='width:80px;'><asp:Label ID="lbl1stPunch" runat="server" Font-Size="14px">1st Punch</asp:Label></th>
-                                        <th style='width:120px;'><input type='button' class='punchDisplay' value='Exact Time' /></th>
-                                        <th style='width:120px;'><asp:DropDownList runat="server" ID="moveDept" ><asp:ListItem Value="424" Text="Department Number 1"></asp:ListItem><asp:ListItem Value="428" Text="Department Number 2"></asp:ListItem></asp:DropDownList></th>
-                                        <th style='width:60px;'><input type='button' class='punchDisplay' disabled="disabled" value='Move' /></th>
+                                    <tr class="bg-brand-grey text-white text-sm font-medium uppercase tracking-wider">
+                                        <th class="px-6 py-3 text-left"><asp:Label runat="server" CssClass="text-sm">Check In</asp:Label></th>
+                                        <th class="px-6 py-3 text-left"><asp:Label runat="server" CssClass="text-sm">Type</asp:Label></th>
+                                        <th class="px-6 py-3 text-left"><asp:Label runat="server" CssClass="text-sm">Check Out</asp:Label></th>
+                                        <th class="px-6 py-3 text-left"><asp:Label runat="server" CssClass="text-sm">Type</asp:Label></th>
+                                        <th class="px-6 py-3 text-left"><asp:Label runat="server" CssClass="text-sm">Hours</asp:Label></th>
+                                        <th runat="server" id="tdBreak" class="px-6 py-3 text-left"><asp:Label ID="lblBreak" runat="server" CssClass="text-sm">Break</asp:Label></th>
+                                        <th runat="server" id="tdFirstPunch" class="px-6 py-3 text-left"><asp:Label ID="lbl1stPunch" runat="server" CssClass="text-sm">1st Punch</asp:Label></th>
+                                        <th class="px-6 py-3 text-left"><input type='button' class='punchDisplay bg-brand-green hover:bg-opacity-90 text-white font-medium rounded-md px-4 py-2' value='Exact Time' /></th>
+                                        <th class="px-6 py-3 text-left"><asp:DropDownList runat="server" ID="moveDept" CssClass="w-full rounded-md border-gray-300 shadow-sm focus:ring-2 focus:ring-brand-green focus:border-brand-green"><asp:ListItem Value="424" Text="Department Number 1"></asp:ListItem><asp:ListItem Value="428" Text="Department Number 2"></asp:ListItem></asp:DropDownList></th>
+                                        <th class="px-6 py-3 text-left"><input type='button' class='punchDisplay bg-brand-grey hover:bg-opacity-90 text-white font-medium rounded-md px-4 py-2' disabled="disabled" value='Move' /></th>
                                         <!--<%--<th><input disabled="disabled" type='button' class='unassignedDisplay' value='Unassigned Punches' /></th>--%>-->
                                     </tr>
                                     </thead>
                         </HeaderTemplate>
 
                         <ItemTemplate>
-                            <tr id="tableRow" style="width:1080px" runat="server">
-                                <td id="tdCheckIn" style='width:200px;' crt_by='' crt_dt='' class='time'><asp:Label Font-Size="14px" ID="lblCheckIn" Runat="server"/></td>
-                                <td id="tdCheckInType" style='width:200px;' crt_by='' crt_dt='' class='time'><asp:Label Font-Size="14px" ID="lblCheckInType" Runat="server"/></td>
-                                <td id="tdCheckOut" style='width:200px;' crt_by='' crt_dt='' class='time'><asp:Label Font-Size="14px" ID="lblCheckOut" Runat="server"/></td>
-                                <td id="tdCheckOutType" style='width:200px;' crt_by='' crt_dt='' class='time'><asp:Label Font-Size="14px" ID="lblCheckOutType" Runat="server"/></td>
-                                <td style='width:160px;'><asp:Label Font-Size="14px" ID="lblCheckHours" Runat="server"/></td>
-                                <td id="tdCheckBreak" style='width:80px;'><asp:Label Font-Size="14px" ID="lblCheckBreak" runat="server"></asp:Label></td>
-                                <td id="tdLatePunch" style='width:80px;'><asp:Label runat="server" ID="lblLatePunch" Font-Size="14px"></asp:Label></td>
-                                <td style='width:120px'><asp:Label ID="lblApprovedBy" runat="server"></asp:Label></td>
-                                <td style='width:120px;'>&nbsp</td>
-                                <td style='width:60px;'>&nbsp</td>
+                            <tr id="tableRow" runat="server" class="hover:bg-gray-50 even:bg-gray-50 odd:bg-white border-b border-gray-200 last:border-b-0">
+                                <td id="tdCheckIn" class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis time" crt_by='' crt_dt=''><asp:Label CssClass="text-sm" ID="lblCheckIn" Runat="server"/></td>
+                                <td id="tdCheckInType" class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis time" crt_by='' crt_dt=''><asp:Label CssClass="text-sm" ID="lblCheckInType" Runat="server"/></td>
+                                <td id="tdCheckOut" class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis time" crt_by='' crt_dt=''><asp:Label CssClass="text-sm" ID="lblCheckOut" Runat="server"/></td>
+                                <td id="tdCheckOutType" class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis time" crt_by='' crt_dt=''><asp:Label CssClass="text-sm" ID="lblCheckOutType" Runat="server"/></td>
+                                <td class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis"><asp:Label CssClass="text-sm" ID="lblCheckHours" Runat="server"/></td>
+                                <td id="tdCheckBreak" class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis"><asp:Label CssClass="text-sm" ID="lblCheckBreak" runat="server"></asp:Label></td>
+                                <td id="tdLatePunch" class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis"><asp:Label runat="server" ID="lblLatePunch" CssClass="text-sm"></asp:Label></td>
+                                <td class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis"><asp:Label ID="lblApprovedBy" runat="server"></asp:Label></td>
+                                <td class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis">&nbsp</td>
+                                <td class="px-6 py-4 text-sm text-brand-black whitespace-nowrap overflow-hidden text-ellipsis">&nbsp</td>
                             </tr>
                         </ItemTemplate>
                         <FooterTemplate>
@@ -2789,23 +2910,23 @@
                         </FooterTemplate> 
                     </asp:Repeater>
             <%-- department totals line --%>
-                <tr id="trDepartmentTotals" runat="server">
-                    <td id="tdDepartmentTotalsSpc" runat="server"><input runat="server" visible="false" id="btnTimeline" class="btnTimeline" type="button" value="Timeline" /></td>
-                    <td id="tdDepartmentTotalLabel" runat="server" colspan="2" style="border-top:solid 1pt #000000; border-bottom:double 1pt #000000; padding:2pt 2pt 2pt 2pt; color:Black; text-align:right;  height:17pt;font-family:Arial; font-size:10pt; font-weight:bold;"><asp:Label ID="lblDepartmentTotalLabel" Runat="server"/></td>
-                    <td id="tdDeptSpacer" runat="server" visible="false" style="width:80px; border-top:solid 1pt #000000; border-bottom:double 1pt #000000; padding:2pt 2pt 2pt 2pt; color:Black; text-align:right; font-family:Arial; font-size:10pt; font-weight:bold;">---</td>
-                    <td id="ftDept" Visible ="false" runat="server" style="mso-number-format:\#\,\#\#0\.00; width:40px; border-top:solid 1pt #000000; border-bottom:double 1pt #000000; padding:0pt 0pt 0pt 0pt; color:Black; text-align:right; font-family:Arial; font-size:10pt; font-weight:bold"></td>
-                    <td id="ftLoc" Visible ="false" runat="server" style="mso-number-format:\#\,\#\#0\.00; width:40px; border-top:solid 1pt #000000; border-bottom:double 1pt #000000; padding:0pt 0pt 0pt 0pt; color:Black; text-align:right; font-family:Arial; font-size:10pt; font-weight:bold"></td>
-                    <td id="ftShift" Visible ="false" runat="server" style="mso-number-format:\#\,\#\#0\.00; width:40px; border-top:solid 1pt #000000; border-bottom:double 1pt #000000; padding:0pt 0pt 0pt 0pt; color:Black; text-align:right; font-family:Arial; font-size:10pt; font-weight:bold"></td> 
-                    <td id="tdDeptMonTotal" runat="server" style="mso-number-format:\#\,\#\#0\.00; width:40px; border-top:solid 1pt #000000; border-bottom:double 1pt #000000; padding:0pt 0pt 0pt 0pt; color:Black; text-align:right; font-family:Arial; font-size:10pt; font-weight:bold;"><asp:Label ID="lblDeptTotWeekDay1Hours" Runat="server"/></td>
-                    <td id="tdDeptTueTotal" runat="server" style="mso-number-format:\#\,\#\#0\.00; width:40px; border-top:solid 1pt #000000; border-bottom:double 1pt #000000; padding:0pt 0pt 0pt 0pt; color:Black; text-align:right; font-family:Arial; font-size:10pt; font-weight:bold;"><asp:Label ID="lblDeptTotWeekDay2Hours" Runat="server"/></td>
-                    <td id="tdDeptWedTotal" runat="server" style="mso-number-format:\#\,\#\#0\.00; width:40px; border-top:solid 1pt #000000; border-bottom:double 1pt #000000; padding:0pt 0pt 0pt 0pt; color:Black; text-align:right; font-family:Arial; font-size:10pt; font-weight:bold;"><asp:Label ID="lblDeptTotWeekDay3Hours" Runat="server"/></td>
-                    <td id="tdDeptThuTotal" runat="server" style="mso-number-format:\#\,\#\#0\.00; width:40px; border-top:solid 1pt #000000; border-bottom:double 1pt #000000; padding:0pt 0pt 0pt 0pt; color:Black; text-align:right; font-family:Arial; font-size:10pt; font-weight:bold;"><asp:Label ID="lblDeptTotWeekDay4Hours" Runat="server"/></td>
-                    <td id="tdDeptFriTotal" runat="server" style="mso-number-format:\#\,\#\#0\.00; width:40px; border-top:solid 1pt #000000; border-bottom:double 1pt #000000; padding:0pt 0pt 0pt 0pt; color:Black; text-align:right; font-family:Arial; font-size:10pt; font-weight:bold;"><asp:Label ID="lblDeptTotWeekDay5Hours" Runat="server"/></td>
-                    <td id="tdDeptSatTotal" runat="server" style="mso-number-format:\#\,\#\#0\.00; width:40px; border-top:solid 1pt #000000; border-bottom:double 1pt #000000; padding:0pt 0pt 0pt 0pt; color:Black; text-align:right; font-family:Arial; font-size:10pt; font-weight:bold;"><asp:Label ID="lblDeptTotWeekDay6Hours" Runat="server"/></td>
-                    <td id="tdDeptSunTotal" runat="server" style="mso-number-format:\#\,\#\#0\.00; width:40px; border-top:solid 1pt #000000; border-bottom:double 1pt #000000; padding:0pt 0pt 0pt 0pt; color:Black; text-align:right; font-family:Arial; font-size:10pt; font-weight:bold;"><asp:Label ID="lblDeptTotWeekDay7Hours" Runat="server"/></td>
-                    <td style="mso-number-format:\#\,\#\#0\.00; width:40px; border-top:solid 1pt #000000; border-bottom:double 1pt #000000; padding:0pt 0pt 0pt 0pt; color:Black; text-align:right; font-family:Arial; font-size:10pt; font-weight:bold;"><asp:Label ID="lblDeptTotTotalHours" Runat="server"/></td>
-                    <td style="mso-number-format:\#\,\#\#0\.00; width:40px; border-top:solid 1pt #000000; border-bottom:double 1pt #000000; padding:0pt 0pt 0pt 0pt; color:Black; text-align:right; font-family:Arial; font-size:10pt; font-weight:bold;"><asp:Label ID="lblDeptTotOTHours" Runat="server"/></td>
-                    <td style="mso-number-format:\#\,\#\#0\.00; width:40px; border-top:solid 1pt #000000; border-bottom:double 1pt #000000; padding:0pt 0pt 0pt 0pt; color:Black; text-align:right; font-family:Arial; font-size:10pt; font-weight:bold;"><asp:Label ID="lblDeptTotBonus" Text="99.99" Runat="server"/></td>
+                <tr id="trDepartmentTotals" runat="server" class="bg-gray-100 font-medium">
+                    <td id="tdDepartmentTotalsSpc" runat="server" class="px-6 py-3"><input runat="server" visible="false" id="btnTimeline" class="btnTimeline bg-brand-green hover:bg-opacity-90 text-white font-medium rounded-md px-4 py-2" type="button" value="Timeline" /></td>
+                    <td id="tdDepartmentTotalLabel" runat="server" colspan="2" class="px-6 py-3 text-right font-medium text-brand-black border-t border-b-2 border-gray-300"><asp:Label ID="lblDepartmentTotalLabel" Runat="server"/></td>
+                    <td id="tdDeptSpacer" runat="server" visible="false" class="px-6 py-3 text-right font-medium text-brand-black border-t border-b-2 border-gray-300">---</td>
+                    <td id="ftDept" Visible ="false" runat="server" class="px-6 py-3 text-right font-medium text-brand-black border-t border-b-2 border-gray-300" style="mso-number-format:\#\,\#\#0\.00;"></td>
+                    <td id="ftLoc" Visible ="false" runat="server" class="px-6 py-3 text-right font-medium text-brand-black border-t border-b-2 border-gray-300" style="mso-number-format:\#\,\#\#0\.00;"></td>
+                    <td id="ftShift" Visible ="false" runat="server" class="px-6 py-3 text-right font-medium text-brand-black border-t border-b-2 border-gray-300" style="mso-number-format:\#\,\#\#0\.00;"></td>
+                    <td id="tdDeptMonTotal" runat="server" class="px-6 py-3 text-right font-medium text-brand-black border-t border-b-2 border-gray-300" style="mso-number-format:\#\,\#\#0\.00;"><asp:Label ID="lblDeptTotWeekDay1Hours" Runat="server"/></td>
+                    <td id="tdDeptTueTotal" runat="server" class="px-6 py-3 text-right font-medium text-brand-black border-t border-b-2 border-gray-300" style="mso-number-format:\#\,\#\#0\.00;"><asp:Label ID="lblDeptTotWeekDay2Hours" Runat="server"/></td>
+                    <td id="tdDeptWedTotal" runat="server" class="px-6 py-3 text-right font-medium text-brand-black border-t border-b-2 border-gray-300" style="mso-number-format:\#\,\#\#0\.00;"><asp:Label ID="lblDeptTotWeekDay3Hours" Runat="server"/></td>
+                    <td id="tdDeptThuTotal" runat="server" class="px-6 py-3 text-right font-medium text-brand-black border-t border-b-2 border-gray-300" style="mso-number-format:\#\,\#\#0\.00;"><asp:Label ID="lblDeptTotWeekDay4Hours" Runat="server"/></td>
+                    <td id="tdDeptFriTotal" runat="server" class="px-6 py-3 text-right font-medium text-brand-black border-t border-b-2 border-gray-300" style="mso-number-format:\#\,\#\#0\.00;"><asp:Label ID="lblDeptTotWeekDay5Hours" Runat="server"/></td>
+                    <td id="tdDeptSatTotal" runat="server" class="px-6 py-3 text-right font-medium text-brand-black border-t border-b-2 border-gray-300" style="mso-number-format:\#\,\#\#0\.00;"><asp:Label ID="lblDeptTotWeekDay6Hours" Runat="server"/></td>
+                    <td id="tdDeptSunTotal" runat="server" class="px-6 py-3 text-right font-medium text-brand-black border-t border-b-2 border-gray-300" style="mso-number-format:\#\,\#\#0\.00;"><asp:Label ID="lblDeptTotWeekDay7Hours" Runat="server"/></td>
+                    <td class="px-6 py-3 text-right font-medium text-brand-black border-t border-b-2 border-gray-300" style="mso-number-format:\#\,\#\#0\.00;"><asp:Label ID="lblDeptTotTotalHours" Runat="server"/></td>
+                    <td class="px-6 py-3 text-right font-medium text-brand-black border-t border-b-2 border-gray-300" style="mso-number-format:\#\,\#\#0\.00;"><asp:Label ID="lblDeptTotOTHours" Runat="server"/></td>
+                    <td class="px-6 py-3 text-right font-medium text-brand-black border-t border-b-2 border-gray-300" style="mso-number-format:\#\,\#\#0\.00;"><asp:Label ID="lblDeptTotBonus" Text="99.99" Runat="server"/></td>
                 </tr>
              <%-- white shift totals --%>
              <tr id="trShiftTotals" runat="server" visible="false">
@@ -2826,23 +2947,23 @@
           </ItemTemplate>
           
           <FooterTemplate>
-                <tr id="trGrandTotals" runat="server">
-                   <td id="tdGrandTotalsSpc" runat="server" style="height:17pt; border-top:solid 1pt #000000; border-bottom:double 1pt #000000; padding:2pt 0pt 2pt 2pt; color:Black; text-align:right;"></td>
-                   <td id="totDept" Visible="false" runat="server"></td>
-                   <td id="totLoc" Visible="false" runat="server"></td>
-                   <td id="totShift" Visible="false" runat="server"></td>
-                    <td id="tdGrandTotalLabel" runat="server" colspan="2" style="height:17pt; border-top:solid 1pt #000000; border-bottom:double 1pt #000000; padding:2pt 0pt 2pt 2pt; color:Black; text-align:right; font-family:Arial; font-size:10pt; font-weight:bold;">Grand Totals:</td>
-                   <td id="tdGTSpacer" runat="server" visible="false" style="width:80px; border-top:solid 1pt #000000; border-bottom:double 1pt #000000; padding:2pt 0pt 2pt 2pt; color:Black; text-align:right; font-family:Arial; font-size:10pt; font-weight:bold;">---</td>
-                   <td id="tdMonGrandTotal" runat="server" style="mso-number-format:\#\,\#\#0\.00; width:40px; border-top:solid 1pt #000000; border-bottom:double 1pt #000000; padding:2pt 0pt 2pt 2pt; color:Black; text-align:right; font-family:Arial; font-size:10pt; font-weight:bold;"><asp:Label ID="lblGrandWeekDay1Hours" Runat="server"/></td>
-                   <td id="tdTueGrandTotal" runat="server" style="mso-number-format:\#\,\#\#0\.00; width:40px; border-top:solid 1pt #000000; border-bottom:double 1pt #000000; padding:2pt 0pt 2pt 2pt; color:Black; text-align:right; font-family:Arial; font-size:10pt; font-weight:bold;"><asp:Label ID="lblGrandWeekDay2Hours" Runat="server"/></td>
-                   <td id="tdWedGrandTotal" runat="server" style="mso-number-format:\#\,\#\#0\.00; width:40px; border-top:solid 1pt #000000; border-bottom:double 1pt #000000; padding:2pt 0pt 2pt 2pt; color:Black; text-align:right; font-family:Arial; font-size:10pt; font-weight:bold;"><asp:Label ID="lblGrandWeekDay3Hours" Runat="server"/></td>
-                   <td id="tdThuGrandTotal" runat="server" style="mso-number-format:\#\,\#\#0\.00; width:40px; border-top:solid 1pt #000000; border-bottom:double 1pt #000000; padding:2pt 0pt 2pt 2pt; color:Black; text-align:right; font-family:Arial; font-size:10pt; font-weight:bold;"><asp:Label ID="lblGrandWeekDay4Hours" Runat="server"/></td>
-                   <td id="tdFriGrandTotal" runat="server" style="mso-number-format:\#\,\#\#0\.00; width:40px; border-top:solid 1pt #000000; border-bottom:double 1pt #000000; padding:2pt 0pt 2pt 2pt; color:Black; text-align:right; font-family:Arial; font-size:10pt; font-weight:bold;"><asp:Label ID="lblGrandWeekDay5Hours" Runat="server"/></td>
-                   <td id="tdSatGrandTotal" runat="server" style="mso-number-format:\#\,\#\#0\.00; width:40px; border-top:solid 1pt #000000; border-bottom:double 1pt #000000; padding:2pt 0pt 2pt 2pt; color:Black; text-align:right; font-family:Arial; font-size:10pt; font-weight:bold;"><asp:Label ID="lblGrandWeekDay6Hours" Runat="server"/></td>
-                   <td id="tdSunGrandTotal" runat="server" style="mso-number-format:\#\,\#\#0\.00; width:40px; border-top:solid 1pt #000000; border-bottom:double 1pt #000000; padding:2pt 0pt 2pt 2pt; color:Black; text-align:right; font-family:Arial; font-size:10pt; font-weight:bold;"><asp:Label ID="lblGrandWeekDay7Hours" Runat="server"/></td>
-                   <td style="mso-number-format:\#\,\#\#0\.00; width:40px; border-top:solid 1pt #000000; border-bottom:double 1pt #000000; padding:2pt 0pt 2pt 2pt; color:Black; text-align:right; font-family:Arial; font-size:10pt; font-weight:bold;"><asp:Label ID="lblGrandTotalHours" Runat="server"/></td>
-                   <td style="mso-number-format:\#\,\#\#0\.00; width:40px; border-top:solid 1pt #000000; border-bottom:double 1pt #000000; padding:2pt 0pt 2pt 2pt; color:Black; text-align:right; font-family:Arial; font-size:10pt; font-weight:bold;"><asp:Label ID="lblGrandOTHours" Runat="server"/></td>
-                   <td style="mso-number-format:\#\,\#\#0\.00; width:40px; border-top:solid 1pt #000000; border-bottom:double 1pt #000000; padding:0pt 0pt 0pt 0pt; color:Black; text-align:right; font-family:Arial; font-size:10pt; font-weight:bold;"><asp:Label ID="lblGrandTotBonus" Text="9999.99" Runat="server"/></td>
+                <tr id="trGrandTotals" runat="server" class="bg-brand-green text-white font-medium">
+                   <td id="tdGrandTotalsSpc" runat="server" class="px-6 py-3 text-right border-t border-b-2 border-gray-300"></td>
+                   <td id="totDept" Visible="false" runat="server" class="px-6 py-3"></td>
+                   <td id="totLoc" Visible="false" runat="server" class="px-6 py-3"></td>
+                   <td id="totShift" Visible="false" runat="server" class="px-6 py-3"></td>
+                    <td id="tdGrandTotalLabel" runat="server" colspan="2" class="px-6 py-3 text-right font-medium border-t border-b-2 border-gray-300">Grand Totals:</td>
+                   <td id="tdGTSpacer" runat="server" visible="false" class="px-6 py-3 text-right font-medium border-t border-b-2 border-gray-300">---</td>
+                   <td id="tdMonGrandTotal" runat="server" class="px-6 py-3 text-right font-medium border-t border-b-2 border-gray-300" style="mso-number-format:\#\,\#\#0\.00;"><asp:Label ID="lblGrandWeekDay1Hours" Runat="server"/></td>
+                   <td id="tdTueGrandTotal" runat="server" class="px-6 py-3 text-right font-medium border-t border-b-2 border-gray-300" style="mso-number-format:\#\,\#\#0\.00;"><asp:Label ID="lblGrandWeekDay2Hours" Runat="server"/></td>
+                   <td id="tdWedGrandTotal" runat="server" class="px-6 py-3 text-right font-medium border-t border-b-2 border-gray-300" style="mso-number-format:\#\,\#\#0\.00;"><asp:Label ID="lblGrandWeekDay3Hours" Runat="server"/></td>
+                   <td id="tdThuGrandTotal" runat="server" class="px-6 py-3 text-right font-medium border-t border-b-2 border-gray-300" style="mso-number-format:\#\,\#\#0\.00;"><asp:Label ID="lblGrandWeekDay4Hours" Runat="server"/></td>
+                   <td id="tdFriGrandTotal" runat="server" class="px-6 py-3 text-right font-medium border-t border-b-2 border-gray-300" style="mso-number-format:\#\,\#\#0\.00;"><asp:Label ID="lblGrandWeekDay5Hours" Runat="server"/></td>
+                   <td id="tdSatGrandTotal" runat="server" class="px-6 py-3 text-right font-medium border-t border-b-2 border-gray-300" style="mso-number-format:\#\,\#\#0\.00;"><asp:Label ID="lblGrandWeekDay6Hours" Runat="server"/></td>
+                   <td id="tdSunGrandTotal" runat="server" class="px-6 py-3 text-right font-medium border-t border-b-2 border-gray-300" style="mso-number-format:\#\,\#\#0\.00;"><asp:Label ID="lblGrandWeekDay7Hours" Runat="server"/></td>
+                   <td class="px-6 py-3 text-right font-medium border-t border-b-2 border-gray-300" style="mso-number-format:\#\,\#\#0\.00;"><asp:Label ID="lblGrandTotalHours" Runat="server"/></td>
+                   <td class="px-6 py-3 text-right font-medium border-t border-b-2 border-gray-300" style="mso-number-format:\#\,\#\#0\.00;"><asp:Label ID="lblGrandOTHours" Runat="server"/></td>
+                   <td class="px-6 py-3 text-right font-medium border-t border-b-2 border-gray-300" style="mso-number-format:\#\,\#\#0\.00;"><asp:Label ID="lblGrandTotBonus" Text="9999.99" Runat="server"/></td>
                 </tr>
                 
              </table>
