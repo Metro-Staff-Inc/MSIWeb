@@ -325,145 +325,43 @@ namespace MSI.Web.MSINet.DataAccess
             return clients;
         }
 
-        public void AddUserToClient(string username, int clientId, bool preferredClient, bool canViewVoidedClients)
-        {
-            Database dbSvc = DatabaseFactory.CreateDatabase();
-            DbCommand cmd = dbSvc.GetStoredProcCommand("msinet_AddUserToClient");
-            cmd.CommandTimeout = 120; // 2 minutes
-            
-            // Get the user ID from the username
-            Guid userId = Guid.Empty;
-            DbCommand userCmd = dbSvc.GetStoredProcCommand("GetUserIdByName");
-            dbSvc.AddInParameter(userCmd, "@UserName", DbType.String, username);
-            
-            try
-            {
-                object result = dbSvc.ExecuteScalar(userCmd);
-                if (result != null && result != DBNull.Value)
-                {
-                    userId = (Guid)result;
-                }
-                else
-                {
-                    throw new Exception("User not found");
-                }
-            }
-            finally
-            {
-                userCmd.Dispose();
-            }
-            
-            // Add parameters for the AddUserToClient stored procedure
-            dbSvc.AddInParameter(cmd, "@UserId", DbType.Guid, userId);
-            dbSvc.AddInParameter(cmd, "@ClientId", DbType.Int32, clientId);
-            dbSvc.AddInParameter(cmd, "@PreferredClient", DbType.Boolean, preferredClient);
-            dbSvc.AddInParameter(cmd, "@CanViewVoidedClients", DbType.Boolean, canViewVoidedClients);
-            
-            try
-            {
-                dbSvc.ExecuteNonQuery(cmd);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                cmd.Dispose();
-            }
-        }
-
         public void RemoveUserFromClient(string username, int clientId)
-        {
-            Database dbSvc = DatabaseFactory.CreateDatabase();
-            DbCommand cmd = dbSvc.GetStoredProcCommand("msinet_RemoveUserFromClient");
-            cmd.CommandTimeout = 120; // 2 minutes
-            
-            // Get the user ID from the username
-            Guid userId = Guid.Empty;
-            DbCommand userCmd = dbSvc.GetStoredProcCommand("GetUserIdByName");
-            dbSvc.AddInParameter(userCmd, "@UserName", DbType.String, username);
-            
-            try
-            {
-                object result = dbSvc.ExecuteScalar(userCmd);
-                if (result != null && result != DBNull.Value)
-                {
-                    userId = (Guid)result;
-                }
-                else
-                {
-                    throw new Exception("User not found");
-                }
-            }
-            finally
-            {
-                userCmd.Dispose();
-            }
-            
-            // Add parameters for the RemoveUserFromClient stored procedure
-            dbSvc.AddInParameter(cmd, "@UserId", DbType.Guid, userId);
-            dbSvc.AddInParameter(cmd, "@ClientId", DbType.Int32, clientId);
-            
-            try
-            {
-                dbSvc.ExecuteNonQuery(cmd);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                cmd.Dispose();
-            }
-        }
+{
+    Database dbSvc = DatabaseFactory.CreateDatabase();
+    DbCommand cmd = dbSvc.GetStoredProcCommand("msinet_RemoveUserFromClient");
+    cmd.CommandTimeout = 120; // 2 minutes
+
+    dbSvc.AddInParameter(cmd, "@username", DbType.String, username);
+    dbSvc.AddInParameter(cmd, "@clientId", DbType.Int32, clientId);
+
+    try
+    {
+        dbSvc.ExecuteNonQuery(cmd);
+    }
+    finally
+    {
+        cmd.Dispose();
+    }
+}
 
         public void SetPreferredClient(string username, int clientId)
-        {
-            Database dbSvc = DatabaseFactory.CreateDatabase();
-            DbCommand cmd = dbSvc.GetStoredProcCommand("msinet_SetPreferredClient");
-            cmd.CommandTimeout = 120; // 2 minutes
-            
-            // Get the user ID from the username
-            Guid userId = Guid.Empty;
-            DbCommand userCmd = dbSvc.GetStoredProcCommand("GetUserIdByName");
-            dbSvc.AddInParameter(userCmd, "@UserName", DbType.String, username);
-            
-            try
-            {
-                object result = dbSvc.ExecuteScalar(userCmd);
-                if (result != null && result != DBNull.Value)
-                {
-                    userId = (Guid)result;
-                }
-                else
-                {
-                    throw new Exception("User not found");
-                }
-            }
-            finally
-            {
-                userCmd.Dispose();
-            }
-            
-            // Add parameters for the SetPreferredClient stored procedure
-            dbSvc.AddInParameter(cmd, "@UserId", DbType.Guid, userId);
-            dbSvc.AddInParameter(cmd, "@ClientId", DbType.Int32, clientId);
-            
-            try
-            {
-                dbSvc.ExecuteNonQuery(cmd);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                cmd.Dispose();
-            }
-        }
+{
+    Database dbSvc = DatabaseFactory.CreateDatabase();
+    DbCommand cmd = dbSvc.GetStoredProcCommand("msinet_SetPreferredClient");
+    cmd.CommandTimeout = 120; // 2 minutes
+
+    dbSvc.AddInParameter(cmd, "@username", DbType.String, username);
+    dbSvc.AddInParameter(cmd, "@clientId", DbType.Int32, clientId);
+
+    try
+    {
+        dbSvc.ExecuteNonQuery(cmd);
+    }
+    finally
+    {
+        cmd.Dispose();
+    }
+}
 
         #endregion
 
@@ -564,77 +462,42 @@ namespace MSI.Web.MSINet.DataAccess
             return departments;
         }
 
+        public void AddUserToClient(string username, int clientId, bool preferredClient, bool canViewVoidedClients)
+{
+    Database dbSvc = DatabaseFactory.CreateDatabase();
+    DbCommand cmd = dbSvc.GetStoredProcCommand("msinet_AddUserToClient");
+    cmd.CommandTimeout = 120; // 2 minutes
+
+    dbSvc.AddInParameter(cmd, "@username", DbType.String, username);
+    dbSvc.AddInParameter(cmd, "@clientId", DbType.Int32, clientId);
+    dbSvc.AddInParameter(cmd, "@preferredClient", DbType.Boolean, preferredClient);
+    dbSvc.AddInParameter(cmd, "@canViewVoidedClients", DbType.Boolean, canViewVoidedClients);
+
+    try
+    {
+        dbSvc.ExecuteNonQuery(cmd);
+    }
+    finally
+    {
+        cmd.Dispose();
+    }
+}
+
         public void AddUserToDepartment(string username, int clientId, int departmentId, Guid? overrideRoleId)
         {
             Database dbSvc = DatabaseFactory.CreateDatabase();
             DbCommand cmd = dbSvc.GetStoredProcCommand("msinet_AddUserToDepartment");
             cmd.CommandTimeout = 120; // 2 minutes
-            
-            // Get the user ID from the username
-            Guid userId = Guid.Empty;
-            DbCommand userCmd = dbSvc.GetStoredProcCommand("GetUserIdByName");
-            dbSvc.AddInParameter(userCmd, "@UserName", DbType.String, username);
-            
-            try
-            {
-                object result = dbSvc.ExecuteScalar(userCmd);
-                if (result != null && result != DBNull.Value)
-                {
-                    userId = (Guid)result;
-                }
-                else
-                {
-                    throw new Exception("User not found");
-                }
-            }
-            finally
-            {
-                userCmd.Dispose();
-            }
-            
-            // Get the client_membership_id
-            int clientMembershipId = 0;
-            DbCommand membershipCmd = dbSvc.GetStoredProcCommand("msinet_GetClientMembershipId");
-            dbSvc.AddInParameter(membershipCmd, "@UserId", DbType.Guid, userId);
-            dbSvc.AddInParameter(membershipCmd, "@ClientId", DbType.Int32, clientId);
-            
-            try
-            {
-                object result = dbSvc.ExecuteScalar(membershipCmd);
-                if (result != null && result != DBNull.Value)
-                {
-                    clientMembershipId = (int)result;
-                }
-                else
-                {
-                    throw new Exception("Client membership not found");
-                }
-            }
-            finally
-            {
-                membershipCmd.Dispose();
-            }
-            
-            // Add parameters for the AddUserToDepartment stored procedure
-            dbSvc.AddInParameter(cmd, "@ClientMembershipId", DbType.Int32, clientMembershipId);
-            dbSvc.AddInParameter(cmd, "@DepartmentId", DbType.Int32, departmentId);
-            
-            if (overrideRoleId.HasValue)
-            {
-                dbSvc.AddInParameter(cmd, "@OverrideRoleId", DbType.Guid, overrideRoleId.Value);
-            }
-            else
-            {
-                dbSvc.AddInParameter(cmd, "@OverrideRoleId", DbType.Guid, DBNull.Value);
-            }
-            
+
+            dbSvc.AddInParameter(cmd, "@username", DbType.String, username);
+            dbSvc.AddInParameter(cmd, "@clientId", DbType.Int32, clientId);
+            dbSvc.AddInParameter(cmd, "@departmentId", DbType.Int32, departmentId);
+            dbSvc.AddInParameter(cmd, "@overrideRoleId", DbType.Guid,
+                overrideRoleId.HasValue ? (object)overrideRoleId.Value : DBNull.Value);
+
             try
             {
                 dbSvc.ExecuteNonQuery(cmd);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
             }
             finally
             {

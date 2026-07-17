@@ -1,4 +1,4 @@
-﻿   <%@ Control Language="C#" AutoEventWireup="true" CodeFile="MSINetHoursReport.ascx.cs" Inherits="MSI.Web.Controls.MSINetHoursReport" %>
+   <%@ Control Language="C#" AutoEventWireup="true" CodeFile="MSINetHoursReport.ascx.cs" Inherits="MSI.Web.Controls.MSINetHoursReport" %>
     
     <asp:Panel ID="pnlJSCode" Visible="false" runat="server">
     <link href="../Includes/css/ui-lightness/jquery-ui-1.8.17.custom.css" rel="stylesheet" type="text/css" />
